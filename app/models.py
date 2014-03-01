@@ -4,18 +4,31 @@ import datetime
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    # role 1,2,3,4 maps to students, recommender, evaluator, staff
+    role = db.Column(db.Integer)
     email = db.Column(db.String(45), unique=True)
     password = db.Column(db.String(45))
     firstname = db.Column(db.String(45))
+    # firstname2 optional
+    firstname2 = db.Column(db.String(45))
+    # middlename optional
+    middlename = db.Column(db.String())
     lastname = db.Column(db.String(45))
+    # lastname2 optional
+    lastname2= db.Column(db.String(45))
     phone = db.Column(db.String(45))
+    # phonetype 1,2, 3 maps to cell, home, work
+    phonetype = db.Column(db.Integer)
     address = db.Column(db.String(90))
     city = db.Column(db.String(45))
     state = db.Column(db.String(45))
     zipcode = db.Column(db.String(10))
-    languages = db.Column(db.Text)
-    culturalgroups = db.Column(db.Text)
-    working = db.Column(db.Text)
+    # permanent address
+    permanentaddress =db.Column(db.String(90))
+    permanentcity = db.Column(db.String(45))
+    permanentstate = db.Column(db.String(45))
+    permanentzipcode = db.Column(db.String(10))
+
     rec1firstname = db.Column(db.String(45))
     rec1lastname = db.Column(db.String(45))
     rec1email = db.Column(db.String(45))
@@ -37,7 +50,7 @@ class User(db.Model):
     timestamp = db.Column(db.DateTime)
     application_complete = db.Column(db.Integer, default = 0)
     recommendations = db.relationship('Recommendation', backref = 'requester', lazy = 'dynamic')
-    role = db.Column(db.Integer)    
+
     all_recs_complete = db.Column(db.Integer)
 
     def __repr__(self):
@@ -103,10 +116,10 @@ class Recommendation(db.Model):
     recq8 = db.Column(db.Text)
     recommendation_complete = db.Column(db.Integer, default = 0)
     timestamp = db.Column(db.DateTime)
-    
+
     def __repr__(self):
         return '<Recommendation %r>' % (self.id)
-        
+
     def is_recommendation_complete(self):
         if self.recq1 and self.recq1ex and self.recq2 and self.recq2ex and self.recq3 and self.recq3ex and \
             self.recq4 and self.recq4ex and self.recq5 and self.recq5ex and self.recq6 and self.recq6ex and \

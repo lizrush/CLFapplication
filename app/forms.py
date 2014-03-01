@@ -25,20 +25,24 @@ class LoginForm(Form):
 
 class CreateProfileForm(Form):
 	firstname = TextField('firstname', validators = [Required(message='We need to know your first name!')])
+	firstname2 = TextField('firstname2', validators = none)
+	middlename = TextField('middlename', validators = none)
 	lastname = TextField('lastname', validators = [Required(message='We need to know your last name!')])
+	lastname2 = TextField('lastname', validators = none)
 	email = TextField('email', validators = [unique_user, Required(message="We need your email address!"), Email(message="Hmm, your email address doesn't look like an email address.")])
 	password = PasswordField('password')
 	retypepassword = PasswordField('retypepassword')
 	phone = TextField('phone', validators = [Required(message="We need your phone number!")])
+	phonetype = SelectField('inspire', choices=[('1', 'Cell'),('2', 'Home'),('3', 'Work')], validators = [Required()])
 	address = TextField('address', validators = [Required(message="We need your address!")])
 	city = TextField('city', validators = [Required(message="We'd like to know what city you live in.")])
 	state = TextField('state', validators = [Required(message="We'd like to know what state you live in.")])
 	zipcode = IntegerField('zipcode', validators = [Required(message="We need your zipcode!")])
-	appsource = TextAreaField('appsource', validators = [Required(message="Please tell us how you heard about this application.")])
-	languages = TextAreaField('languages', validators = [Required(message="Please tell us what language(s) you speak.")])
-	culturalgroups = TextAreaField('culturalgroups', validators = [Required(message="Please tell us what groups you identify with.")])
-	working = TextAreaField('working', validators = [Required(message="Please tell us about your current work.")])
-	school = TextAreaField('school', validators = [Required(message="Please answer the last question.")])
+	permanentaddress = TextField('address', validators = [Required(message="We need your address!")])
+	permanentcity = TextField('city', validators = [Required(message="We'd like to know what city you live in.")])
+	permanentstate = TextField('state', validators = [Required(message="We'd like to know what state you live in.")])
+	permanentzipcode = IntegerField('zipcode', validators = [Required(message="We need your zipcode!")])
+
 
 	def validate_password(self, field):
 		user = self.get_user()
@@ -62,20 +66,23 @@ class CreateProfileForm(Form):
 
 class ProfileForm(Form):
 	firstname = TextField('firstname', validators = [Required(message='We need to know your first name!')])
+	firstname2 = TextField('firstname2', validators = none)
+	middlename = TextField('middlename', validators = none)
 	lastname = TextField('lastname', validators = [Required(message='We need to know your last name!')])
-	email = TextField('email', validators = [Required(message="We need your email address!"), Email(message="Hmm, your email address doesn't look like an email address.")])
+	lastname2 = TextField('lastname', validators = none)
+	email = TextField('email', validators = [unique_user, Required(message="We need your email address!"), Email(message="Hmm, your email address doesn't look like an email address.")])
 	password = PasswordField('password')
 	retypepassword = PasswordField('retypepassword')
 	phone = TextField('phone', validators = [Required(message="We need your phone number!")])
+	phonetype = SelectField('inspire', choices=[('1', 'Cell'),('2', 'Home'),('3', 'Work')], validators = [Required()])
 	address = TextField('address', validators = [Required(message="We need your address!")])
 	city = TextField('city', validators = [Required(message="We'd like to know what city you live in.")])
 	state = TextField('state', validators = [Required(message="We'd like to know what state you live in.")])
 	zipcode = IntegerField('zipcode', validators = [Required(message="We need your zipcode!")])
-	appsource = TextAreaField('appsource', validators = [Required(message="Please tell us how you heard about this application.")])
-	languages = TextAreaField('languages', validators = [Required(message="Please tell us what language(s) you speak.")])
-	culturalgroups = TextAreaField('culturalgroups', validators = [Required(message="Please tell us what groups you identify with.")])
-	working = TextAreaField('working', validators = [Required(message="Please tell us about your current work.")])
-	school = TextAreaField('school', validators = [Required(message="Please answer the last question.")])
+	permanentaddress = TextField('address', validators = [Required(message="We need your address!")])
+	permanentcity = TextField('city', validators = [Required(message="We'd like to know what city you live in.")])
+	permanentstate = TextField('state', validators = [Required(message="We'd like to know what state you live in.")])
+	permanentzipcode = IntegerField('zipcode', validators = [Required(message="We need your zipcode!")])
 
 
 	def validate_password(self, field):
@@ -107,14 +114,14 @@ class ShortanswerForm(Form):
 	Q06 = TextAreaField('Q06', validators = [Required(message="6")])
 	Q07 = TextAreaField('Q07', validators = [Required(message="7")])
 	Q08 = TextAreaField('Q08', validators = [Required(message="8")])
-	Q09 = TextAreaField('Q09', validators = [Required(message="9")])	
+	Q09 = TextAreaField('Q09', validators = [Required(message="9")])
 	Q10 = TextAreaField('Q10', validators = [Required(message="10")])
-	Q11 = TextAreaField('Q11', validators = [Required(message="11")])			
+	Q11 = TextAreaField('Q11', validators = [Required(message="11")])
 	Q12 = TextAreaField('Q12', validators = [Required(message="12")])
 
 class TechskillsForm(Form):
 	basicq1 = RadioField('basicq1', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
-	basicq2 = RadioField('basicq2', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])	
+	basicq2 = RadioField('basicq2', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
 	basicq3 = RadioField('basicq3', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
 	basicq4 = RadioField('basicq4', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
 	basicq5 = RadioField('basicq5', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
