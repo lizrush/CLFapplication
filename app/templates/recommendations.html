@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="contentholder">
+	<div class="formheader">
+	<br><br><br><h2>Your recommenders</h2>
+	</div>
+
+	<p>We'd like to hear from three people who know you ...</p>
+
+	{%if form.errors %}
+		<br>
+		<p style="color:red">Looks like something's missing from your form:<br>
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+                <br><span style="margin-left:15px">- We'd like to know {{ error }}!</span>
+            {% endfor %}
+        {% endfor %}
+		</p>
+	{% endif %}
+
+
+	<form action="" method="post" name="recommendations">
+		{{form.hidden_tag()}}
+		<div class="recommenderbox">
+			<span class="formheader"><h3>Recommendation 1</h3></span>
+			<div class="col1">
+				<p><label>First name</label>{{ form.rec1firstname }}</p>
+				<p><label>Last name</label>{{ form.rec1lastname }}</p>
+				<p><label>Email</label>{{ form.rec1email }}</p>
+				<p><label>Phone</labe>{{ form.rec1phone }}</p>
+			</div>		
+			<div class="recommender_shortanswer">
+				<label>How do you know this person?</label><p>{{ form.rec1how }}</p>
+			</div>
+		</div>
+
+
+		<div class="recommenderbox">
+			<span class="formheader"><h3>Recommendation 2</h3></span>
+			<div class="col1">
+				<p><label>First name</label>{{ form.rec2firstname }}</p>
+				<p><label>Last name</label>{{ form.rec2lastname }}</p>
+				<p><label>Email</label>{{ form.rec2email }}</p>
+				<p><label>Phone</labe>{{ form.rec2phone }}</p>
+			</div>		
+			<div class="recommender_shortanswer">
+				<label>How do you know this person?</label><p>{{ form.rec2how }}</p>
+			</div>
+		</div>
+
+
+		<div class="recommenderbox">
+			<span class="formheader"><h3>Recommendation 3</h3></span>
+			<div class="col1">
+				<p><label>First name</label>{{ form.rec3firstname }}</p>
+				<p><label>Last name</label>{{ form.rec3lastname }}</p>
+				<p><label>Email</label>{{ form.rec3email }}</p>
+				<p><label>Phone</labe>{{ form.rec3phone }}</p>
+			</div>		
+			<div class="recommender_shortanswer">
+				<label>How do you know this person?</label><p>{{ form.rec3how }}</p>
+			</div>
+		</div>
+
+		<button type="submit" class="advance"><span id="finished">FINISHED?</span>Click here to see if anything's missing.</button>
+	</form>
+</div>
+{% endblock %}

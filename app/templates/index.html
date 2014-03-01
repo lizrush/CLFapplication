@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="contentholder">
+	<br><br><br><br><h2>Your Chicana Latina Foundation application</h2>
+	<p>This application has four parts that you need to finish before you can send it to us. The buttons for each section will be gray until you finish answering that section's questions - when the button turns green, you're done!</p>
+	
+	<p>You can always change what you've written in a section, even if it's marked green, before you send in your final application.</p>
+
+	</div>
+
+
+<div id="buttonholder">
+	<a href="{{ url_for('profile') }}"><div class="componentbutton shortened">PROFILE
+	<div class="details">Tell us who you are.</div></div></a>
+	
+	<a href="{{ url_for('shortanswers') }}"><div class="componentbutton">ESSAY QUESTIONS
+	<div class="details">Tell us how you think.</div></div></a>
+	
+	<a href="{{ url_for('techskills') }}"><div class="componentbutton shortened">DOCUMENTS
+	<div class="details">Give us your transcript and/or resume.</div></div></a>
+	
+	<a href="{{ url_for('recommendations') }}"><div class="componentbutton">RECOMMENDATIONS
+	<div class="details">Let other people tell us about you.</div></div></a>
+</div></div>
+
+<a href="{{ url_for('finalsubmission') }}">
+		<span class="advance">FINISHED?</span>
+</a>
+
+{% endblock %}

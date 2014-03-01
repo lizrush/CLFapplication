@@ -1,0 +1,63 @@
+{% extends "selectorbase.html" %}
+
+{% block content %}
+
+<div class = "contentholder">
+
+
+
+
+<p><br><br> Our list as of last night, from highest to lowest average score:</p>
+<ol>
+{% for i in range(0,72) %}
+	<li><b><a href="#{{finalistsRound1[i].user_id}}" class="show_hide{{finalistsRound1[i].user_id}} {% if finalistsRound1[i].user_id in [596, 492, 126, 6, 78, 34, 894, 48, 364, 791, 86, 785, 116, 678, 101, 98, 631, 298, 145, 946, 2, 115, 119, 674, 18, 904, 49, 43, 823, 66, 154] %}interviewee{% endif %}">
+	
+	{{finalistsRound1[i].firstname}} {{finalistsRound1[i].lastname}} ({{finalistsRound1[i].user_id}})</b> ({{finalistsRound1[i].city}},{{finalistsRound1[i].state}}) - <b>{{displaymatrix[i][6]}}</b> yeses, average score of <b>{{displaymatrix[i][5]}}</b>
+	</a></li>
+	<div class="slidingDiv{{finalistsRound1[i].user_id}}">
+		<img style="text-align: top; margin: 10px;" width=200 src="static/{{finalistsRound1[i].user_id}}.jpg">
+		<p><b>How did they hear about the application?:</b>{{finalistsRound1[i].appsource}}
+		<br><b>Languages: </b>{{finalistsRound1[i].languages}}
+		<br><b>Cultural groups: </b>{{finalistsRound1[i].culturalgroups}}
+		<br><b>Working?: </b> {{finalistsRound1[i].working}}
+		<br><b>In school?: </b>{{finalistsRound1[i].school}}</p>
+		<br>
+		<p><b>Shortanswer questions</b></p>
+		<ol>
+			<li>{{finalistsRound1[i].Q01}}</li>
+			<li>{{finalistsRound1[i].Q02}}</li>
+                        <li>{{finalistsRound1[i].Q03}}</li>
+                        <li>{{finalistsRound1[i].Q04}}</li>
+                        <li>{{finalistsRound1[i].Q05}}</li>
+                        <li>{{finalistsRound1[i].Q06}}</li>
+                        <li>{{finalistsRound1[i].Q07}}</li>
+                        <li>{{finalistsRound1[i].Q08}}</li>
+                        <li>{{finalistsRound1[i].Q09}}</li>
+                        <li>{{finalistsRound1[i].Q10}}</li>
+                        <li>{{finalistsRound1[i].Q11}}</li>
+                        <li>{{finalistsRound1[i].Q12}}</li>
+		</ol>
+		<br>
+		<p><b>Tech familiarity</b> (5 is high, 1 is low)</p>
+		<ul>
+			<li><b>Basic:</b> Typing: {{finalistsRound1[i].basicq1}} | Searching Internet: {{finalistsRound1[i].basicq3}} | Email: {{finalistsRound1[i].basicq3}} | Using mobile apps: {{finalistsRound1[i].basicq4}} | Word processor: {{finalistsRound1[i].basicq5}} | Spreadsheet: {{finalistsRound1[i].basicq6}} | Social media: {{finalistsRound1[i].basicq7}} | Writing a blog post: {{finalistsRound1[i].basicq8}} | Command line: {{finalistsRound1[i].basicq9}}
+			<li><b>Systems:</b> Windows:{{finalistsRound1[i].systemsq1}} | Mac:{{finalistsRound1[i].systemsq2}} | Linux:{{finalistsRound1[i].systemsq3}}
+			<li><b>Coding:</b> HTML: {{finalistsRound1[i].codingq1}} | CSS: {{finalistsRound1[i].codingq2}}  | Python code:{{finalistsRound1[i].codingq3}} | Another language code:{{finalistsRound1[i].codingq4}} | Python apps:{{finalistsRound1[i].codingq5}} | Another language apps: {{finalistsRound1[i].codingq6}}</li>
+		</ul>
+		<br>
+		<p><b>Recommendations -</b> <u><a href="{{ url_for('view_recommendations', student_id=finalistsRound1[i].user_id) }}">Click to read</a></u></p>
+
+		<p><b>Evaluations -</b> <u><a href="{{ url_for('view_evaluations', student_id=finalistsRound1[i].user_id) }}">Click to read</a></u></p>
+
+	<a href="#{{finalistsRound1[i].user_id}}" class="show_hide{{finalistsRound1[i].user_id}}"><b>(Click here to hide this applicant's info)</b></a>
+	<br><br><br>
+	--------------------------------
+	</div>
+{% endfor %}
+</ol>
+
+
+
+	
+</ol></div>
+{% endblock %}

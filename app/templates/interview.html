@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="contentholder">
+	<br><h2>Congratulations on making it to Round 2!</h2>
+	<p>So you've signed up for an interview slot - wondering what to do next? We want you to feel comfortable and ready to talk with us, so spend some time on the things below. </p>
+	
+	<br>
+	<div class="formheader"><h3 style="text-align: center;">What will we be talking about in the interview?</h3>
+    <p> We thought you had a strong application, so we want to know more about you and how you think. In your interview, we'll be asking about:
+	<ul>
+	    <li><b>Your personal story</b>: What communities, identities, and experiences made you who you are today?</li><br>
+	    <li><b>Your access to technology throughout your life</b>: What kinds of technology did you grow up using or learn to use as an adult, and what do you use now?</li><br>
+	    <li><b>Your commitment to social-justice causes:</b> What specific issues matter to you, and what actions have you taken to work on them?</li>
+	    <li><b>Your hopes and plans for the future:</b> How do you see technology impacting you, your communities, and the social-justice issues you care about? How do you foresee yourself working as a professional in social-justice technology in the future?</b></li><br>
+	    <li><b>What "coding" means to you</b>: We don't expect you to be an expert on this, but we'd like to hear your ideas about what coders and app developers can do for social justice, so spend some time looking for examples of what kinds of things coders do</li><br>
+	    <li><b>Your answer to this problem:</b>
+	<p style="margin-left: 20px"><i>"Rising Tide is a statewide racial and economic justice organization. They want to pass a bill this year that will fund summer jobs for teens, using money that the state normally spends on youth incarceration. The organization has a membership list of just over 10,000 people that includes parents of incarcerated youth and many passionate young people who have been in the criminal justice system. Right now, their only contact with their members is an email they send out weekly and a membership dues request that they mail once a year. They have a Facebook page where they post news every couple of weeks, and a website that contains statistics about youth incarceration and info about laws in their state. Rising Tide has two full-time staff people who do research and talk to legislators, and they would like to hire a community organizer if they can raise the money to do that. Legislators often seek their advice and local news stations sometimes ask them to comment on controversial cases of sentencing, but otherwise their efforts and members are not well known by the public.</i></p>
+	    <p>This (fictional) organization has a few areas in which it could improve so that it can help pass the youth jobs bill, and we think a coder might be able to lend a hand. Pick <b>just one specific problem</b> you think a coder could work on, and think of a creative but practical idea for a tool, app, or new way of doing things that might be able to help. Make sure you can explain exactly which problem you chose and how people will use your tool (you don't have to know how it works!).</p></li>
+    	</ul>
+	</p></div>
+
+    <br>	
+       <div class="formheader"><h3 style="text-align: center;">What should you do to prepare?</h3>
+        <p>Everyone has their own way of practicing and studying, but we think everyone should <b>spend one or two hours</b> doing these three things:
+        <ul>
+            <li><b>Read <u><a href="http://www.codeforprogress.org">our website</a></u></b> to make sure you understand why this program exists, what it's for, and what it expects of its participants</li><br>
+            <li> <b>Write down notes or questions that you have about each of the topics above</b>. This is a really good way to make sure you've done your research and thinking, and it helps you remember your ideas later - and we think having questions for us makes your interview stronger!</li><br>
+            <li><b>Practice with someone.</b> The people who work at Code for Progress have been to lots of interviews - and no matter how much experience we have, we're always more clear and comfortable when we've practiced with someone. After you do some thinking about the topics above, ask someone you trust (they don't have to be a coder) to roleplay your interview with you. This lets you try out a few ways to get your amazing ideas across!</li><br>
+         </ul>
+       </p></div>	
+	
+
+
+</div></div>
+
+<a href="{{ url_for('logout') }}">
+	<div class="advance">
+		<span id="finished">LOG OUT</span>We'll talk to you soon!
+	</div>
+</a>
+
+{% endblock %}

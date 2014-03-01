@@ -1,0 +1,526 @@
+{% extends "staffbase.html" %}
+
+{% block content %}
+
+<div class = "contentholder">
+
+
+
+<p><br><br> Our list as of last night:</p>
+<ol>
+{% for c in finalistsRound1 %}
+
+	<li><b><div {% if c.user_id in [596, 492, 126, 6, 78, 34, 894, 48, 364, 791, 86, 785, 116, 678, 101, 98, 631, 298, 145, 946, 2, 115, 119, 674, 18, 904, 49, 43, 823, 66, 154] %}id="interviewee" {% endif %}><a href="#{{c.user_id}}" class="show_hide{{c.user_id}}" %}id="interviewee" {% endif %}>{{c.firstname}} {{c.lastname}}</b> ({{c.city}},{{c.state}})</a></li>
+	<div class="slidingDiv{{c.user_id}}">
+		<p><b>How did they hear about the application?:</b>{{c.appsource}}
+		<br><b>Languages: </b>{{c.languages}}
+		<br><b>Cultural groups: </b>{{c.culturalgroups}}
+		<br><b>Working?: </b> {{c.working}}
+		<br><b>In school?: </b>{{c.school}}</p>
+		<br>
+		<p><b>Shortanswer questions</b></p>
+		<ol>
+			<li>{{c.Q01}}</li>
+			<li>{{c.Q02}}</li>
+                        <li>{{c.Q03}}</li>
+                        <li>{{c.Q04}}</li>
+                        <li>{{c.Q05}}</li>
+                        <li>{{c.Q06}}</li>
+                        <li>{{c.Q07}}</li>
+                        <li>{{c.Q08}}</li>
+                        <li>{{c.Q09}}</li>
+                        <li>{{c.Q10}}</li>
+                        <li>{{c.Q11}}</li>
+                        <li>{{c.Q12}}</li>
+		</ol>
+		<br>
+		<p><b>Tech familiarity</b> (5 is high, 1 is low)</p>
+		<ul>
+			<li><b>Basic:</b> Typing: {{c.basicq1}} | Searching Internet: {{c.basicq3}} | Email: {{c.basicq3}} | Using mobile apps: {{c.basicq4}} | Word processor: {{c.basicq5}} | Spreadsheet: {{c.basicq6}} | Social media: {{c.basicq7}} | Writing a blog post: {{c.basicq8}} | Command line: {{c.basicq9}}
+			<li><b>Systems:</b> Windows:{{c.systemsq1}} | Mac:{{c.systemsq2}} | Linux:{{c.systemsq3}}
+			<li><b>Coding:</b> HTML: {{c.codingq1}} | CSS: {{c.codingq2}}  | Python code:{{c.codingq3}} | Another language code:{{c.codingq4}} | Python apps:{{c.codingq5}} | Another language apps: {{c.codingq6}}</li>
+		</ul>
+		<br>
+		<p><b>Recommendations -</b> <u><a href="{{ url_for('view_recommendations', student_id=c.user_id) }}">Click to read</a></u></p>
+
+		<p><b>Evaluations -</b> <u><a href="{{ url_for('view_evaluations', student_id=c.user_id) }}">Click to read</a></u></p>
+
+	<a href="#{{c.user_id}}" class="show_hide{{c.user_id}}"><b>(Click here to hide this applicant's info)</b></a>
+	<br><br><br>
+	--------------------------------
+	</div>
+{% endfor %}
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<p><b>410</b> people have started applications.</p>
+<p><b>225</b> of those are finished.</p>
+
+<p><br><br> Our "definitely read" applicants with 3 yeses and average scores over 20 are:</p>
+<ol>
+{% for c in forConsideration %}
+
+	<li><b><a href="#{{c.user_id}}" class="show_hide{{c.user_id}}">{{c.firstname}} {{c.lastname}}</b> ({{c.city}},{{c.state}})</a></li>
+	<div class="slidingDiv{{c.user_id}}">
+		<p><b>How did they hear about the application?:</b>{{c.appsource}}
+		<br><b>Languages: </b>{{c.languages}}
+		<br><b>Cultural groups: </b>{{c.culturalgroups}}
+		<br><b>Working?: </b> {{c.working}}
+		<br><b>In school?: </b>{{c.school}}</p>
+		<br>
+		<p><b>Shortanswer questions</b></p>
+		<ol>
+			<li>{{c.Q01}}</li>
+			<li>{{c.Q02}}</li>
+                        <li>{{c.Q03}}</li>
+                        <li>{{c.Q04}}</li>
+                        <li>{{c.Q05}}</li>
+                        <li>{{c.Q06}}</li>
+                        <li>{{c.Q07}}</li>
+                        <li>{{c.Q08}}</li>
+                        <li>{{c.Q09}}</li>
+                        <li>{{c.Q10}}</li>
+                        <li>{{c.Q11}}</li>
+                        <li>{{c.Q12}}</li>
+		</ol>
+		<br>
+		<p><b>Tech familiarity</b> (5 is high, 1 is low)</p>
+		<ul>
+			<li><b>Basic:</b> Typing: {{c.basicq1}} | Searching Internet: {{c.basicq3}} | Email: {{c.basicq3}} | Using mobile apps: {{c.basicq4}} | Word processor: {{c.basicq5}} | Spreadsheet: {{c.basicq6}} | Social media: {{c.basicq7}} | Writing a blog post: {{c.basicq8}} | Command line: {{c.basicq9}}
+			<li><b>Systems:</b> Windows:{{c.systemsq1}} | Mac:{{c.systemsq2}} | Linux:{{c.systemsq3}}
+			<li><b>Coding:</b> HTML: {{c.codingq1}} | CSS: {{c.codingq2}}  | Python code:{{c.codingq3}} | Another language code:{{c.codingq4}} | Python apps:{{c.codingq5}} | Another language apps: {{c.codingq6}}</li>
+		</ul>
+		<br>
+		<p><b>Recommendations -</b> <u><a href="{{ url_for('view_recommendations', student_id=c.user_id) }}">Click to read</a></u></p>
+
+		<p><b>Evaluations -</b> <u><a href="{{ url_for('view_evaluations', student_id=c.user_id) }}">Click to read</a></u></p>
+
+	<a href="#{{c.user_id}}" class="show_hide{{c.user_id}}"><b>(Click here to hide this applicant's info)</b></a>
+	<br><br><br>
+	--------------------------------
+	</div>
+{% endfor %}
+</ol>
+
+
+
+
+<p><br><br> Our applicants with 3 yeses and average scores under 20 are:</p>
+<ol start = "31">
+{% for th in threeyeses %}
+
+	<li><b><a href="#{{th.user_id}}" class="show_hide{{th.user_id}}">{{th.firstname}} {{th.lastname}}</b> ({{th.city}},{{th.state}})</a></li>
+	<div class="slidingDiv{{th.user_id}}">
+		<p><b>How did they hear about the application?:</b>{{th.appsource}}
+		<br><b>Languages: </b>{{th.languages}}
+		<br><b>Cultural groups: </b>{{th.culturalgroups}}
+		<br><b>Working?: </b> {{th.working}}
+		<br><b>In school?: </b>{{th.school}}</p>
+		<br>
+		<p><b>Shortanswer questions</b></p>
+		<ol>
+			<li>{{th.Q01}}</li>
+			<li>{{th.Q02}}</li>
+                        <li>{{th.Q03}}</li>
+                        <li>{{th.Q04}}</li>
+                        <li>{{th.Q05}}</li>
+                        <li>{{th.Q06}}</li>
+                        <li>{{th.Q07}}</li>
+                        <li>{{th.Q08}}</li>
+                        <li>{{th.Q09}}</li>
+                        <li>{{th.Q10}}</li>
+                        <li>{{th.Q11}}</li>
+                        <li>{{th.Q12}}</li>
+		</ol>
+		<br>
+		<p><b>Tech familiarity</b> (5 is high, 1 is low)</p>
+		<ul>
+			<li><b>Basic:</b> Typing: {{th.basicq1}} | Searching Internet: {{th.basicq3}} | Email: {{th.basicq3}} | Using mobile apps: {{th.basicq4}} | Word processor: {{th.basicq5}} | Spreadsheet: {{th.basicq6}} | Social media: {{th.basicq7}} | Writing a blog post: {{th.basicq8}} | Command line: {{th.basicq9}}
+			<li><b>Systems:</b> Windows:{{th.systemsq1}} | Mac:{{th.systemsq2}} | Linux:{{th.systemsq3}}
+			<li><b>Coding:</b> HTML: {{th.codingq1}} | CSS: {{th.codingq2}}  | Python code:{{th.codingq3}} | Another language code:{{th.codingq4}} | Python apps:{{th.codingq5}} | Another language apps: {{th.codingq6}}</li>
+		</ul>
+		<br>
+		<p><b>Recommendations -</b> <u><a href="{{ url_for('view_recommendations', student_id=th.user_id) }}">Click to read</a></u></p>
+
+		<p><b>Evaluations -</b> <u><a href="{{ url_for('view_evaluations', student_id=th.user_id) }}">Click to read</a></u></p>
+
+	<a href="#{{th.user_id}}" class="show_hide{{th.user_id}}"><b>(Click here to hide this applicant's info)</b></a>
+	<br><br><br>
+	--------------------------------
+	</div>
+{% endfor %}
+</ol>
+
+
+<p><br><br> Our applicants with 2 yeses and average scores 15 or over are:</p>
+<ol start = "31">
+{% for h in hightwoyeses %}
+
+	<li><b><a href="#{{h.user_id}}" class="show_hide{{h.user_id}}">{{h.firstname}} {{h.lastname}}</b> ({{h.city}},{{h.state}})</a></li>
+	<div class="slidingDiv{{h.user_id}}">
+		<p><b>How did they hear about the application?:</b>{{h.appsource}}
+		<br><b>Languages: </b>{{h.languages}}
+		<br><b>Cultural groups: </b>{{h.culturalgroups}}
+		<br><b>Working?: </b> {{h.working}}
+		<br><b>In school?: </b>{{h.school}}</p>
+		<br>
+		<p><b>Shortanswer questions</b></p>
+		<ol>
+			<li>{{h.Q01}}</li>
+			<li>{{h.Q02}}</li>
+                        <li>{{h.Q03}}</li>
+                        <li>{{h.Q04}}</li>
+                        <li>{{h.Q05}}</li>
+                        <li>{{h.Q06}}</li>
+                        <li>{{h.Q07}}</li>
+                        <li>{{h.Q08}}</li>
+                        <li>{{h.Q09}}</li>
+                        <li>{{h.Q10}}</li>
+                        <li>{{h.Q11}}</li>
+                        <li>{{h.Q12}}</li>
+		</ol>
+		<br>
+		<p><b>Tech familiarity</b> (5 is high, 1 is low)</p>
+		<ul>
+			<li><b>Basic:</b> Typing: {{h.basicq1}} | Searching Internet: {{h.basicq3}} | Email: {{h.basicq3}} | Using mobile apps: {{h.basicq4}} | Word processor: {{h.basicq5}} | Spreadsheet: {{h.basicq6}} | Social media: {{h.basicq7}} | Writing a blog post: {{h.basicq8}} | Command line: {{h.basicq9}}
+			<li><b>Systems:</b> Windows:{{h.systemsq1}} | Mac:{{h.systemsq2}} | Linux:{{h.systemsq3}}
+			<li><b>Coding:</b> HTML: {{h.codingq1}} | CSS: {{h.codingq2}}  | Python code:{{h.codingq3}} | Another language code:{{h.codingq4}} | Python apps:{{h.codingq5}} | Another language apps: {{h.codingq6}}</li>
+		</ul>
+		<br>
+		<p><b>Recommendations -</b> <u><a href="{{ url_for('view_recommendations', student_id=h.user_id) }}">Click to read</a></u></p>
+
+		<p><b>Evaluations -</b> <u><a href="{{ url_for('view_evaluations', student_id=h.user_id) }}">Click to read</a></u></p>
+
+	<a href="#{{h.user_id}}" class="show_hide{{h.user_id}}"><b>(Click here to hide this applicant's info)</b></a>
+	<br><br><br>
+	--------------------------------
+	</div>
+{% endfor %}
+</ol>
+
+
+
+
+
+
+<p><br><br> Our applicants with 2 yeses and scores under 15:</p>
+<ol start = "49">
+{% for t in twoyeses %}
+	<li><b><a href="#{{t.user_id}}" class="show_hide{{t.user_id}}">{{t.firstname}} {{t.lastname}}</b> ({{t.city}},{{t.state}})</a></li>
+	<div class="slidingDiv{{t.user_id}}">
+		<p><b>How did they hear about the application?:</b>{{t.appsource}}
+		<br><b>Languages: </b>{{t.languages}}
+		<br><b>Cultural groups: </b>{{t.culturalgroups}}
+		<br><b>Working?: </b> {{t.working}}
+		<br><b>In school?: </b>{{t.school}}</p>
+		<br>
+		<p><b>Shortanswer questions</b></p>
+		<ol>
+			<li>{{t.Q01}}</li>
+			<li>{{t.Q02}}</li>
+                        <li>{{t.Q03}}</li>
+                        <li>{{t.Q04}}</li>
+                        <li>{{t.Q05}}</li>
+                        <li>{{t.Q06}}</li>
+                        <li>{{t.Q07}}</li>
+                        <li>{{t.Q08}}</li>
+                        <li>{{t.Q09}}</li>
+                        <li>{{t.Q10}}</li>
+                        <li>{{t.Q11}}</li>
+                        <li>{{t.Q12}}</li>
+		</ol>
+		<br>
+		<p><b>Tech familiarity</b> (5 is high, 1 is low)</p>
+		<ul>
+			<li><b>Basic:</b> Typing: {{t.basicq1}} | Searching Internet: {{t.basicq3}} | Email: {{t.basicq3}} | Using mobile apps: {{t.basicq4}} | Word processor: {{t.basicq5}} | Spreadsheet: {{t.basicq6}} | Social media: {{t.basicq7}} | Writing a blog post: {{t.basicq8}} | Command line: {{t.basicq9}}
+			<li><b>Systems:</b> Windows:{{t.systemsq1}} | Mac:{{t.systemsq2}} | Linux:{{t.systemsq3}}
+			<li><b>Coding:</b> HTML: {{t.codingq1}} | CSS: {{t.codingq2}}  | Python code:{{t.codingq3}} | Another language code:{{t.codingq4}} | Python apps:{{t.codingq5}} | Another language apps: {{t.codingq6}}</li>
+		</ul>
+		<br>
+		<p><b>Recommendations -</b> <u><a href="{{ url_for('view_recommendations', student_id=t.user_id) }}">Click to read</a></u></p>
+
+		<p><b>Evaluations -</b> <u><a href="{{ url_for('view_evaluations', student_id=t.user_id) }}">Click to read</a></u></p>
+
+	<a href="#{{t.user_id}}" class="show_hide{{t.user_id}}"><b>(Click here to hide this applicant's info)</b></a>
+	<br><br><br>
+	--------------------------------
+	</div>
+{% endfor %}
+</ol>
+
+
+
+<p><br><br> Our applicants with only one yes:</p>
+<ol start = "90">
+{% for o in oneyes %}
+	<li><b><a href="#{{o.user_id}}" class="show_hide{{o.user_id}}">{{o.firstname}} {{o.lastname}}</b> ({{o.city}},{{o.state}})</a></li>
+	<div class="slidingDiv{{o.user_id}}">
+		<p><b>How did they hear about the application?:</b>{{o.appsource}}
+		<br><b>Languages: </b>{{o.languages}}
+		<br><b>Cultural groups: </b>{{o.culturalgroups}}
+		<br><b>Working?: </b> {{o.working}}
+		<br><b>In school?: </b>{{o.school}}</p>
+		<br>
+		<p><b>Shortanswer questions</b></p>
+		<ol>
+			<li>{{o.Q01}}</li>
+			<li>{{o.Q02}}</li>
+                        <li>{{o.Q03}}</li>
+                        <li>{{o.Q04}}</li>
+                        <li>{{o.Q05}}</li>
+                        <li>{{o.Q06}}</li>
+                        <li>{{o.Q07}}</li>
+                        <li>{{o.Q08}}</li>
+                        <li>{{o.Q09}}</li>
+                        <li>{{o.Q10}}</li>
+                        <li>{{o.Q11}}</li>
+                        <li>{{o.Q12}}</li>
+		</ol>
+		<br>
+		<p><b>Tech familiarity</b> (5 is high, 1 is low)</p>
+		<ul>
+			<li><b>Basic:</b> Typing: {{o.basicq1}} | Searching Internet: {{o.basicq3}} | Email: {{o.basicq3}} | Using mobile apps: {{o.basicq4}} | Word processor: {{o.basicq5}} | Spreadsheet: {{o.basicq6}} | Social media: {{o.basicq7}} | Writing a blog post: {{o.basicq8}} | Command line: {{o.basicq9}}
+			<li><b>Systems:</b> Windows:{{o.systemsq1}} | Mac:{{o.systemsq2}} | Linux:{{o.systemsq3}}
+			<li><b>Coding:</b> HTML: {{o.codingq1}} | CSS: {{o.codingq2}}  | Python code:{{o.codingq3}} | Another language code:{{o.codingq4}} | Python apps:{{o.codingq5}} | Another language apps: {{o.codingq6}}</li>
+		</ul>
+		<br>
+		<p><b>Recommendations -</b> <u><a href="{{ url_for('view_recommendations', student_id=o.user_id) }}">Click to read</a></u></p>
+
+		<p><b>Evaluations -</b> <u><a href="{{ url_for('view_evaluations', student_id=o.user_id) }}">Click to read</a></u></p>
+
+	<a href="#{{o.user_id}}" class="show_hide{{o.user_id}}"><b>(Click here to hide this applicant's info)</b></a>
+	<br><br><br>
+	
+	--------------------------------
+	</div>	
+	
+{% endfor %}
+</ol>
+
+
+
+
+
+
+<p><br><br> Our applicants with zero yeses and average scores over 10:</p>
+<ol start = "124">
+{% for z in zeroyeses %}
+	<li><b><a href="#{{z.user_id}}" class="show_hide{{z.user_id}}">{{z.firstname}} {{z.lastname}}</b> ({{z.city}},{{z.state}})</a></li>
+	<div class="slidingDiv{{z.user_id}}">
+		<p><b>How did they hear about the application?:</b>{{z.appsource}}
+		<br><b>Languages: </b>{{z.languages}}
+		<br><b>Cultural groups: </b>{{z.culturalgroups}}
+		<br><b>Working?: </b> {{z.working}}
+		<br><b>In school?: </b>{{z.school}}</p>
+		<br>
+		<p><b>Shortanswer questions</b></p>
+		<ol>
+			<li>{{z.Q01}}</li>
+			<li>{{z.Q02}}</li>
+                        <li>{{z.Q03}}</li>
+                        <li>{{z.Q04}}</li>
+                        <li>{{z.Q05}}</li>
+                        <li>{{z.Q06}}</li>
+                        <li>{{z.Q07}}</li>
+                        <li>{{z.Q08}}</li>
+                        <li>{{z.Q09}}</li>
+                        <li>{{z.Q10}}</li>
+                        <li>{{z.Q11}}</li>
+                        <li>{{z.Q12}}</li>
+		</ol>
+		<br>
+		<p><b>Tech familiarity</b> (5 is high, 1 is low)</p>
+		<ul>
+			<li><b>Basic:</b> Typing: {{z.basicq1}} | Searching Internet: {{z.basicq3}} | Email: {{z.basicq3}} | Using mobile apps: {{z.basicq4}} | Word processor: {{z.basicq5}} | Spreadsheet: {{z.basicq6}} | Social media: {{z.basicq7}} | Writing a blog post: {{z.basicq8}} | Command line: {{z.basicq9}}
+			<li><b>Systems:</b> Windows:{{z.systemsq1}} | Mac:{{z.systemsq2}} | Linux:{{z.systemsq3}}
+			<li><b>Coding:</b> HTML: {{z.codingq1}} | CSS: {{z.codingq2}}  | Python code:{{z.codingq3}} | Another language code:{{z.codingq4}} | Python apps:{{z.codingq5}} | Another language apps: {{z.codingq6}}</li>
+		</ul>
+		<br>
+		<p><b>Recommendations -</b> <u><a href="{{ url_for('view_recommendations', student_id=z.user_id) }}">Click to read</a></u></p>
+
+		<p><b>Evaluations -</b> <u><a href="{{ url_for('view_evaluations', student_id=z.user_id) }}">Click to read</a></u></p>
+
+	<a href="#{{z.user_id}}" class="show_hide{{z.user_id}}"><b>(Click here to hide this applicant's info)</b></a>
+	<br><br><br>
+	
+	--------------------------------
+	</div>	
+	
+{% endfor %}
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+<p><br><br> Our "definitely out" applicants with 0 yeses and average scores under 10 are:</p>
+
+<ol start = "125">
+{% for n in notforConsideration %}
+
+	<li><b><a href="#{{n.user_id}}" class="show_hide{{n.user_id}}">{{n.firstname}} {{n.lastname}}</b> ({{n.city}},{{n.state}})</a></li>
+	<div class="slidingDiv{{n.user_id}}">
+		<p><b>How did they hear about the application?:</b>{{n.appsource}}
+		<br><b>Languages: </b>{{n.languages}}
+		<br><b>Cultural groups: </b>{{n.culturalgroups}}
+		<br><b>Working?: </b> {{n.working}}
+		<br><b>In school?: </b>{{n.school}}</p>
+		<br>
+		<p><b>Shortanswer questions</b></p>
+		<ol>
+			<li>{{n.Q01}}</li>
+			<li>{{n.Q02}}</li>
+                        <li>{{n.Q03}}</li>
+                        <li>{{n.Q04}}</li>
+                        <li>{{n.Q05}}</li>
+                        <li>{{n.Q06}}</li>
+                        <li>{{n.Q07}}</li>
+                        <li>{{n.Q08}}</li>
+                        <li>{{n.Q09}}</li>
+                        <li>{{n.Q10}}</li>
+                        <li>{{n.Q11}}</li>
+                        <li>{{n.Q12}}</li>
+		</ol>
+		<br>
+		<p><b>Tech familiarity</b> (5 is high, 1 is low)</p>
+		<ul>
+			<li><b>Basic:</b> Typing: {{n.basicq1}} | Searching Internet: {{n.basicq3}} | Email: {{n.basicq3}} | Using mobile apps: {{n.basicq4}} | Word processor: {{n.basicq5}} | Spreadsheet: {{n.basicq6}} | Social media: {{n.basicq7}} | Writing a blog post: {{n.basicq8}} | Command line: {{n.basicq9}}
+			<li><b>Systems:</b> Windows:{{n.systemsq1}} | Mac:{{n.systemsq2}} | Linux:{{n.systemsq3}}
+			<li><b>Coding:</b> HTML: {{n.codingq1}} | CSS: {{n.codingq2}}  | Python code:{{n.codingq3}} | Another language code:{{n.codingq4}} | Python apps:{{n.codingq5}} | Another language apps: {{n.codingq6}}</li>
+		</ul>
+		<br>
+		<p><b>Recommendations -</b> <u><a href="{{ url_for('view_recommendations', student_id=n.user_id) }}">Click to read</a></u></p>
+
+		<p><b>Evaluations -</b> <u><a href="{{ url_for('view_evaluations', student_id=n.user_id) }}">Click to read</a></u></p>
+
+	<a href="#{{n.user_id}}" class="show_hide{{n.user_id}}"><b>(Click here to hide this applicant's info)</b></a>
+	<br><br><br>
+	
+	--------------------------------
+	</div>
+
+{% endfor %}
+</ol>
+
+
+
+
+<p><br><br> Our applicants without three complete evaluations:</p>
+
+<ol start = "144">
+{% for i in notenoughevals %}
+
+	<li><b><a href="#{{i.user_id}}" class="show_hide{{i.user_id}}">{{i.firstname}} {{i.lastname}}</b> ({{i.city}},{{i.state}})</a></li>
+	<div class="slidingDiv{{i.user_id}}">
+		<p><b>How did they hear about the application?:</b>{{i.appsource}}
+		<br><b>Languages: </b>{{i.languages}}
+		<br><b>Cultural groups: </b>{{i.culturalgroups}}
+		<br><b>Working?: </b> {{i.working}}
+		<br><b>In school?: </b>{{i.school}}</p>
+		<br>
+		<p><b>Shortanswer questions</b></p>
+		<ol>
+			<li>{{i.Q01}}</li>
+			<li>{{i.Q02}}</li>
+                        <li>{{i.Q03}}</li>
+                        <li>{{i.Q04}}</li>
+                        <li>{{i.Q05}}</li>
+                        <li>{{i.Q06}}</li>
+                        <li>{{i.Q07}}</li>
+                        <li>{{i.Q08}}</li>
+                        <li>{{i.Q09}}</li>
+                        <li>{{i.Q10}}</li>
+                        <li>{{i.Q11}}</li>
+                        <li>{{i.Q12}}</li>
+		</ol>
+		<br>
+		<p><b>Tech familiarity</b> (5 is high, 1 is low)</p>
+		<ul>
+			<li><b>Basic:</b> Typing: {{i.basicq1}} | Searching Internet: {{i.basicq3}} | Email: {{i.basicq3}} | Using mobile apps: {{i.basicq4}} | Word processor: {{i.basicq5}} | Spreadsheet: {{i.basicq6}} | Social media: {{i.basicq7}} | Writing a blog post: {{i.basicq8}} | Command line: {{i.basicq9}}
+			<li><b>Systems:</b> Windows:{{i.systemsq1}} | Mac:{{i.systemsq2}} | Linux:{{i.systemsq3}}
+			<li><b>Coding:</b> HTML: {{i.codingq1}} | CSS: {{i.codingq2}}  | Python code:{{i.codingq3}} | Another language code:{{i.codingq4}} | Python apps:{{i.codingq5}} | Another language apps: {{i.codingq6}}</li>
+		</ul>
+		<br>
+		<p><b>Recommendations -</b> <u><a href="{{ url_for('view_recommendations', student_id=i.user_id) }}">Click to read</a></u></p>
+
+		<p><b>Evaluations -</b> <u><a href="{{ url_for('view_evaluations', student_id=i.user_id) }}">Click to read</a></u></p>
+
+	<a href="#{{i.user_id}}" class="show_hide{{i.user_id}}"><b>(Click here to hide this applicant's info)</b></a>
+	<br><br><br>
+	
+	--------------------------------
+	</div>
+
+{% endfor %}
+</ol>
+
+
+
+<br>==============================================================================================================
+<p><br><br>View a finished application:</p>
+<ol>{% for f in finishedapplicants %}
+	<li><b><a href="#{{f.user_id}}" class="show_hide{{f.user_id}}">{{f.firstname}} {{f.lastname}}</b> ({{f.city}},{{f.state}})</a></li>
+	<div class="slidingDiv{{f.user_id}}">
+		<p><b>How did they hear about the application?:</b>{{f.appsource}}
+		<br><b>Languages: </b>{{f.languages}}
+		<br><b>Cultural groups: </b>{{f.culturalgroups}}
+		<br><b>Working?: </b> {{f.working}}
+		<br><b>In school?: </b>{{f.school}}</p>
+		<br>
+		<p><b>Shortanswer questions</b></p>
+		<ol>
+			<li>{{f.Q01}}</li>
+			<li>{{f.Q02}}</li>
+                        <li>{{f.Q03}}</li>
+                        <li>{{f.Q04}}</li>
+                        <li>{{f.Q05}}</li>
+                        <li>{{f.Q06}}</li>
+                        <li>{{f.Q07}}</li>
+                        <li>{{f.Q08}}</li>
+                        <li>{{f.Q09}}</li>
+                        <li>{{f.Q10}}</li>
+                        <li>{{f.Q11}}</li>
+                        <li>{{f.Q12}}</li>
+		</ol>
+		<br>
+		<p><b>Tech familiarity</b> (5 is high, 1 is low)</p>
+		<ul>
+			<li><b>Basic:</b> Typing: {{f.basicq1}} | Searching Internet: {{f.basicq3}} | Email: {{f.basicq3}} | Using mobile apps: {{f.basicq4}} | Word processor: {{f.basicq5}} | Spreadsheet: {{f.basicq6}} | Social media: {{f.basicq7}} | Writing a blog post: {{f.basicq8}} | Command line: {{f.basicq9}}
+			<li><b>Systems:</b> Windows:{{f.systemsq1}} | Mac:{{f.systemsq2}} | Linux:{{f.systemsq3}}
+			<li><b>Coding:</b> HTML: {{f.codingq1}} | CSS: {{f.codingq2}}  | Python code:{{f.codingq3}} | Another language code:{{f.codingq4}} | Python apps:{{f.codingq5}} | Another language apps: {{f.codingq6}}</li>
+		</ul>
+		<br>
+		<p><b>Recommendations -</b> <u><a href="{{ url_for('view_recommendations', student_id=f.user_id) }}">Click to read</a></u></p>
+
+		<p><b>Evaluations -</b> <u><a href="{{ url_for('view_evaluations', student_id=f.user_id) }}">Click to read</a></u></p>
+
+	<a href="#{{f.user_id}}" class="show_hide{{f.user_id}}"><b>(Click here to hide this applicant's info)</b></a>
+	<br><br><br>
+	
+	--------------------------------
+	</div>
+	{% endfor %}
+	
+-->	
+	
+</ol></div>
+{% endblock %}
