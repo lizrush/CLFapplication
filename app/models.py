@@ -4,6 +4,7 @@ import datetime
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    role = db.Column(db.Integer)
     email = db.Column(db.String(45), unique=True)
     password = db.Column(db.String(45))
     firstname = db.Column(db.String(45))
@@ -36,8 +37,7 @@ class User(db.Model):
     eval3_id = db.Column(db.Integer)
     timestamp = db.Column(db.DateTime)
     application_complete = db.Column(db.Integer, default = 0)
-    recommendations = db.relationship('Recommendation', backref = 'requester', lazy = 'dynamic')
-    role = db.Column(db.Integer)    
+    recommendations = db.relationship('Recommendation', backref = 'requester', lazy = 'dynamic')    
     all_recs_complete = db.Column(db.Integer)
 
     def __repr__(self):
@@ -54,6 +54,9 @@ class User(db.Model):
 
     def __unicode__(self):
         return self.email
+
+    def get_id(self):
+        return self.id
 
 '''
     def profile_complete(self):
@@ -85,7 +88,7 @@ class User(db.Model):
 
 class Recommendation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    student_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
+    student_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     recommender_id = db.Column(db.Integer)
     recq1 = db.Column(db.Integer)
     recq1text = db.Column(db.Text)

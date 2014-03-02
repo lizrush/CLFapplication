@@ -20,14 +20,15 @@
         </div> -->
 
 
-
 	<h2>Log in to your application</h2>
 	</div>
 
 	<div id="loginbox">
+		<form action="" method="post" name="login" class="login">
+			{{form.hidden_tag()}}
 			<p style="margin-left: -100px;"><label for="username" id="username">Email</label>{{form.email(size=30)}}
 			<p style="margin-left: -100px;"><label for="password" id="password">Password</label>{{form.password(size=30)}}</p>
-			<p><a href="{{ url_for('index')}}"><button type="button" value="LOG IN">LOG IN</button></a>
+			<p><a href="{{ url_for('index')}}"><button type="submit" value="LOG IN">LOG IN</button></a>
 			<a href="{{ url_for('createprofile')}}"><button type="button" value="CREATE">CREATE new profile</button></a>
 			<p id="forgot">Forgot your username or password? <a href="{{ url_for('forgot')}}"><u>Click here</a></u>.</p>
 		</form>

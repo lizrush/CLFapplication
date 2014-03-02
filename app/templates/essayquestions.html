@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+	
+	<div class="contentholder" id="shortanswers">
+		<div class="formheader"><br><br><h2>Essay questions</h2></div>
+			<p>We'd like to know about...</p>
+			
+			{%if form.errors %}
+			<br><p style="color:red">Looks like something's missing on your form:<br>
+			{% for field_name, field_errors in form.errors|dictsort if field_errors %}
+				{% for error in field_errors %}
+					<br><span style="margin-left:15px">- We want to know your answer to question {{ error }}!</span>
+				{% endfor %}
+			{% endfor %}
+			</p>
+			{% endif %}
+
+
+		<form action="" method="post" name="shortanswers">
+			{{form.hidden_tag()}}
+			
+			<p><label for="Q1">1. This is the first question.</label></p>                       
+			<p>{{form.Q01(maxlength=460)}}</p>
+
+			<p><label for="Q2">2. This is the second question.</label>
+			<p>{{form.Q02(maxlength=460)}}</p></p>
+
+			<p><label for="Q3">3. This is question three.</label>
+			<p>{{form.Q03(maxlength=460)}}</p></p>
+			
+			<p><label for="Q4">4. This is the fourth question.</label>                       
+			<p>{{form.Q04(maxlength=460)}}</p></p>
+			
+			<button type="submit" class="advance"><span id="finished">FINISHED?</span>Click here to see if anything's missing.</button>
+		</form>
+	</div>
+
+{% endblock %}
