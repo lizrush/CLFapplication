@@ -11,7 +11,6 @@
 
 	<p>Click on an applicant to get started. Please note that applicants will not be able to see your responses.</p>
     
-    
 
 			<div style="max-width:600px">
 			<table class="table table-hover">
@@ -23,44 +22,24 @@
                 </tr>
               </thead>
               <tbody>
+{% for s in students %}   
                 <tr>
-                  <td>1</td>
-                  <td>Juanita Smith Smithson</td>
-                  <td><button class="btn btn-info">View</button> </td>
+                  <td>{{s.id}}</td>
+                  <td>{{s.firstname}} {{s.lastname}}</td>
+                  <td><a href="{% url 'recommend' s.id %}"><button class="btn btn-info">View</button></a></td>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Juanita Smith Smithson</td>
-                  <td><button class="btn btn-info">View</button> </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Juanita Smith Smithson</td>
-                  <td><button class="btn btn-info">View</button> </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Juanita Smith Smithson</td>
-                  <td><button class="btn btn-info">View</button> </td>
-                </tr>                
+{% endfor %}
               </tbody>
             </table>
 			</div>
     
-		<div id="namebuttonholder">
-			{% for s in students %}
+			
+		
 			
 			
+		
 			
-			
-				<a href="{% url 'recommend' s.id %}"><button class="btn btn-primary">{{s.firstname}} {% if s.firstname2 %} {{s.firstname2}}{% endif %} {{s.lastname}}{% if s.lastname2 %}{{s.lastname2}}{% endif %}</button></a>
-			
-			
-			
-				
-				
-			{% endfor %}
-		</div>
+
 </div><a href="{{=% url 'rec_index' %}"><button class="btn">Submit</button></div></a></div>
 	</div>
 
