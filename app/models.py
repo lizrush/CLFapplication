@@ -98,8 +98,6 @@ class User(db.Model):
 
     timestamp = db.Column(db.DateTime)
     application_complete = db.Column(db.Integer, default = 0)
-    recommendations = db.relationship('Recommendation', backref = 'requester', lazy = 'dynamic')
-
     all_recs_complete = db.Column(db.Integer)
 
     def __repr__(self):
@@ -116,6 +114,9 @@ class User(db.Model):
 
     def __unicode__(self):
         return self.email
+
+    def get_id(self):
+        return self.id
 
 '''
     def profile_complete(self):
@@ -134,7 +135,7 @@ class User(db.Model):
 #           self.Q07 and self.Q08 and self.Q09 and self.Q10 and self.Q11 and self.Q12:
            return True
         return False
-\
+
     def recommendations_complete(self):
 #        if self.rec1firstname and self.rec1lastname and self.rec1email and self.rec1phone and \
 #           self.rec1how and self.rec2firstname and self.rec2lastname and self.rec2email and \
@@ -147,7 +148,7 @@ class User(db.Model):
 
 class Recommendation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    student_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
+    student_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     recommender_id = db.Column(db.Integer)
     recq1 = db.Column(db.Integer)
     recq1text = db.Column(db.Text)
