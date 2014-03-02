@@ -1,26 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div style="width: 60%; margin: auto">
+<h2 style="text-align: center">Welcome to the Chicana / Latina Foundation Scholarship Program</h2>
+<p>The purpose of the Chicana/Latina Foundation (CLF) Scholarship Program is to assist Chicana/Latina students in completing their undergraduate and graduate college education.</p>
+<p>Toward this end, the CLF awards $1,500 scholarships and the accompanying leadership training on a competitive-basis to continuing full-time undergraduate and graduate college students of Chicana/Latina heritage.</p>
+
+
 	<div class="loginerror">
 		{% if form.errors %}
 		<p style="color:red">Hmm, that's not the right username and password.<br /></p>
 		{% endif %}
 	</div>
-	
-	<div class="contentholder"><br><br><br>
-		<h2>Log in to your CLF Application</h2>
-	</div>
 
-		
+	<div class="contentholder">
+		<h3>Create a new application:</h3>
+	<p><a href="{% url 'profile' %}" class="btn btn-success">Start a new application</a></p>
+
+	<h3>Or log in to your current application:</h3>
 	<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
 	{% csrf_token %}
 
 	<div id="loginbox">
 		<p>{{form.username.label}} {{form.username }}
 		<p>{{form.password.label }} {{form.password }}
-		<p><input type="submit" value="LOG IN"></br>
+		<p><input type="submit" value="Log in" class="btn btn-primary"></br>
 		<input type="hidden" name="next" value="{{ next }}" />
 		</form>
 
-	</div> 
+	</div>
+	</div>
+
+</div>
 	{% endblock %}

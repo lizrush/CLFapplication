@@ -61,7 +61,7 @@ def createprofile(request):
 	user = None
 	form = ProfileForm(obj=user)
 	if not form.password or form.password == '':
-		del form.password    
+		del form.password
 	if form.validate_on_submit():
 		if user:
 			flash('Successfully updated your profile.')
@@ -93,20 +93,19 @@ def profile(request):
 
 def background(request):
 	return render(request, 'background.html')
+
 	form = BackgroundForm(obj=user)
 #	if form.validate_on_submit():
 #		form.populate_obj(user)
 #		user.save()
-	
-	
-	
+
+
 def demographic(request):
 	return render(request,'demographic.html')
 #	form = DemographicForm(obj=user)
 #	if form.validate_on_submit():
 #		form.populate_obj(user)
 #		user.save()
-
 
 
 def essayquestions(request):
@@ -162,8 +161,8 @@ def staffview(request):
 				complete +=1
 				totalscores.append((int(e.critical)+int(e.mission)+int(e.community)+int(e.inspire)))
 			if e.yesno =='Yes':
-				yeses +=1	
-			if len(totalscores) >0:	
+				yeses +=1
+			if len(totalscores) >0:
 				averagescore = float(float((sum(totalscores))) /len(totalscores))
 			else:
 				averagescore = 0
@@ -176,7 +175,7 @@ def staffview(request):
 			trythismatrix.append(entry)
 		recommendations = Recommendation.objects.all()
 		return render_template("displayfinalists.html", finishedapplicants = finishedapplicants, recommendations = recommendations, recommenders = recommenders, finalistsRound1 = trythismatrix, displaymatrix = displaymatrix)
-		
+
 
 def received(request):
 	if user.role ==2:
@@ -214,14 +213,14 @@ def make_blank_recommendations(user):
 	thirdrec = Recommendation(student_id = user.id, recommender_id = User.objects.filter_by(email = user.rec3email, role = 2).first().id)
 	firstrec.save()
 	secondrec.save()
-	thirdrec.save()	
+	thirdrec.save()
 
 def generate_recommender_password(firstname, lastname):
-    import random    
+    import random
     pieces = [random.choice([firstname,lastname]),str(random.randint(1000,9999))]
     i = random.choice(pieces)
     password = i
-    pieces.remove(i)    
+    pieces.remove(i)
     password = i+pieces[0]
     password = password.replace(" ","")
     return password
@@ -264,8 +263,13 @@ def reset_password(request):
 
 def rec_index(request):
 	students = []
-	recs =[]    
+<<<<<<< HEAD
+	recs =[]
+	students = User(role =1)
+=======
+	recs =[]
 	students = User.objects.all()
+>>>>>>> 051012a3609fbf773371065bed941e7b66db52ea
 #	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
 #	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
 #	if student2:
@@ -287,8 +291,13 @@ def guidelines(request):
 
 def eval_index(request):
 	students = []
+<<<<<<< HEAD
+	recs =[]
+	student1 = User.objects.filter_by(ref1email = user.email).first()
+=======
 	evals =[]
 	students = User.objects.all()
+>>>>>>> 051012a3609fbf773371065bed941e7b66db52ea
 #	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
 #	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
 #	if student2:
@@ -386,7 +395,7 @@ def evaluate(request, student_id):
 	else:
 		rec2 = None
         if recommender3:
-		rec3 = Recommendation.objects.filter_by(student_id = student.id, recommender_id = recommender3.id).first()            
+		rec3 = Recommendation.objects.filter_by(student_id = student.id, recommender_id = recommender3.id).first()
 	else:
 		rec3 = None
         form = EvaluatorForm(obj = evaluation)
@@ -477,7 +486,7 @@ def myrecommender(request, recommender_id):
 def view_recommendations(request, student_id):
 	recs = Recommendation.objects.filter_by(student_id = student_id).all()
 	return render(request, "view_recommendations.html", recs = recs)
-	
+
 @login_required
 def view_evaluations(request, student_id):
 	applicant = User.objects.get(student_id)
@@ -485,7 +494,7 @@ def view_evaluations(request, student_id):
 	evaluators=[]
 	for e in evals:
 		evaluator = User.objects.filter_by(id = e.evaluator_id).first()
-		evaluators.append(evaluator)			
+		evaluators.append(evaluator)
 	complete = 0
 	totalscores =[]
 	averagescore = 0
@@ -494,6 +503,6 @@ def view_evaluations(request, student_id):
 			complete +=1
 			totalscores.append((int(e.critical)+int(e.mission)+int(e.community)+int(e.inspire)))
 		if e.yesno =='Yes':
-			yeses +=1	
+			yeses +=1
 			averagescore = (sum(totalscores) / float(len(totalscores)))
 	return render(request, "view_evaluations.html", applicant = applicant, evals = evals, evaluators = evaluators, averagescore = averagescore, complete = complete)
