@@ -5,6 +5,8 @@ import datetime
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     role = db.Column(db.Integer)
+    title = db.Column(db.String(45))
+    organization = db.Column(db.String(45))
     email = db.Column(db.String(45), unique=True)
     password = db.Column(db.String(45))
     firstname = db.Column(db.String(45))
@@ -55,6 +57,8 @@ class User(db.Model):
     receivingyear = db.Column(db.String(10))
     referral = db.Column(Text)
     awardcycle = db.Column(db.String(10))
+    essaytext1 = db.Column(db.Text)
+    essaytext2 = db.Column(db.Text)
 
     # confidential demographics
     financialaid = db. Column(db.Integer)
@@ -82,24 +86,12 @@ class User(db.Model):
     firstgencollege = db. Column(db.Integer)
     primaryhomelanguage = db.Column(db.String(45))
 
-    rec1firstname = db.Column(db.String(45))
-    rec1lastname = db.Column(db.String(45))
-    rec1email = db.Column(db.String(45))
-    rec1phone = db.Column(db.String(45))
-    rec1how = db.Column(db.Text)
-    rec2firstname = db.Column(db.String(45))
-    rec2lastname = db.Column(db.String(45))
+    # reference info
+    ref1name = db.Column(db.String(45))
+    ref1email = db.Column(db.String(45))
+    rec2name = db.Column(db.String(45))
     rec2email = db.Column(db.String(45))
-    rec2phone = db.Column(db.String(45))
-    rec2how = db.Column(db.Text)
-    rec3firstname = db.Column(db.String(45))
-    rec3lastname = db.Column(db.String(45))
-    rec3email = db.Column(db.String(45))
-    rec3phone = db.Column(db.String(45))
-    rec3how = db.Column(db.Text)
-    eval1_id = db.Column(db.Integer)
-    eval2_id = db.Column(db.Integer)
-    eval3_id = db.Column(db.Integer)
+
 
     timestamp = db.Column(db.DateTime)
     application_complete = db.Column(db.Integer, default = 0)

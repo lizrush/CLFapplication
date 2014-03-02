@@ -23,93 +23,6 @@ class LoginForm(Form):
 	def get_user(self):
 		return db.session.query(User).filter_by(email=self.email.data).first()
 
-class CreateProfileForm(Form):
-	firstname = TextField('firstname', validators = [Required(message='We need to know your first name!')])
-	firstname2 = TextField('firstname2', validators = none)
-	middlename = TextField('middlename', validators = none)
-	lastname = TextField('lastname', validators = [Required(message='We need to know your last name!')])
-	lastname2 = TextField('lastname', validators = none)
-	email = TextField('email', validators = [unique_user, Required(message="We need your email address!"), Email(message="Hmm, your email address doesn't look like an email address.")])
-	password = PasswordField('password')
-	retypepassword = PasswordField('retypepassword')
-	phone = TextField('phone', validators = [Required(message="We need your phone number!")])
-	phonetype = SelectField('inspire', choices=[('1', 'Cell'),('2', 'Home'),('3', 'Work')], validators = [Required()])
-	address = TextField('address', validators = [Required(message="We need your address!")])
-	city = TextField('city', validators = [Required(message="We'd like to know what city you live in.")])
-	state = TextField('state', validators = [Required(message="We'd like to know what state you live in.")])
-	zipcode = IntegerField('zipcode', validators = [Required(message="We need your zipcode!")])
-	permanentaddress = TextField('permanentaddress', validators = [Required(message="We need your permanent address!")])
-	permanentcity = TextField('permanentcity', validators = [Required(message="We'd like to know your permanent address city.")])
-	permanentstate = TextField('permanentstate', validators = [Required(message="We'd like to know your permanent address state.")])
-	permanentzipcode = IntegerField('permanentzipcode', validators = [Required(message="We need your permanent address zipcode!")])
-
-	ged = SelectField('ged', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-   	highschoolname = TextField('highschoolname', validators = [Required(message="We'd like to know what high school you attended.")])
-    	highschoolcity = TextField('highschoolcity', validators = [Required(message="We'd like to know what city the high school you attended was in.")])
-    	highschoolstate =TextField('highschoolstate', validators = [Required(message="We'd like to know what state the high school you attended was in.")])
-    	highschoolyear =TextField('highschoolyear', validators = [Required(message="We'd like to know what year you graduated.")])
-    	currentcollegename =TextField('currentcollegename')
-    	currentcollegecity = TextField('currentcollegecity')
-    	currentcollegestate = TextField('currentcollegestate')
-    	currentcollegetype = SelectField('currentcollegetype', choices=[('1', 'Community College'),('2', 'Four-year College') ('3', 'Graduate School'), ('4', 'Professional/Technical')])
-    	communitycollegelevel = SelectField('communitycollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', '3rd year or more')])
-    	traditionalcollegelevel = SelectField('traditionalcollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', 'Junior'),('4','Senior'),('5','Graduating Senior')])
-    	gradlevel = SelectField('gradlevel', choices=[('1', 'Coursework'),('2', 'Internship'),('3', 'Thesis'),('4','Dissertation')])
-  	techproflevel = SelectField('techproflevel', choices=[('1', 'Coursework/Thesis/Internship'),('2', 'Dissertation'),('3', 'Other'))
-    	major = TextField('major')
-    	gpa = TextField('gpa')
-    	studentid = TextField('studentid')
-
-    	plannedcollegename =TextField('currentcollegename'), validators = [Required(message="We'd like to know what college you plan to attend.")])
-    	plannedcollegecity = TextField('currentcollegecity'), validators = [Required(message="We'd like to know what city the school you plan to attend is in.")])
-    	plannedcollegestate = TextField('currentcollegestate'), validators = [Required(message="We'd like to know what state the school you plan to attend is in.")])
-    	plannedcollegetype = SelectField('currentcollegetype', choices=[('1', 'Community College'),('2', 'Four-year College') ('3', 'Graduate School'), ('4', 'Professional/Technical')])
-    	plannedcommunitycollegelevel = SelectField('communitycollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', '3rd year or more')])
-    	plannedtraditionalcollegelevel = SelectField('traditionalcollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', 'Junior'),('4','Senior'),('5','Graduating Senior')])
-    	plannedmajor = TextField('plannedmajor'), validators = [Required(message="We'd like to know what you plan to study.")])
-
-	pastrecipient = SelectField('pastrecipient', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	receivingyear = TextField('receivingyear')
-	referral = TextField('referral')
-	awardcycle = TextField('awardcycle'), validators = [Required(message="We'd like to know which award cycle you are applying for.")])
-
-	financialaid = SelectField('financialaid', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	financialaidreason = TextField('financialaidreason')
-	financialaward  = SelectField('financialaward', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	financialawardlist = TextField('financialawardlist')
-	economicallydisadvantaged = SelectField('economicallydisadvantaged', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	income = SelectField('income', choices=[('1', '$15,000 or under'),('2', '$15,001 - $25,000'), ('3', '$25,001 - $35,000'), ('4','35,001 - $55,000'), ('5', '$55,001 - $75,000'), ('6', '$75,001 - $95,000'), ('7', '$95,001 - $125,000'), ('8', '$125,001 - $160,000'), ('9', '$160,001 and above')], validators = [Required()])
-	headofhousehold =  SelectField('headofhousehold', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	dependents = IntegerField('dependents')
-	parent = SelectField('parent', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	children = IntegerField('dependents')
-	immigrant = SelectField('immigrant', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	immigrationcountry = TextField('immigrationcountry')
-	immigrationdate = TextField('immigrationdate')
-	motherimmigrant =SelectField('motherimmigrant', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	motherimmigrationcountry = TextField('immigrationdate')
-	motherimmigrationdate = TextField('immigrationdate')
-	mothereducation = TextField('immigrationdate')
-	fatherimmigrant = SelectField('fatherimmigrant', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	fatherimmigrationcountry = TextField('immigrationdate')
-	fatherimmigrationdate = TextField('immigrationdate')
-	fathereducation = TextField('immigrationdate')
-	ab540 = SelectField('ab540', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	firstgencollege = SelectField('firstgencollege', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	primaryhomelanguage = TextField('immigrationdate')
-
-
-
-
-
-
-
-
-
-
-
-
-
 	def validate_password(self, field):
 		user = self.get_user()
 
@@ -145,10 +58,11 @@ class ProfileForm(Form):
 	city = TextField('city', validators = [Required(message="We'd like to know what city you live in.")])
 	state = TextField('state', validators = [Required(message="We'd like to know what state you live in.")])
 	zipcode = IntegerField('zipcode', validators = [Required(message="We need your zipcode!")])
-	permanentaddress = TextField('address', validators = [Required(message="We need your address!")])
-	permanentcity = TextField('city', validators = [Required(message="We'd like to know what city you live in.")])
-	permanentstate = TextField('state', validators = [Required(message="We'd like to know what state you live in.")])
-	permanentzipcode = IntegerField('zipcode', validators = [Required(message="We need your zipcode!")])
+	permanentaddress = TextField('permanentaddress', validators = [Required(message="We need your permanent address!")])
+	permanentcity = TextField('permanentcity', validators = [Required(message="We'd like to know your permanent address city.")])
+	permanentstate = TextField('permanentstate', validators = [Required(message="We'd like to know your permanent address state.")])
+	permanentzipcode = IntegerField('permanentzipcode', validators = [Required(message="We need your permanent address zipcode!")])
+
 
 
 	def validate_password(self, field):
@@ -171,63 +85,74 @@ class ProfileForm(Form):
 	def get_user(self):
 		return db.session.query(User).filter_by(email=self.email.data).first()
 
-class ShortanswerForm(Form):
-	Q01 = TextAreaField('Q01', validators = [Required(message="1")])
-	Q02 = TextAreaField('Q02', validators = [Required(message="2")])
-	Q03 = TextAreaField('Q03', validators = [Required(message="3")])
-	Q04 = TextAreaField('Q04', validators = [Required(message="4")])
-	Q05 = TextAreaField('Q05', validators = [Required(message="5")])
-	Q06 = TextAreaField('Q06', validators = [Required(message="6")])
-	Q07 = TextAreaField('Q07', validators = [Required(message="7")])
-	Q08 = TextAreaField('Q08', validators = [Required(message="8")])
-	Q09 = TextAreaField('Q09', validators = [Required(message="9")])
-	Q10 = TextAreaField('Q10', validators = [Required(message="10")])
-	Q11 = TextAreaField('Q11', validators = [Required(message="11")])
-	Q12 = TextAreaField('Q12', validators = [Required(message="12")])
+class SchoolForm(Form):
+	ged = SelectField('ged', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+   	highschoolname = TextField('highschoolname', validators = [Required(message="We'd like to know what high school you attended.")])
+    	highschoolcity = TextField('highschoolcity', validators = [Required(message="We'd like to know what city the high school you attended was in.")])
+    	highschoolstate =TextField('highschoolstate', validators = [Required(message="We'd like to know what state the high school you attended was in.")])
+    	highschoolyear =TextField('highschoolyear', validators = [Required(message="We'd like to know what year you graduated.")])
+    	currentcollegename =TextField('currentcollegename')
+    	currentcollegecity = TextField('currentcollegecity')
+    	currentcollegestate = TextField('currentcollegestate')
+    	currentcollegetype = SelectField('currentcollegetype', choices=[('1', 'Community College'),('2', 'Four-year College') ('3', 'Graduate School'), ('4', 'Professional/Technical')])
+    	communitycollegelevel = SelectField('communitycollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', '3rd year or more')])
+    	traditionalcollegelevel = SelectField('traditionalcollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', 'Junior'),('4','Senior'),('5','Graduating Senior')])
+    	gradlevel = SelectField('gradlevel', choices=[('1', 'Coursework'),('2', 'Internship'),('3', 'Thesis'),('4','Dissertation')])
+  	techproflevel = SelectField('techproflevel', choices=[('1', 'Coursework/Thesis/Internship'),('2', 'Dissertation'),('3', 'Other'))
+    	major = TextField('major')
+    	gpa = TextField('gpa')
+    	studentid = TextField('studentid')
 
-class TechskillsForm(Form):
-	basicq1 = RadioField('basicq1', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
-	basicq2 = RadioField('basicq2', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
-	basicq3 = RadioField('basicq3', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
-	basicq4 = RadioField('basicq4', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
-	basicq5 = RadioField('basicq5', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
-	basicq6 = RadioField('basicq6', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
-	basicq7 = RadioField('basicq7', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
-	basicq8 = RadioField('basicq8', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
-	basicq9 = RadioField('basicq9', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Required()])
-	systemsq1 = RadioField('systemsq1', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Optional()])
-	systemsq2 = RadioField('systemsq2', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Optional()])
-	systemsq3 = RadioField('systemsq3', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Optional()])
-	codingq1 = RadioField('codingq1', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Optional()])
-	codingq2 = RadioField('codingq2', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Optional()])
-	codingq3 = RadioField('codingq3', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Optional()])
-	codingq4 = RadioField('codingq4', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Optional()])
-	codingq5 = RadioField('codingq5', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Optional()])
-	codingq6 = RadioField('codingq6', choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], validators=[Optional()])
+class ScholarshipForm(Form):
+	awardcycle = TextField('awardcycle'), validators = [Required(message="We'd like to know which award cycle you are applying for.")])
+	referral = TextField('referral')
+    	plannedcollegename =TextField('currentcollegename'), validators = [Required(message="We'd like to know what college you plan to attend.")])
+    	plannedcollegecity = TextField('currentcollegecity'), validators = [Required(message="We'd like to know what city the school you plan to attend is in.")])
+    	plannedcollegestate = TextField('currentcollegestate'), validators = [Required(message="We'd like to know what state the school you plan to attend is in.")])
+    	plannedcollegetype = SelectField('currentcollegetype', choices=[('1', 'Community College'),('2', 'Four-year College') ('3', 'Graduate School'), ('4', 'Professional/Technical')])
+    	plannedcommunitycollegelevel = SelectField('communitycollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', '3rd year or more')])
+    	plannedtraditionalcollegelevel = SelectField('traditionalcollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', 'Junior'),('4','Senior'),('5','Graduating Senior')])
+    	plannedmajor = TextField('plannedmajor'), validators = [Required(message="We'd like to know what you plan to study.")])
+	pastrecipient = SelectField('pastrecipient', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	receivingyear = TextField('receivingyear')
+
 
 class RecommendationsForm(Form):
-	rec1firstname = TextField('rec1firstname', validators = [Required(message="your first recommender's first name")])
-	rec1lastname = TextField('rec1lastname', validators = [Required(message="your first recommender's last name")])
-	rec1email = TextField('rec1email', validators = [Required(message="your first recommender's email address"), Email("Hmm, your first recommender's email address doesn't look like an email address.")])
-	rec1phone = TextField('rec1phone', validators = [Required(message="your first recommender's phone number")])
-	rec1how = TextAreaField('rec1how', validators = [Required(message="how you know your first recommender")])
-	rec2firstname = TextField('rec2firstname', validators = [Required(message="your second recommender's first name")])
-	rec2lastname = TextField('rec2lastname', validators = [Required(message="your second recommender's last name")])
-	rec2email = TextField('rec2email', validators = [Required(message="your second recommender's email address"), Email("Hmm, your second recommender's email address doesn't look like an email address.")])
-	rec2phone = TextField('rec2phone', validators = [Required(message="your second recommender's phone number")])
-	rec2how = TextAreaField('rec2how', validators = [Required(message="how you know your second recommender")])
-	rec3firstname = TextField('rec3firstname', validators = [Required(message="your third recommender's first name")])
-	rec3lastname = TextField('rec3lastname', validators = [Required(message="your third recommender's last name")])
-	rec3email = TextField('rec3email', validators = [Required(message="your third recommender's phone number")])
-	rec3phone = TextField('rec3phone', validators = [Required(message="your third recommender's phone number")])
-	rec3how = TextAreaField('rec3how', validators = [Required(message="how you know your third recommender")])
+	ref1name = TextField('ref1name', validators = [Required(message="your first recommender's first name")])
+	ref1email = TextField('ref1email', validators = [Required(message="your first recommender's email address"), Email("Hmm, your first recommender's email address doesn't look like an email address.")])
+	ref2name = TextField('ref2name', validators = [Required(message="your second recommender's first name")])
+	ref2email = TextField('ref2email', validators = [Required(message="your second recommender's email address"), Email("Hmm, your second recommender's email address doesn't look like an email address.")])
 
-class ChecklistForm(Form):
-	check1 =  BooleanField('I understand.', validators=[Required()])
-	check2 =  BooleanField('I understand.', validators=[Required()])
-	check3 =  BooleanField('I understand.', validators=[Required()])
-	check4 =  BooleanField('I understand.', validators=[Required()])
-	check5 =  BooleanField('I understand', validators=[Required()])
+class ConfidentialDemographics(Form):
+	financialaid = SelectField('financialaid', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	financialaidreason = TextField('financialaidreason')
+	financialaward  = SelectField('financialaward', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	financialawardlist = TextField('financialawardlist')
+	economicallydisadvantaged = SelectField('economicallydisadvantaged', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	income = SelectField('income', choices=[('1', '$15,000 or under'),('2', '$15,001 - $25,000'), ('3', '$25,001 - $35,000'), ('4','35,001 - $55,000'), ('5', '$55,001 - $75,000'), ('6', '$75,001 - $95,000'), ('7', '$95,001 - $125,000'), ('8', '$125,001 - $160,000'), ('9', '$160,001 and above')], validators = [Required()])
+	headofhousehold =  SelectField('headofhousehold', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	dependents = IntegerField('dependents')
+	parent = SelectField('parent', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	children = IntegerField('dependents')
+	immigrant = SelectField('immigrant', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	immigrationcountry = TextField('immigrationcountry')
+	immigrationdate = TextField('immigrationdate')
+	motherimmigrant =SelectField('motherimmigrant', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	motherimmigrationcountry = TextField('immigrationdate')
+	motherimmigrationdate = TextField('immigrationdate')
+	mothereducation = TextField('immigrationdate')
+	fatherimmigrant = SelectField('fatherimmigrant', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	fatherimmigrationcountry = TextField('immigrationdate')
+	fatherimmigrationdate = TextField('immigrationdate')
+	fathereducation = TextField('immigrationdate')
+	ab540 = SelectField('ab540', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	firstgencollege = SelectField('firstgencollege', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	primaryhomelanguage = TextField('immigrationdate')
+
+class EssaysForm(Form):
+	essaytext1 = db.Column(db.Text)
+    	essaytext2 = db.Column(db.Text)
+
 
 class RecLoginForm(Form):
 	email = TextField('email', validators = [Required(message="We need to know your email address.")])
