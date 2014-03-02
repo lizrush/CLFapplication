@@ -1,11 +1,10 @@
-from flask.ext.script import Manager
-from flask.ext.migrate import MigrateCommand
-import config
+#!/usr/bin/env python
+import os
+import sys
 
-from app import app
+if __name__ == "__main__":
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "chicanalatina.settings")
 
-manager = Manager(app)
-manager.add_command('db', MigrateCommand)
+    from django.core.management import execute_from_command_line
 
-if __name__ == '__main__':
-	manager.run()
+    execute_from_command_line(sys.argv)
