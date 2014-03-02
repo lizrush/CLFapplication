@@ -268,16 +268,11 @@ def reset_password(request):
 
 
 def rec_index(request):
-	if user.role ==1:
-		return redirect('/index')
-	if user.role ==4:
-		return redirect('/staffview')
 	students = []
 	recs =[]    
-	student1 = User.objects.filter_by(ref1email = user.email).first()
+	students = User(role =1)
 #	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
 #	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
-	students.append(student1)
 #	if student2:
 #		for s2 in student2:
 #			students.append(s2)
@@ -289,8 +284,7 @@ def rec_index(request):
 #		if recommendation and recommendation.is_recommendation_complete():
 #			recommendation.recommendation_complete =1
 #		recs.append(recommendation)
-	return render_template('rec_index.html',
-		students=students, recs = recs)
+	return render(request, 'rec_index.html', {'students':students})
 
 
 
