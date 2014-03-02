@@ -1,34 +1,38 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<div class = "contentholder">
 
-<h2 class="formheader">Welcome</h2>
+<div class="container"><!-- Container -->
+<h2>Your applicants</h2>
+	
+	<p>The button for each applicant will be gray until you finish that recommendation - when the button turns green, you're done! You can change what you've written in a section, even if it's marked green, until you submit your final set of complete applications.</p>
 
-<p>Please choose an applicant to begin evaluating. You can review an online copy of our <a href="{% url 'index' %} target="_blank"><u>selection criteria here</u></a>.</p>
+	<p>Click on an applicant to get started. Please note that applicants will not be able to see your responses.</p>
 
-		<div id="applicantbuttonholder">
-			{% for s in students %}
-			<a href="{% url 'evaluate' s.id %}">
+			<div style="max-width:600px">
+			<table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+{% for s in students %}   
+                <tr>
+                  <td>{{s.id}}</td>
+                  <td>{{s.firstname}} {{s.lastname}}</td>
+                  <td><a href="{% url 'recommend' s.id %}"><button class="btn btn-info">View</button></a></td>
+                </tr>
+{% endfor %}
+              </tbody>
+            </table>
+			</div>
+    
+			
 
-
-
-				<div id="applicantbutton">					
-					<span>{{s.firstname}} {{s.lastname}}</span>
-					</div>
-
-
-
-				</div>
-			</a>
-			{% endfor %}
-		</div>
-</div></div>
-	<br><br><br><br><br><a href="{% url 'eval_index' %}"><div class="advance"><span id="finished">FINISHED?</span>Click here to submit your evaluations.</div></a>
-
-</ol></div>
-
-
+</div><a href="{{=% url 'eval_index' %}"><button class="btn">Submit</button></div></a></div>
+	</div>
 
 {% endblock %}

@@ -281,9 +281,10 @@ def rec_index(request):
 #		recs.append(recommendation)
 	return render(request, 'rec_index.html', {'students':students})
 
+def guidelines(request):
+	return render(request, 'guidelines.html')
 
 
-@login_required
 def eval_index(request):
 	students = []
 	evals =[]
@@ -304,20 +305,13 @@ def eval_index(request):
 	return render(request, 'eval_index.html', {'students':students})
 
 
-
-
-
-@login_required
 def recommend(request, student_id):#pass in the student this is for
-	if user.role ==1:
-		return redirect('/index')
-	student = User.objects.get(student_id) #look up the recommendation that is for this student and this recommender
-	recommendation = Recommendation.objects.filter_by(student_id=student.id, recommender_id=user.id).first() #get the recommendation that matches this student and this recommender
-	form = RecommenderForm(obj=recommendation) #pull up the form for this recommendation
-	if form.validate_on_submit():
-		form.populate_obj(recommendation)
-		recommendation.save()
-		return redirect('/rec_index')
+	student = User.objects.get(id = student_id) #look up the recommendation that is for this student and this recommender
+#	form = RecommenderForm(obj=recommendation) #pull up the form for this recommendation
+#	if form.validate_on_submit():
+#		form.populate_obj(recommendation)
+#		recommendation.save()
+	return render(request, 'recommendation.html', {'student': student})
 
 
 @login_required
