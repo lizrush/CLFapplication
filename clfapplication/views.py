@@ -262,14 +262,7 @@ def reset_password(request):
 
 
 def rec_index(request):
-	students = []
-<<<<<<< HEAD
-	recs =[]
-	students = User(role =1)
-=======
-	recs =[]
 	students = User.objects.all()
->>>>>>> 051012a3609fbf773371065bed941e7b66db52ea
 #	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
 #	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
 #	if student2:
@@ -290,14 +283,7 @@ def guidelines(request):
 
 
 def eval_index(request):
-	students = []
-<<<<<<< HEAD
-	recs =[]
-	student1 = User.objects.filter_by(ref1email = user.email).first()
-=======
-	evals =[]
 	students = User.objects.all()
->>>>>>> 051012a3609fbf773371065bed941e7b66db52ea
 #	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
 #	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
 #	if student2:
