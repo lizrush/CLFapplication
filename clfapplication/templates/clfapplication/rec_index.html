@@ -10,13 +10,37 @@
 	<p>The button for each applicant will be gray until you finish that recommendation - when the button turns green, you're done! You can change what you've written in a section, even if it's marked green, until you submit your final set of complete applications.</p>
 
 	<p>Click on an applicant to get started. Please note that applicants will not be able to see your responses.</p>
-		<div id="namebuttonholder">
-			{% for s in students %}
-				<a href="{% url 'recommend' s.id %}"><button style="width: 200px; height=100px; margin-left: 150px; background-color: #B7CCBB">{{s.firstname}} {% if s.firstname2 %} {{s.firstname2}}{% endif %} {{s.lastname}}{% if s.lastname2 %}{{s.lastname2}}{% endif %}</button></a>
-			{% endfor %}
-		</div>
+    
+
+			<div style="max-width:600px">
+			<table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+{% for s in students %}   
+                <tr>
+                  <td>{{s.id}}</td>
+                  <td>{{s.firstname}} {{s.lastname}}</td>
+                  <td><a href="{% url 'recommend' s.id %}"><button class="btn btn-info">View</button></a></td>
+                </tr>
+{% endfor %}
+              </tbody>
+            </table>
+			</div>
+    
+			
+		
+			
+			
+		
+			
+
 </div><a href="{{=% url 'rec_index' %}"><button class="btn">Submit</button></div></a></div>
 	</div>
-
 
 {% endblock %}

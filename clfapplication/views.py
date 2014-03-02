@@ -92,11 +92,12 @@ def profile(request):
 
 
 def background(request):
-	form = BackgroundForm(obj=user)
-	if form.validate_on_submit():
-		form.populate_obj(user)
-		user.save()
 	return render(request, 'background.html')
+
+	form = BackgroundForm(obj=user)
+#	if form.validate_on_submit():
+#		form.populate_obj(user)
+#		user.save()
 
 
 def demographic(request):
@@ -117,7 +118,7 @@ def essayquestions(request):
 
 
 def documents(request):
-    return render_template('documents.html')
+    return render(request, 'documents.html')
 #    form = TechskillsForm(obj=user)
  #   if form.validate_on_submit():
   #      form.populate_obj(user)
@@ -127,7 +128,7 @@ def documents(request):
 
 def recommenders(request):
 #	form = RecommendationsForm(obj=user)
-	return render(request, 'rec_login.html')
+	return render(request, 'recommenders.html')
 #    if form.validate_on_submit():
 #        form.populate_obj(user)
 #		user.save()
@@ -143,12 +144,6 @@ def help(request):
 
 
 def staffview(request):
-    if user.role ==1:
-        return redirect('/index')
-    if user.role ==2:
-        return redirect('/rec_index')
-    if user.role ==3:
-        return redirect('/eval_index')
 	finishedapplicants = User.objects.filter_by(application_complete =1).all()
 	sortedapplicants = []
 	recommenders = User.objects.all()
@@ -268,8 +263,13 @@ def reset_password(request):
 
 def rec_index(request):
 	students = []
+<<<<<<< HEAD
 	recs =[]
 	students = User(role =1)
+=======
+	recs =[]
+	students = User.objects.all()
+>>>>>>> 051012a3609fbf773371065bed941e7b66db52ea
 #	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
 #	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
 #	if student2:
@@ -289,16 +289,16 @@ def rec_index(request):
 
 @login_required
 def eval_index(request):
-	if user.role ==1:
-		return redirect('/index')
-	if user.role ==4:
-		return redirect('/staffview')
 	students = []
+<<<<<<< HEAD
 	recs =[]
 	student1 = User.objects.filter_by(ref1email = user.email).first()
+=======
+	evals =[]
+	students = User.objects.all()
+>>>>>>> 051012a3609fbf773371065bed941e7b66db52ea
 #	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
 #	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
-	students.append(student1)
 #	if student2:
 #		for s2 in student2:
 #			students.append(s2)
@@ -310,8 +310,7 @@ def eval_index(request):
 #		if recommendation and recommendation.is_recommendation_complete():
 #			recommendation.recommendation_complete =1
 #		recs.append(recommendation)
-	return render_template('eval_index.html',
-		students=students)
+	return render(request, 'eval_index.html', {'students':students})
 
 
 
