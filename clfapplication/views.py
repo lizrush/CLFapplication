@@ -23,37 +23,26 @@ def logout(request):
         logout(request)
 
 
-
-@app.route('/rec_login', methods = ['GET', 'POST'])
-def rec_login():
-    form = RecLoginForm()
-    if form.validate_on_submit():
-        recommender = form.get_recommender()
-        login_user(recommender)
-        return redirect('/rec_index')
-    return render_template('rec_login.html', form=form)
+def rec_login(request):
+#    form = RecLoginForm()
+#    if form.validate_on_submit():
+#        recommender = form.get_recommender()
+#        login_user(recommender)
+#        return redirect('/rec_index')
+	return render(request, 'rec_login.html')
 
 
-@app.route('/eval_login', methods = ['GET', 'POST'])
-def eval_login():
-    form = EvalLoginForm()
-    if form.validate_on_submit():
-        evaluator = form.get_evaluator()
-        login_user(evaluator)
-        return redirect('/evaluate_index')
-    return render_template('eval_login.html', form=form)
+def eval_login(request):
+#    form = EvalLoginForm()
+#    if form.validate_on_submit():
+#        evaluator = form.get_evaluator()
+#        login_user(evaluator)
+#        return redirect('/evaluate_index')
+ 	return render(request, 'eval_login.html')
 
 
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect('/login')
-
-
-@app.route('/', methods= ['GET', 'POST'])
-@app.route('/index', methods= ['GET', 'POST'])
 @login_required
-def index():
+def index(request):
 	recs = []
 	if current_user.role ==2:
 		return redirect('/rec_index')
@@ -65,76 +54,76 @@ def index():
 		recs.append(User.query.filter_by(email = current_user.rec1email).first())
 		recs.append(User.query.filter_by(email = current_user.rec2email).first())
 		recs.append(User.query.filter_by(email = current_user.rec3email).first())
-	return render_template("index.html", recs = recs)
+	return render(request, 'index.html', recs = recs)
 
-
-@app.route('/createprofile', methods = ['GET', 'POST'])
-def createprofile():
+@login_required
+def createprofile(request):
 	user = None
-	form = ProfileForm(obj=user)
-	if not form.password or form.password == '':
-		del form.password    
-	if form.validate_on_submit():
-		if user:
-			flash('Successfully updated your profile.')
-		else:
-			user = User()
-			user.role = 1
-			flash('Congratulations, you just created an account!')
-		form.populate_obj(user)
-		db.session.add(user)
-		db.session.commit()
-		login_user(user)
+#	form = ProfileForm(obj=user)
+#	if not form.password or form.password == '':
+#		del form.password    
+#	if form.validate_on_submit():
+#		if user:
+#			flash('Successfully updated your profile.')
+#		else:
+#			user = User()
+#			user.role = 1
+#			flash('Congratulations, you just created an account!')
+#		form.populate_obj(user)
+#		user.save()
+		login(request, user)
 		return redirect('/')
-	return render_template('profile.html', form=form)
+	return render(request, 'profile.html')
 
 
-@app.route('/profile', methods = ['GET', 'POST'])
-def profile():
+@login_required
+def profile(request):
 	if current_user.is_authenticated():
 		user = current_user
 	else:
 		return redirect('/login')
-	form = ProfileForm(obj=current_user)
-	if not form.password or form.password == '':
-		del form.password
-	if form.validate_on_submit():
-		form.populate_obj(current_user)
-		db.session.add(current_user)
-		db.session.commit()
-	return render_template('profile.html', form=form)
+#	form = ProfileForm(obj=current_user)
+#	if not form.password or form.password == '':
+#		del form.password
+#	if form.validate_on_submit():
+#		form.populate_obj(current_user)
+	current_user.save()
+	return render(request, 'profile.html')
 
-@app.route('/background', methods = ['GET', 'POST'])
-def background():
+
+@login_required
+def background(request):
 	form = BackgroundForm(obj=current_user)
 	if form.validate_on_submit():
 		form.populate_obj(current_user)
 		db.session.add(current_user)
 		db.session.commit()
-	return render_template('background.html', form=form)
+	return render(request, 'background.html')
 	
-@app.route('/demographic', methods = ['GET', 'POST'])
-def demographic():
+	
+@login_required
+def demographic(request):
 	form = DemographicForm(obj=current_user)
 	if form.validate_on_submit():
 		form.populate_obj(current_user)
 		db.session.add(current_user)
 		db.session.commit()
-	return render_template('demographic.html', form=form)
+	return render(request,'demographic.html')
 
-@app.route('/essayquestions', methods = ['GET', 'POST'])
-def essayquestions():
+
+@login_required
+def essayquestions(request):
 	form = EssayForm(obj=current_user)
 	if form.validate_on_submit():
 		form.populate_obj(current_user)
 		db.session.add(current_user)
 		db.session.commit()
 		return redirect('/')
-	return render_template('essayquestions.html',form=form)
+	return render(request, 'essayquestions.html')
 
 
-@app.route('/documents', methods = ['GET', 'POST'])
-def documents():    
+@login_required
+def documents(request):
 #    form = TechskillsForm(obj=current_user)
  #   if form.validate_on_submit():
   #      form.populate_obj(current_user)
@@ -144,8 +133,8 @@ def documents():
     return render_template('documents.html')
 
 
-@app.route('/recommenders', methods = ['GET', 'POST'])
-def recommenders():
+@login_required
+def recommenders(request):
     form = RecommendationsForm(obj=current_user)
     if form.validate_on_submit():
         form.populate_obj(current_user)
@@ -155,18 +144,17 @@ def recommenders():
     return render_template('recommenders.html',
         form=form)
 
-@app.route('/finalsubmission')
-def finalsubmission():
+@login_required
+def finalsubmission(request):
     return render_template("finalsubmission.html")
 
 
-@app.route('/help')
-def help():
+def help(request):
     return render_template("help.html")
 
 
-@app.route('/staffview', methods = ['GET', 'POST'])
-def staffview():
+@login_required
+def staffview(request):
     if current_user.role ==1:
         return redirect('/index')
     if current_user.role ==2:
@@ -206,8 +194,8 @@ def staffview():
 		return render_template("displayfinalists.html", finishedapplicants = finishedapplicants, recommendations = recommendations, recommenders = recommenders, finalistsRound1 = trythismatrix, displaymatrix = displaymatrix)
 		
 
-@app.route('/received')
-def received():
+@login_required
+def received(request):
     if current_user.role ==2:
         return redirect('/rec_index')
     if current_user.application_complete ==1:
@@ -258,8 +246,9 @@ def generate_recommender_password(firstname, lastname):
     password = password.replace(" ","")
     return password
 
-@app.route('/forgot', methods = ['GET', 'POST'])
-def forgot():
+
+@login_required
+def forgot(request):
     form = ForgotPasswordForm(request.form)
     if request.method == "POST" and form.validate():
         s = Signer(app.config['SECRET_KEY'])
@@ -268,13 +257,13 @@ def forgot():
         return redirect('/forgot_confirmation')
     return render_template("forgot.html", form=form)
 
-@app.route('/forgot_confirmation', methods = ['GET'])
-def forgot_confirmation():
+@login_required
+def forgot_confirmation(request):
     return render_template("forgot_confirmation.html")
 
 
-@app.route('/reset_password', methods = ['GET', 'POST'])
-def reset_password():
+@login_required
+def reset_password(request):
     form = ResetPasswordForm(request.form)
     if request.method == "POST" and form.validate():
         token = form.token.data
@@ -297,8 +286,8 @@ def reset_password():
     return render_template("reset_password.html", form=form, token=token)
 
 
-@app.route('/rec_index', methods= ['GET'])
-def rec_index():
+@login_required
+def rec_index(request):
 	if current_user.role ==1:
 		return redirect('/index')
 	if current_user.role ==4:
@@ -324,8 +313,8 @@ def rec_index():
 		students=students, recs = recs)
 
 
-@app.route('/recommendation/<student_id>', methods = ['GET', 'POST'])
-def rec_form(student_id):#pass in the student this is for
+@login_required
+def rec_form(request, student_id):#pass in the student this is for
     if current_user.role ==1:
         return redirect('/index')
     student = User.query.get(student_id) #look up the recommendation that is for this student and this recommender
@@ -339,8 +328,8 @@ def rec_form(student_id):#pass in the student this is for
     return render_template('recommendation.html', form=form, student=student, recommendation=recommendation)#Tell it to pull up a form for this particular recommendation and its corresponding student
 
 
-@app.route('/rec_finalsubmission')
-def rec_finalsubmission():
+@login_required
+def rec_finalsubmission(request):
     if current_user.role ==1:
         return redirect('/index')
     current_user.are_recs_complete()
@@ -349,35 +338,35 @@ def rec_finalsubmission():
     return render_template("rec_finalsubmission.html")
 
 
-@app.route('/rec_help')
-def rec_help():
+@login_required
+def rec_help(request):
     if current_user.role ==1:
         return redirect('/index')
     return render_template("rec_help.html")
 
 
-@app.route('/rec_forgot')
-def rec_forgot():
+@login_required
+def rec_forgot(request):
     if current_user.role ==1:
         return redirect('/index')
     return render_template("rec_forgot.html")
 
 
-@app.route('/rec_logout')
-def rec_logout():
+@login_required
+def rec_logout(request):
     logout_user()
     return redirect("http://www.codeforprogress.org")
 
 
-@app.route('/rec_received')
-def rec_received():
+@login_required
+def rec_received(request):
     if current_user.role ==1:
         return redirect('/index')
     return render_template("rec_received.html")
 
 
-@app.route('/evaluate_index', methods = ['GET', 'POST'])
-def evaluate_index():
+@login_required
+def evaluate_index(request):
     if current_user.role ==1:
         return redirect('/index')
     if current_user.role ==2:
@@ -391,8 +380,8 @@ def evaluate_index():
         return render_template("evaluate_index.html", assignedapplicants = assignedapplicants, evals=evals, user = current_user)
 
 
-@app.route('/evaluate/<student_id>', methods = ['GET', 'POST'])
-def evaluate(student_id):
+@login_required
+def evaluate(request, student_id):
     if current_user.role ==1:
         return redirect('/index')
     if current_user.role ==2:
@@ -424,8 +413,8 @@ def evaluate(student_id):
         return render_template("evaluate.html", f = student, form = form, evaluation =evaluation, rec1 = rec1, rec2=rec2, rec3=rec3)
 
 
-@app.route('/eval_finalsubmission')
-def eval_finalsubmission():
+@login_required
+def eval_finalsubmission(request):
     evals_complete = current_user.are_evals_complete()
     db.session.add(current_user)
     db.session.commit()
@@ -439,24 +428,24 @@ def eval_finalsubmission():
     return render_template("eval_finalsubmission.html")
 
 
-@app.route('/eval_help')
-def eval_help():
+@login_required
+def eval_help(request):
     return render_template("eval_help.html")
 
 
-@app.route('/eval_forgot')
-def eval_forgot():
+@login_required
+def eval_forgot(request):
     return render_template("eval_forgot.html")
 
 
-@app.route('/eval_logout')
-def eval_logout():
+@login_required
+def eval_logout(request):
     logout_user()
     return redirect("/eval_login")
 
 
-@app.route('/eval_received')
-def eval_received():
+@login_required
+def eval_received(request):
     if current_user.role ==1:
         return redirect('/index')
     if current_user.role ==2:
@@ -468,8 +457,8 @@ def eval_received():
     return render_template("eval_received.html")
 
 
-@app.route('/myrecommender/<recommender_id>', methods= ['GET', 'POST'])
-def myrecommender(recommender_id):
+@login_required
+def myrecommender(request, recommender_id):
     if current_user.role ==2:
         return redirect('/rec_index')
     if current_user.role ==0:
@@ -507,21 +496,20 @@ def myrecommender(recommender_id):
 
 
 
-@app.route('/view_recommendations/<student_id>', methods = ['GET'])
-def view_recommendations(student_id):
+@login_required
+def view_recommendations(request, student_id):
 	recs = Recommendation.query.filter_by(student_id = student_id).all()
 	return render_template("view_recommendations.html", recs = recs)
 	
 	
-@app.route('/view_evaluations/<student_id>', methods = ['GET'])
-def view_evaluations(student_id):
+@login_required
+def view_evaluations(request student_id):
 	applicant = User.query.get(student_id)
 	evals = Evaluation.query.filter_by(student_id = student_id).all()
 	evaluators=[]
 	for e in evals:
 		evaluator = User.query.filter_by(id = e.evaluator_id).first()
 		evaluators.append(evaluator)			
-	yeses = 0
 	complete = 0
 	totalscores =[]
 	averagescore = 0
@@ -532,5 +520,4 @@ def view_evaluations(student_id):
 		if e.yesno =='Yes':
 			yeses +=1	
 			averagescore = (sum(totalscores) / float(len(totalscores)))
-	return render_template("view_evaluations.html", applicant = applicant, evals = evals, evaluators = evaluators, averagescore = averagescore, yeses = yeses, complete = complete)
-
+	return render_template("view_evaluations.html", applicant = applicant, evals = evals, evaluators = evaluators, averagescore = averagescore, complete = complete)
