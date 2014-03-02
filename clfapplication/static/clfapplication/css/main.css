@@ -11,7 +11,13 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  margin-left:0px;
+  margin-right:0px;
+  margin-top:18px;
+  background-image:url(../img/bgmain.gif);
+  background-repeat:repeat;
 }
+
 #footer {
   position: absolute;
   bottom: 0;
@@ -44,5 +50,5 @@ code {
 
 textarea.wider{
 	width:500px;
-	
+
 }
