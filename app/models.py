@@ -12,6 +12,7 @@ class User(db.Model):
     firstname = db.Column(db.String(45))
     firstname2 = db.Column(db.String(45))
     lastname = db.Column(db.String(45))
+    lastname2 = db.Column(db.String(45))
     phonetype = db.Column(db.Integer)
     address = db.Column(db.String(90))
     city = db.Column(db.String(45))
@@ -87,10 +88,12 @@ class User(db.Model):
     primaryhomelanguage = db.Column(db.String(45))
 
     # reference info
-    ref1name = db.Column(db.String(45))
+    ref1firstname = db.Column(db.String(45))
+    ref1lastname = db.Column(db.String(45))
     ref1email = db.Column(db.String(45))
-    rec2name = db.Column(db.String(45))
-    rec2email = db.Column(db.String(45))
+    ref2firstname = db.Column(db.String(45))
+    ref2lastname = db.Column(db.String(45))
+    ref2email = db.Column(db.String(45))
 
 
     timestamp = db.Column(db.DateTime)

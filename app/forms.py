@@ -118,9 +118,11 @@ class ScholarshipForm(Form):
 
 
 class RecommendationsForm(Form):
-	ref1name = TextField('ref1name', validators = [Required(message="your first recommender's first name")])
+	ref1firstname = TextField('ref1firstname', validators = [Required(message="your first recommender's first name")])
+	ref1lastname = TextField('ref1lastname', validators = [Required(message="your first recommender's first name")])
 	ref1email = TextField('ref1email', validators = [Required(message="your first recommender's email address"), Email("Hmm, your first recommender's email address doesn't look like an email address.")])
-	ref2name = TextField('ref2name', validators = [Required(message="your second recommender's first name")])
+	ref2firstname = TextField('ref2firstname', validators = [Required(message="your second recommender's first name")])
+	ref2lastname = TextField('ref2lastname', validators = [Required(message="your second recommender's first name")])
 	ref2email = TextField('ref2email', validators = [Required(message="your second recommender's email address"), Email("Hmm, your second recommender's email address doesn't look like an email address.")])
 
 class ConfidentialDemographics(Form):
@@ -142,16 +144,16 @@ class ConfidentialDemographics(Form):
 	motherimmigrationdate = TextField('immigrationdate')
 	mothereducation = TextField('immigrationdate')
 	fatherimmigrant = SelectField('fatherimmigrant', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	fatherimmigrationcountry = TextField('immigrationdate')
-	fatherimmigrationdate = TextField('immigrationdate')
-	fathereducation = TextField('immigrationdate')
+	fatherimmigrationcountry = TextField('fatherimmigrationcountry')
+	fatherimmigrationdate = TextField('fatherimmigrationdate')
+	fathereducation = TextField('fathereducation')
 	ab540 = SelectField('ab540', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
 	firstgencollege = SelectField('firstgencollege', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	primaryhomelanguage = TextField('immigrationdate')
+	primaryhomelanguage = TextField('primaryhomelanguage')
 
-class EssaysForm(Form):
-	essaytext1 = db.Column(db.Text)
-    	essaytext2 = db.Column(db.Text)
+class EssayForm(Form):
+	essay1 = TextField('essay1')
+	essay2 = TextField('essay2')
 
 
 class RecLoginForm(Form):
