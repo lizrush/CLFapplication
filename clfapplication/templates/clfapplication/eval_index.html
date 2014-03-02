@@ -3,32 +3,32 @@
 {% block content %}
 
 <div class = "contentholder">
-{% if user.all_evaluations_complete ==1 %}
-	<h2 class="formheader">Thank you!</h2>
-	<p>Thanks for finishing your evaluations!</p>
 
-{% else %}
 <h2 class="formheader">Welcome</h2>
 
-<p>Please choose an applicant to begin evaluating. You can review an online copy of our <a href="http://www.codeforprogress.org/apply" target="_blank"><u>selection criteria here</u></a>.</p>
+<p>Please choose an applicant to begin evaluating. You can review an online copy of our <a href="{% url 'index' %} target="_blank"><u>selection criteria here</u></a>.</p>
 
 		<div id="applicantbuttonholder">
-			{% for e in evals %}
-			<a href="{{ url_for('evaluate', student_id=e.student_id) }}">
-				<div class="applicantbutton {% if e.is_evaluation_complete() %}finished{% endif %}">					
-					<span>Applicant {{e.student_id}}</span><div class="namespacer"></div><div class="namespacer">
-					{% if e.is_evaluation_complete()==False %} Begin evaluation{% else %} {{e.critical }} | {{e.mission}} | {{e.community}} | {{e.inspire}} | {{e.yesno}}{% endif %}
+			{% for s in students %}
+			<a href="{% url 'evaluate' s.id %}">
+
+
+
+				<div id="applicantbutton">					
+					<span>{{s.firstname}} {{s.lastname}}</span>
 					</div>
+
+
+
 				</div>
 			</a>
 			{% endfor %}
 		</div>
 </div></div>
-	<br><br><br><br><br><a href="{{ url_for('eval_finalsubmission') }}"><div class="advance"><span id="finished">FINISHED?</span>Click here to submit your evaluations.</div></a>
+	<br><br><br><br><br><a href="{% url 'eval_index' %}"><div class="advance"><span id="finished">FINISHED?</span>Click here to submit your evaluations.</div></a>
 
 </ol></div>
 
 
-{% endif %}
 
 {% endblock %}

@@ -145,12 +145,6 @@ def help(request):
 
 
 def staffview(request):
-    if user.role ==1:
-        return redirect('/index')
-    if user.role ==2:
-        return redirect('/rec_index')
-    if user.role ==3:
-        return redirect('/eval_index')
 	finishedapplicants = User.objects.filter_by(application_complete =1).all()
 	sortedapplicants = []
 	recommenders = User.objects.all()
@@ -291,16 +285,11 @@ def rec_index(request):
 
 @login_required
 def eval_index(request):
-	if user.role ==1:
-		return redirect('/index')
-	if user.role ==4:
-		return redirect('/staffview')
 	students = []
-	recs =[]    
-	student1 = User.objects.filter_by(ref1email = user.email).first()
+	evals =[]
+	students = User.objects.all()
 #	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
 #	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
-	students.append(student1)
 #	if student2:
 #		for s2 in student2:
 #			students.append(s2)
@@ -312,8 +301,7 @@ def eval_index(request):
 #		if recommendation and recommendation.is_recommendation_complete():
 #			recommendation.recommendation_complete =1
 #		recs.append(recommendation)
-	return render_template('eval_index.html',
-		students=students)
+	return render(request, 'eval_index.html', {'students':students})
 
 
 
