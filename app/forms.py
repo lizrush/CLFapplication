@@ -68,6 +68,51 @@ class CreateProfileForm(Form):
     	plannedtraditionalcollegelevel = SelectField('traditionalcollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', 'Junior'),('4','Senior'),('5','Graduating Senior')])
     	plannedmajor = TextField('plannedmajor'), validators = [Required(message="We'd like to know what you plan to study.")])
 
+	pastrecipient = SelectField('pastrecipient', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	receivingyear = TextField('receivingyear')
+	referral = TextField('referral')
+	awardcycle = TextField('awardcycle'), validators = [Required(message="We'd like to know which award cycle you are applying for.")])
+
+	financialaid = SelectField('financialaid', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	financialaidreason = TextField('financialaidreason')
+	financialaward  = SelectField('financialaward', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	financialawardlist = TextField('financialawardlist')
+	economicallydisadvantaged = SelectField('financialaid', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	income = SelectField('financialaid', choices=[('1', '$15,000 or under'),('2', '$15,001 - $25,000'), ('3', '$25,001 - $35,000'), ('4','35,001 - $55,000'), ('5', '$55,001 - $75,000'), ('6', '$75,001 - $95,000'), ('7', '$95,001 - $125,000'), ('8', '$125,001 - $160,000'), ('9', '$160,001 and above')], validators = [Required()])
+
+
+
+	headofhousehold = db. Column(db.Integer)
+	dependents = db.Column(db.String(45))
+	parent = db. Column(db.Integer)
+	children = db. Column(db.Integer)
+	immigrant = db. Column(db.Integer)
+	immigrationcountry = db.Column(db.String(45))
+	immigrationdate = db.Column(db.String(45))
+	motherimmigrant = db. Column(db.Integer)
+	motherimmigrationcountry = db.Column(db.String(45))
+	motherimmigrationdate = db.Column(db.String(45))
+	mothereducation = db.Column(db.String(45))
+	fatherimmigrant = db. Column(db.Integer)
+	fatherimmigrationcountry = db.Column(db.String(45))
+	fatherimmigrationdate = db.Column(db.String(45))
+	fathereducation = db.Column(db.String(45))
+	ab540 = db. Column(db.Integer)
+	firstgencollege = db. Column(db.Integer)
+	primaryhomelanguage = db.Column(db.String(45))
+
+
+
+
+
+
+
+
+
+
+
+
+
 	def validate_password(self, field):
 		user = self.get_user()
 
