@@ -270,7 +270,7 @@ def reset_password(request):
 def rec_index(request):
 	students = []
 	recs =[]    
-	students = User(role =1)
+	students = User.objects.all()
 #	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
 #	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
 #	if student2:
