@@ -114,44 +114,9 @@ class User(models.Model):
         return self.id
 
 
-
-class Evaluator(models.Model):
-    role = models.IntegerField()
-    title = models.CharField(max_length=45)
-    organization = models.CharField(max_length=45)
-    email = models.CharField(max_length=45, unique=True)
-    password = models.CharField(max_length=45)
-    firstname = models.CharField(max_length=45)
-    firstname2 = models.CharField(max_length=45)
-    lastname = models.CharField(max_length=45)
-    lastname2 = models.CharField(max_length=45)
-    phonetype = models.IntegerField()
-    address = models.CharField(max_length=90)
-    city = models.CharField(max_length=45)
-    state = models.CharField(max_length=45)
-    zipcode = models.CharField(max_length=10)
-  
-    
-class Recommender(models.Model):
-    role = models.IntegerField()
-    title = models.CharField(max_length=45)
-    organization = models.CharField(max_length=45)
-    email = models.CharField(max_length=45, unique=True)
-    password = models.CharField(max_length=45)
-    firstname = models.CharField(max_length=45)
-    firstname2 = models.CharField(max_length=45)
-    lastname = models.CharField(max_length=45)
-    lastname2 = models.CharField(max_length=45)
-    phonetype = models.IntegerField()
-    address = models.CharField(max_length=90)
-    city = models.CharField(max_length=45)
-    state = models.CharField(max_length=45)
-    zipcode = models.CharField(max_length=10)
-
-
 class Recommendation(models.Model):
 	student_id = models.ForeignKey(User)
-	recommender_id = models.ForeignKey(Recommender)
+	recommender_id = models.IntegerField()
 	KnownApplicant = models.TextField()
 	Capacity = models.TextField()
 	OtherCapacity = models.TextField()
@@ -185,7 +150,7 @@ class Recommendation(models.Model):
 
 class Evaluation(models.Model):
 	student_id = models.ForeignKey(User)
-	evaluator_id = models.ForeignKey(Evaluator)
+	evaluator_id = models.IntegerField()
 	rating = models.IntegerField()
 	notes = models.TextField()
 

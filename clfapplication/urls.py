@@ -32,6 +32,6 @@ urlpatterns = patterns('',
 	url(r'^evaluate/(?P<student_id>\d+)/$', views.evaluate, name='evaluate'),
 	url(r'^recommend/(?P<student_id>\d+)/$', views.recommend, name='recommend'),
 	url(r'^myrecommender/(?P<recommender_id>\d+)/$', views.myrecommender, name='myrecommender'),
-	url(r'^view_recommendations/(?P<student_id>\d+)/$', views.vew_recommendations, name='view_recommendations'),
+	url(r'^view_recommendations/(?P<student_id>\d+)/$', views.view_recommendations, name='view_recommendations'),
 	url(r'^view_evaluations/(?P<student_id>\d+)/$', views.view_evaluations, name='view_evaluations'),
 )

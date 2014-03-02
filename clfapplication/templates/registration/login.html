@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<div class="loginerror">
+		{% if form.errors %}
+		<p style="color:red">Hmm, that's not the right username and password.<br /></p>
+		{% endif %}
+	</div>
+	
+	<div class="contentholder"><br><br><br>
+		<h2>Log in to your CLF Application</h2>
+	</div>
+
+		
+	<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+	{% csrf_token %}
+
+	<div id="loginbox">
+		<p>{{form.username.label}} {{form.username }}
+		<p>{{form.password.label }} {{form.password }}
+		<p><input type="submit" value="LOG IN"></br>
+		<input type="hidden" name="next" value="{{ next }}" />
+		</form>
+
+	</div> 
+	{% endblock %}

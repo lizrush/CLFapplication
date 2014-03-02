@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse
-from intelview.models import User, Evaluation, Recommendation
+from clfapplication.models import User, Evaluation, Recommendation
 
 #Login page
 def login(request):
@@ -59,18 +59,18 @@ def index(request):
 @login_required
 def createprofile(request):
 	user = None
-#	form = ProfileForm(obj=user)
-#	if not form.password or form.password == '':
-#		del form.password    
-#	if form.validate_on_submit():
-#		if user:
-#			flash('Successfully updated your profile.')
-#		else:
-#			user = User()
-#			user.role = 1
-#			flash('Congratulations, you just created an account!')
-#		form.populate_obj(user)
-#		user.save()
+	form = ProfileForm(obj=user)
+	if not form.password or form.password == '':
+		del form.password    
+	if form.validate_on_submit():
+		if user:
+			flash('Successfully updated your profile.')
+		else:
+			user = User()
+			user.role = 1
+			flash('Congratulations, you just created an account!')
+		form.populate_obj(user)
+		user.save()
 		login(request, user)
 		return redirect('/')
 	return render(request, 'profile.html')
@@ -141,16 +141,15 @@ def recommenders(request):
         db.session.add(current_user)
         db.session.commit()
         return redirect('/')
-    return render_template('recommenders.html',
-        form=form)
+	return render(request, 'rec_login.html', {'form':form})
 
 @login_required
 def finalsubmission(request):
-    return render_template("finalsubmission.html")
+	return render(request, 'finalsubmission.html')
 
 
 def help(request):
-    return render_template("help.html")
+	return render(request, 'help.html', {'form':form})
 
 
 @login_required
@@ -196,20 +195,20 @@ def staffview(request):
 
 @login_required
 def received(request):
-    if current_user.role ==2:
-        return redirect('/rec_index')
-    if current_user.application_complete ==1:
-        return redirect('/index')
-    current_user.application_complete =1
-    db.session.add(current_user)
-    db.session.commit()
-    make_new_recommenders(current_user)
-    make_blank_recommendations(current_user)
-    completed_app_count = len(User.query.filter_by(application_complete =1).all())
-    new_application_submitted(current_user, completed_app_count)
-    notify_applicant(current_user)
-    notify_recommenders(current_user)
-    return render_template("received.html")
+	if current_user.role ==2:
+		return redirect('/rec_index')
+	if current_user.application_complete ==1:
+		return redirect('/index')
+	current_user.application_complete =1
+	db.session.add(current_user)
+	db.session.commit()
+	make_new_recommenders(current_user)
+	make_blank_recommendations(current_user)
+	completed_app_count = len(User.query.filter_by(application_complete =1).all())
+	new_application_submitted(current_user, completed_app_count)
+	notify_applicant(current_user)
+	notify_recommenders(current_user)
+	return render(request, 'received.html')
 
 
 def make_new_recommenders(user):
@@ -259,8 +258,7 @@ def forgot(request):
 
 @login_required
 def forgot_confirmation(request):
-    return render_template("forgot_confirmation.html")
-
+    return render(request, "forgot_confirmation.html")
 
 @login_required
 def reset_password(request):
@@ -283,7 +281,7 @@ def reset_password(request):
     token = request.args.get('token', None)
     if not token:
         return render_template("reset_invalid_token.html")
-    return render_template("reset_password.html", form=form, token=token)
+    return render(request, "reset_password.html", {'form':form, 'token':token})
 
 
 @login_required
@@ -313,8 +311,39 @@ def rec_index(request):
 		students=students, recs = recs)
 
 
+
 @login_required
-def rec_form(request, student_id):#pass in the student this is for
+def eval_index(request):
+	if current_user.role ==1:
+		return redirect('/index')
+	if current_user.role ==4:
+		return redirect('/staffview')
+	students = []
+	recs =[]    
+	student1 = User.query.filter_by(ref1email = current_user.email).first()
+#	student2 = (User.query.filter_by(rec2email = current_user.email, application_complete =1).all())
+#	student3 = (User.query.filter_by(rec3email = current_user.email, application_complete =1).all())
+	students.append(student1)
+#	if student2:
+#		for s2 in student2:
+#			students.append(s2)
+#	if student3:
+#		for s3 in student3:
+#			students.append(s3)
+#	for s in students:
+#		recommendation = Recommendation.query.filter_by(student_id = s.id, recommender_id = current_user.id).first()
+#		if recommendation and recommendation.is_recommendation_complete():
+#			recommendation.recommendation_complete =1
+#		recs.append(recommendation)
+	return render_template('eval_index.html',
+		students=students)
+
+
+
+
+
+@login_required
+def recommend(request, student_id):#pass in the student this is for
     if current_user.role ==1:
         return redirect('/index')
     student = User.query.get(student_id) #look up the recommendation that is for this student and this recommender
@@ -325,7 +354,7 @@ def rec_form(request, student_id):#pass in the student this is for
         db.session.add(recommendation)
         db.session.commit()
         return redirect('/rec_index')
-    return render_template('recommendation.html', form=form, student=student, recommendation=recommendation)#Tell it to pull up a form for this particular recommendation and its corresponding student
+    return render(request, 'recommendation.html', form=form, student=student, recommendation=recommendation)#Tell it to pull up a form for this particular recommendation and its corresponding student
 
 
 @login_required
@@ -335,14 +364,14 @@ def rec_finalsubmission(request):
     current_user.are_recs_complete()
     db.session.add(current_user)
     db.session.commit()
-    return render_template("rec_finalsubmission.html")
+    return render(request, "rec_finalsubmission.html")
 
 
 @login_required
 def rec_help(request):
     if current_user.role ==1:
         return redirect('/index')
-    return render_template("rec_help.html")
+    return render(request, "rec_help.html")
 
 
 @login_required
@@ -362,7 +391,7 @@ def rec_logout(request):
 def rec_received(request):
     if current_user.role ==1:
         return redirect('/index')
-    return render_template("rec_received.html")
+    return render(request, "rec_received.html")
 
 
 @login_required
@@ -377,7 +406,7 @@ def evaluate_index(request):
         for e in evals:
             a = User.query.filter_by(id = e.student_id).first()
             assignedapplicants.append(a)
-        return render_template("evaluate_index.html", assignedapplicants = assignedapplicants, evals=evals, user = current_user)
+        return render(request, "evaluate_index.html", assignedapplicants = assignedapplicants, evals=evals, user = current_user)
 
 
 @login_required
@@ -410,7 +439,7 @@ def evaluate(request, student_id):
                 db.session.add(evaluation)
                 db.session.commit()
                 return redirect('/evaluate_index')
-        return render_template("evaluate.html", f = student, form = form, evaluation =evaluation, rec1 = rec1, rec2=rec2, rec3=rec3)
+        return render(request, "evaluate.html", f = student, form = form, evaluation =evaluation, rec1 = rec1, rec2=rec2, rec3=rec3)
 
 
 @login_required
@@ -425,17 +454,17 @@ def eval_finalsubmission(request):
     if evals_complete == True:
         #return redirect('/evaluate_index')
         return render_template("eval_received.html")
-    return render_template("eval_finalsubmission.html")
+    return render(request, "eval_finalsubmission.html")
 
 
 @login_required
 def eval_help(request):
-    return render_template("eval_help.html")
+    return render(request, "eval_help.html")
 
 
 @login_required
 def eval_forgot(request):
-    return render_template("eval_forgot.html")
+    return render(request, "eval_forgot.html")
 
 
 @login_required
@@ -454,7 +483,7 @@ def eval_received(request):
         return redirect('/eval_finalsubmission')
     if current_user.are_evals_complete() ==True:
         return redirect('/eval_index')
-    return render_template("eval_received.html")
+    return render(request, "eval_received.html")
 
 
 @login_required
@@ -492,18 +521,16 @@ def myrecommender(request, recommender_id):
         remind_recommender(current_user, recommender)
 
         return redirect('/index')
-    return render_template("myrecommender.html", recommender = recommender, form = form)
-
+    return render(request, "myrecommender.html", recommender = recommender, form = form)
 
 
 @login_required
 def view_recommendations(request, student_id):
 	recs = Recommendation.query.filter_by(student_id = student_id).all()
-	return render_template("view_recommendations.html", recs = recs)
-	
+	return render(request, "view_recommendations.html", recs = recs)
 	
 @login_required
-def view_evaluations(request student_id):
+def view_evaluations(request, student_id):
 	applicant = User.query.get(student_id)
 	evals = Evaluation.query.filter_by(student_id = student_id).all()
 	evaluators=[]
@@ -520,4 +547,4 @@ def view_evaluations(request student_id):
 		if e.yesno =='Yes':
 			yeses +=1	
 			averagescore = (sum(totalscores) / float(len(totalscores)))
-	return render_template("view_evaluations.html", applicant = applicant, evals = evals, evaluators = evaluators, averagescore = averagescore, complete = complete)
+	return render(request, "view_evaluations.html", applicant = applicant, evals = evals, evaluators = evaluators, averagescore = averagescore, complete = complete)
