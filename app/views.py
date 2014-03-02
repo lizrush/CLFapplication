@@ -21,9 +21,9 @@ def login():
 		if current_user.role == 1:
 			if current_user.application_complete ==1:
 				recs =[]
-				recs.append(User.query.filter_by(email = current_user.rec1email).first())
-				recs.append(User.query.filter_by(email = current_user.rec2email).first())
-				recs.append(User.query.filter_by(email = current_user.rec3email).first())
+				recs.append(User.query.filter_by(email = current_user.ref1email).first())
+#				recs.append(User.query.filter_by(email = current_user.rec2email).first())
+#				recs.append(User.query.filter_by(email = current_user.rec3email).first())
 				return render_template('index.html', recs = recs)
 			return redirect('/index')
 		if current_user.role == 2:
@@ -316,35 +316,29 @@ def rec_index():
 		return redirect('/staffview')
 	students = []
 	recs =[]    
-	student1 = (User.query.filter_by(rec1email = current_user.email, application_complete =1).all())
-	student2 = (User.query.filter_by(rec2email = current_user.email, application_complete =1).all())
-	student3 = (User.query.filter_by(rec3email = current_user.email, application_complete =1).all())
-	if student1:
-		for s1 in student1:
-			students.append(s1)
-	if student2:
-		for s2 in student2:
-			students.append(s2)
-	if student3:
-		for s3 in student3:
-			students.append(s3)
-	for s in students:
-		recommendation = Recommendation.query.filter_by(student_id = s.id, recommender_id = current_user.id).first()
-		if recommendation and recommendation.is_recommendation_complete():
-			recommendation.recommendation_complete =1
-		recs.append(recommendation)
-	db.session.add(current_user)
-	db.session.commit()
+	student1 = User.query.filter_by(ref1email = current_user.email).first()
+#	student2 = (User.query.filter_by(rec2email = current_user.email, application_complete =1).all())
+#	student3 = (User.query.filter_by(rec3email = current_user.email, application_complete =1).all())
+	students.append(student1)
+#	if student2:
+#		for s2 in student2:
+#			students.append(s2)
+#	if student3:
+#		for s3 in student3:
+#			students.append(s3)
+#	for s in students:
+#		recommendation = Recommendation.query.filter_by(student_id = s.id, recommender_id = current_user.id).first()
+#		if recommendation and recommendation.is_recommendation_complete():
+#			recommendation.recommendation_complete =1
+#		recs.append(recommendation)
 	return render_template('rec_index.html',
 		students=students, recs = recs)
 
 
-@app.route('/rec_form/<student_id>', methods = ['GET', 'POST'])
+@app.route('/recommendation/<student_id>', methods = ['GET', 'POST'])
 def rec_form(student_id):#pass in the student this is for
     if current_user.role ==1:
         return redirect('/index')
-    if current_user.all_recs_complete ==1:
-        return redirect('/rec_index')
     student = User.query.get(student_id) #look up the recommendation that is for this student and this recommender
     recommendation = Recommendation.query.filter_by(student_id=student.id, recommender_id=current_user.id).first() #get the recommendation that matches this student and this recommender
     form = RecommenderForm(obj=recommendation) #pull up the form for this recommendation
@@ -353,7 +347,7 @@ def rec_form(student_id):#pass in the student this is for
         db.session.add(recommendation)
         db.session.commit()
         return redirect('/rec_index')
-    return render_template('rec_form.html', form=form, student=student, recommendation=recommendation)#Tell it to pull up a form for this particular recommendation and its corresponding student
+    return render_template('recommendation.html', form=form, student=student, recommendation=recommendation)#Tell it to pull up a form for this particular recommendation and its corresponding student
 
 
 @app.route('/rec_finalsubmission')
