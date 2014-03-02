@@ -23,7 +23,7 @@
                 <tr>
                   <td>{{s.id}}</td>
                   <td>{{s.firstname}} {{s.lastname}}</td>
-                  <td><a href="{% url 'recommend' s.id %}"><button class="btn btn-info">View</button></a></td>
+                  <td><a href="{% url 'evaluate' s.id %}"><button class="btn btn-info">View</button></a></td>
                 </tr>
 {% endfor %}
               </tbody>

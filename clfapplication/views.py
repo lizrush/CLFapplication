@@ -360,36 +360,15 @@ def evaluate_index(request):
         return render(request, "evaluate_index.html", assignedapplicants = assignedapplicants, evals=evals, user = user)
 
 
-@login_required
-def evaluate(request, student_id):
-    if user.role ==1:
-        return redirect('/index')
-    if user.role ==2:
-        return redirect('/rec_index')
-    if user.role ==4:
-        student = User.objects.filter_by(role = 1, id = student_id).first()
-        evaluation = Evaluation.objects.filter_by(student_id = student.id, evaluator_id = user.id).first()
-        recommender1 = User.objects.filter_by(email = student.rec1email).first()
-        recommender2 = User.objects.filter_by(email = student.rec2email).first()
-        recommender3 = User.objects.filter_by(email = student.rec3email).first()
-	if recommender1:
-	        rec1 = Recommendation.objects.filter_by(student_id = student.id, recommender_id = recommender1.id).first()
-	else:
-		rec1 = None
-	if recommender2:
-	        rec2 = Recommendation.objects.filter_by(student_id = student.id, recommender_id = recommender2.id).first()
-	else:
-		rec2 = None
-        if recommender3:
-		rec3 = Recommendation.objects.filter_by(student_id = student.id, recommender_id = recommender3.id).first()
-	else:
-		rec3 = None
-        form = EvaluatorForm(obj = evaluation)
-        if form.validate_on_submit():
-			form.populate_obj(evaluation)
-			evaluation.save()
-			return redirect('/evaluate_index')
-        return render(request, "evaluate.html", f = student, form = form, evaluation =evaluation, rec1 = rec1, rec2=rec2, rec3=rec3)
+
+def evaluate(request, student_id):#pass in the student this is for
+	student = User.objects.get(id = student_id) #look up the recommendation that is for this student and this recommender
+#	form = RecommenderForm(obj=recommendation) #pull up the form for this recommendation
+#	if form.validate_on_submit():
+#		form.populate_obj(recommendation)
+#		recommendation.save()
+	return render(request, 'evaluate.html', {'student': student})
+
 
 
 @login_required

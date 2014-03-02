@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Begin page content -->
+<div class="container">
+
+<h1>EVALUATION FOR: <span style="color: #488469">{{student.firstname}} {% if student.firstname2 %} {{student.firstname2}}{% endif %} {{student.lastname}}{% if student.lastname2 %}{{student.lastname2}}{% endif %}</span></h1>
+
+
+
+
+<hr />
+
+ <form>
+  <fieldset>
+
+<p> <a><b>View application</b></a></p>
+<br>
+<p> <a><b>View recommendation 1</b></a></p>
+<p>  <a><b>View recommendation 2</b></a>
+ <p>  <a><b>View recommendation 3</b></a>
+ <br><br><p> Rating: 1 through 6 (where 1 is a very weak applicant and 6 is a very strong applicant)</p>
+
+
+   <select class="form-control" name="AnnualIncome">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+    <option>5</option>
+      <option>6</option>  
+  </select>
+  <br /><br />
+
+ <!---->
+    
+        <textarea>Notes</textarea>
+  <br>
+
+
+    </div>
+
+
+   <!---->
+    <!---->
+    <br>
+    <br>
+  <p class="pull-right">
+    <button class="btn btn-large btn-danger" type="button">Cancel</button>
+    <button class="btn btn-large btn-success" type="button">Save and Continue</button>
+    </p>
+  </fieldset>
+</form>
+
+
+
+    </div><!--row span 12 -->
+
+{% endblock %}
