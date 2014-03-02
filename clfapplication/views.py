@@ -92,11 +92,12 @@ def profile(request):
 
 
 def background(request):
-	form = BackgroundForm(obj=user)
-	if form.validate_on_submit():
-		form.populate_obj(user)
-		user.save()
 	return render(request, 'background.html')
+	form = BackgroundForm(obj=user)
+#	if form.validate_on_submit():
+#		form.populate_obj(user)
+#		user.save()
+	
 	
 	
 def demographic(request):
@@ -118,7 +119,7 @@ def essayquestions(request):
 
 
 def documents(request):
-    return render_template('documents.html')
+    return render(request, 'documents.html')
 #    form = TechskillsForm(obj=user)
  #   if form.validate_on_submit():
   #      form.populate_obj(user)
@@ -128,7 +129,7 @@ def documents(request):
 
 def recommenders(request):
 #	form = RecommendationsForm(obj=user)
-	return render(request, 'rec_login.html')
+	return render(request, 'recommenders.html')
 #    if form.validate_on_submit():
 #        form.populate_obj(user)
 #		user.save()
