@@ -1,88 +1,58 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Begin page content -->
+<div class="container">
+      
+<h1>References</h1>
 
+<p>APPLICANTS PLEASE NOTE: AT LEAST ONE LETTER MUST BE FROM AN INSTRUCTOR. Additional letter may be from an instructor, counselor, community leader, or other appropriate person. Letters from relatives are NOT valid. Please be sure to contact your references before submitting their contact information. If your reference prefers to fill out the recommendation on a paper form instead of electronically, please download the form [recoForm] and ask them to return to CLF before [refDeadline]</p>	
+      
 
-  <form class="form-horizontal">
+<hr />
+   <form>
   <fieldset>
-
-  <legend>References</legend>
-        
-        <p>APPLICANTS PLEASE NOTE: AT LEAST ONE LETTER MUST BE FROM AN INSTRUCTOR. Additional letter may be from an instructor, counselor, community leader, or other appropriate person. Letters from relatives are NOT valid. Please be sure to contact your references before submitting their contact information. If your reference prefers to fill out the recommendation on a paper form instead of electronically, please download the form [recoForm] and ask them to return to CLF before [refDeadline]</p>	
-        
-
-<br  />
-
-
-	<div class="control-group">
     <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Reference #1: Name</label></div>
-     <div class="span4">
-      <div class="controls">
-      <input type="text" id="Reference1Name" class="input-xlarge" placeholder="">
-      </div>
-    </div>
-    
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Reference #1: Email</label></div>
-    
-    <div class="span4">
-      <div class="controls">
-      <input type="text" id="Reference1Email" class="input-xlarge" placeholder="">
-      </div>
-    </div>
-
-    </div>
-    </div>
-
-	<div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Reference #2: Name</label></div>
-     <div class="span4">
-      <div class="controls">
-      <input type="text" id="Reference2Name" class="input-xlarge" placeholder="">
-      </div>
-    </div>
-    
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Reference #2: Email</label></div>
-    
-    <div class="span4">
-      <div class="controls">
-      <input type="text" id="Reference2Email" class="input-xlarge" placeholder="Reference #2: Email">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-    <!----> 
-    <!----> 
-    <br>
-    <br>
-    <button type="submit" class="btn">Submit</button>
-  </fieldset>
-</form>  
-   
+     <div class="span3"><label class="control-label pull-left" for="MailingZip" >Reference #1: Name</label></div>
+     <div class="span4"><input type="text" id="Reference1Name" class="input-xlarge" placeholder=""></div>
+     </div>
      
-
-    <div id="footer">
-      <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
-      </div>
-    </div>
+     
+     <div class="row">
+     
+     <div class="span3"><label class="control-label pull-left" for="MailingZip" >Reference #1: Email</label></div>
+     <div class="span3"><input type="text" id="Reference1Name" class="input-xlarge" placeholder=""></div>
+    </div>   
     
+<br /><br />
     
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <div class="row">
+     <div class="span3"><label class="control-label pull-left" for="MailingZip" >Reference #2: Name</label></div>
+     <div class="span4"><input type="text" id="Reference1Name" class="input-xlarge" placeholder=""></div>
+     </div>
+   
+     <div class="row">
+     
+     <div class="span3"><label class="control-label pull-left" for="MailingZip" >Reference #2: Email</label></div>
+     <div class="span3"><input type="text" id="Reference1Name" class="input-xlarge" placeholder=""></div>
+    </div>   
 
-</body>
-</html>
+    
+
+ 	<br />
+
+    
+    <!---->
+    <br class="clearfix" /><br /><br />
+    
+    <p class="pull-right">
+    <button class="btn btn-large" type="button">Cancel</button>
+    <button class="btn btn-large btn-primary" type="button">Save and Continue</button>
+    </p>
+    
+    <br /><br /><br /><br />
+     </form>
+</div><!-- Container -->
+     
 
 {% endblock %}

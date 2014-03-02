@@ -1,92 +1,84 @@
 {% extends "base.html" %}
 {% block content %}
 
-        
-
-    
-    <h1>CONFIDENTIAL DEMOGRAPHIC INFORMATION</h1>
-    
-    <p></p>
+	 <!-- Begin page content -->
+    <div class="container">
+      
+     <h1>Demographic Information</h1>
     
     <p> The Chicana Latina Foundation collects demographic information for the purposes of developing profiles of our recipients. Aggregate data is often required by funders and is very important for evaluating our programs. This completed form is not disclosed to readers and interviewers and will in no way affect your eligibility for the scholarship. Thank you for assisting us. </p>
-    
-    
-  <form class="form-horizontal">
-  <fieldset>
-    <legend>Please complete and include this confidential form with your application.</legend>
-    
-    
-    <p> 1a. Did you apply for financial aid? </p>
-    
-    
-      <div class="radio">
-      <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-       Yes
-      </label>
-      </div>
-      <div class="radio">
-     <label>
-    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-    No
-     </label>
-     </div>
-    
-      <div class="control-group">
-     <label class="control-label" for="inputLastName" style="float:left">If no, please explain:</label>
-     <div class="controls">
-      <input type="text" id="WhyNoFinancialAid" placeholder="Please explain">
-    </div>
-    </div>
-        
-        
-<!---->        
-    
-        <p> 1b. Do you qualify for any other financial awards? </p>
-    
-    
-      <div class="radio">
-      <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-       Yes
-      </label>
-      </div>
-      <div class="radio">
-     <label>
-    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-    No
-     </label>
-     </div>
-    
-      <div class="control-group">
-     <label class="control-label" for="inputLastName" style="float:left">If yes, please list:</label>
-     <div class="controls">
-      <input type="text" id="OtherAwardsList" placeholder="Please list">
-    </div>
-    </div>
-    
-<!---->        
-    
-        <p> 1c. Would you classify yourself as economically disadvantaged? </p>
-    
-    
-      <div class="radio">
-      <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-       Yes
-      </label>
-      </div>
-      <div class="radio">
-     <label>
-    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-    No
-     </label>
-     </div>
+<br /> 
+<legend>Please complete and include this confidential form with your application.</legend>
 
-   <br>
- <!---->      
+
+
+<span>Have you applied for financial aid?</span>
+    
+<div class="row">
+
+<div class="span1">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+  Yes
+</label>
+</div>
+<div class="span2">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    No
+</label>
+</div>
+</div>
+    
+<div class="control-group">
+  <textarea  placeholder="Explain why not..."></textarea>
+</div>
+
+
+<span>Do you qualify for any other financial awards?</span>
+    
+<div class="row">
+
+<div class="span1">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+  Yes
+</label>
+</div>
+<div class="span2">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    No
+</label>
+</div>
+</div>
+    
+<div class="control-group">
+  <textarea  placeholder="List the financial awards..."></textarea>
+</div>
+
+
+<span>Would you classify yourself as economically disadvantaged?</span>
+    
+<div class="row">
+
+<div class="span1">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+  Yes
+</label>
+</div>
+<div class="span2">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    No
+</label>
+</div>
+</div>
+ <br />
  
- <p> 2. What is your annual household income? If you are a dependent, use parents income. If you are not dependent, use your independent household’s income. </p>
+ 
+ <p> What is your annual household income?<br />If you are a dependent, use parents income. If you are not dependent, use your independent household’s income. </p>
     
     
     <select class="form-control" name="AnnualIncome">
@@ -100,28 +92,31 @@
   <option>&#36;125,000-&#36;160,000</option>
   <option>&#62;$160,000</option> 
   </select>
+  <br /><br />
+
+<span>Are you Head of Household?</span>
     
-    <br>
-    <br>
- <!---->  
-      <p> 3.  Are you Head of Household? </p>
-          <div class="radio">
-      <label>
-      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
-       Yes
-      </label>
-      </div>
-      <div class="radio">
-     <label>
-    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
+<div class="row">
+
+<div class="span1">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+  Yes
+</label>
+</div>
+<div class="span2">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
     No
-     </label>
-     </div>   
-     
-     <br>
- <!----> 
-  <p> 4.  How many dependents are in your family including yourself? </p>
-     <select class="form-control" name="NumDependents">
+</label>
+</div>
+</div>
+ <br />
+ 
+ 
+  <p>How many dependents are in your family including yourself? </p>
+    
+    <select class="form-control" name="NumDependents">
   <option>1</option>
   <option>2</option>
   <option>3</option>
@@ -133,194 +128,215 @@
   <option>9</option> 
   <option>10 or more</option> 
   </select>
-    
-    <br>
-    <br>
- 
- 
-  <!----> 
-  
-  <p>5a. Are you a parent? </p>
-      <div class="radio">
-      <label>
-      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
-       Yes
-      </label>
-      </div>
-      <div class="radio">
-     <label>
-    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
-    No
-     </label>
-     </div>   
-     
-           <div class="control-group">
-     <label class="control-label" for="NumChildren" style="float:left">If yes, number of children:</label>
-     <div class="controls">
-      <input type="text" id="NumChildren" placeholder="Number of children">
-    </div>
-    </div>
-
-  <p>5b. Are you a single parent? </p>
-      <div class="radio">
-      <label>
-      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
-       Yes
-      </label>
-      </div>
-      <div class="radio">
-     <label>
-    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
-    No
-     </label>
-     </div>  
-
-   <br>
-   <!----> 
-    <p>6. Are you an immigrant to this country? </p> 
-         <div class="radio">
-      <label>
-      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
-       Yes
-      </label>
-      </div>
-      <div class="radio">
-     <label>
-    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
-    No
-     </label>
-     </div>   
-     
-           <div class="control-group">
-     <label class="control-label" for="ImmigratedFrom" style="float:left">If yes, from:</label>
-     <div class="controls">
-      <input type="text" id="ImmigratedFrom" placeholder="Immigrated from">
-    </div>
-    </div>
-               <div class="control-group">
-     <label class="control-label" for="ImmigrationYear" style="float:left">Year immigrated:</label>
-     <div class="controls">
-      <input type="text" id="ImmigrationYear" placeholder="Year immigrated">
-    </div>
-    </div>
    
-    <!----> 
-    
-    <p> 7. Is your Mother an immigrant to this country? </p>
-             <div class="radio">
-      <label>
-      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
-       Yes
-      </label>
-      </div>
-      <div class="radio">
-     <label>
-    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
+  <br /><br />
+  
+  
+   <span>Are you a parent?</span>
+   
+  <div class="row"> 
+  <div class="span1">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+  Yes
+</label>
+</div>
+<div class="span1">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
     No
-     </label>
-     </div>   
+</label>
+</div>
+   </div> 
+
+      <input type="text" id="NumChildren" placeholder="Number of children">
+
+  <br />
+   
+   <br />
+   <span>Are you a single parent?</spanp>
+   
+   <div class="row"> 
+  <div class="span1">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+  Yes
+</label>
+</div>
+<div class="span1">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    No
+</label>
+</div>
+</div><br />
+
+ <span>Are you an immigrant to this country?</spanp>
+   
+   <div class="row"> 
+  <div class="span1">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+  Yes
+</label>
+</div>
+<div class="span1">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    No
+</label>
+</div>
+</div><br />
+
+<div class="control-group">
+    <div class="row">
+     <div class="span3">
+     	<label class="control-label pull-left" for="MailingZip" >Country Immigrated From</label></div>
+     <div class="span4">
+      <div class="controls">
+      <input type="text" id="Reference1Name" class="input-xlarge" placeholder="">
+      </div>
+    </div>
+    
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Immigration Date</label></div>
+    
+    <div class="span2">
+      <div class="controls">
+      <input type="date" id="Reference1Email"  placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+
+ <br />
+  
+  
+<span>Is your Mother an immigrant to this country?</span>
+   
+<div class="row"> 
+  <div class="span1">
+	<label class="radio">
+    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Yes</label>
+   </div>
+  <div class="span1">
+  <label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">No</label>
+   </div>
+</div> 
+   
+<br />
+
+<div class="row">
+     <div class="span3">
+     	<label class="control-label pull-left" for="MailingZip" >Country Immigrated From</label></div>
+     <div class="span4">
+      <div class="controls">
+      <input type="text" id="Reference1Name" class="input-xlarge" placeholder="">
+      </div>
+</div>
+</div>
+<br />
+
+<span>Is your Father an immigrant to this country?</span>
+   
+<div class="row"> 
+  <div class="span1">
+	<label class="radio">
+    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Yes</label>
+   </div>
+  <div class="span1">
+  <label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">No</label>
+   </div>
+</div> 
+   
+<br />
+
+<div class="row">
+     <div class="span3">
+     	<label class="control-label pull-left" for="MailingZip" >Country Immigrated From</label></div>
+     <div class="span4">
+      <div class="controls">
+      <input type="text" id="Reference1Name" class="input-xlarge" placeholder="">
+      </div>
+</div>
+</div>
+
+<br />
+
+<span>Are you an AB540 student?</span>
+    
+<div class="row">
+
+<div class="span1">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+  Yes
+</label>
+</div>
+<div class="span2">
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    No
+</label>
+</div>
+</div>
+ <br />
+
+
+    <div class="row">
+     <div class="span3">
+     	<label class="control-label pull-left" for="MailingZip" >Highest grade level of education completed by your mother</label></div>
+     <div class="span4">
+      <div class="controls">
+      <input type="text" id="Reference1Name" class="input-xlarge" placeholder="">
+      </div>
+    </div>
+    </div>
+    
+    <br />
+        <div class="row">
+     <div class="span3">
+     	<label class="control-label pull-left" for="MailingZip" >Highest grade level of education completed by your father</label></div>
+     <div class="span4">
+      <div class="controls">
+      <input type="text" id="Reference1Name" class="input-xlarge" placeholder="">
+      </div>
+    </div>
+    </div>
+    <br />
+    
+    
+        <div class="row">
+     <div class="span3">
+     	<label class="control-label pull-left" for="MailingZip" > What is the primary language spoken in your home?</label></div>
+     <div class="span4">
+      <div class="controls">
+      <input type="text" id="Reference1Name" class="input-xlarge" placeholder="">
+      </div>
+    </div>
+    </div>
+    
+    <br />
+    
+    
+   
+
+ <br />
+
+    
+    <!---->
+    <br class="clearfix" /><br /><br />
+    
+    <p class="pull-right">
+    <button class="btn btn-large" type="button">Cancel</button>
+    <button class="btn btn-large btn-primary" type="button">Save and Continue</button>
+    </p>
+    
+    <br /><br /><br /><br />
+     </form>
+     </div>
      
-           <div class="control-group">
-     <label class="control-label" for="ImmigratedFrom" style="float:left">If yes, from:</label>
-     <div class="controls">
-      <input type="text" id="ImmigratedFrom" placeholder="Immigrated from">
-    </div>
-    </div>
-    <br>
-    
-       <!----> 
-           <p> 8. Is your Father an immigrant to this country? </p>
-             <div class="radio">
-      <label>
-      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
-       Yes
-      </label>
-      </div>
-      <div class="radio">
-     <label>
-    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
-    No
-     </label>
-     </div>   
-     
-           <div class="control-group">
-     <label class="control-label" for="ImmigratedFrom" style="float:left">If yes, from:</label>
-     <div class="controls">
-      <input type="text" id="ImmigratedFrom" placeholder="Immigrated from">
-    </div>
-    </div>
-    <br>
-    
-           <!----> 
-           <p> 9. Are you an AB540 student? </p>
-             <div class="radio">
-      <label>
-      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
-       Yes
-      </label>
-      </div>
-      <div class="radio">
-     <label>
-    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
-    No
-     </label>
-     </div>   
-    <br>
-       <!----> 
-       
-       <p> 10. Highest grade level of education completed by: </p>
-                  <div class="control-group">
-     <label class="control-label" for="ImmigratedFrom" style="float:left">Your mother:</label>
-     <div class="controls">
-      <input type="text" id="ImmigratedFrom" placeholder="Mother's highest education">
-    </div>
-    </div>
-               <div class="control-group">
-     <label class="control-label" for="ImmigrationYear" style="float:left">Your father:</label>
-     <div class="controls">
-      <input type="text" id="ImmigrationYear" placeholder="Father's highest education">
-    </div>
-    </div>
-    <br>
-    
-    <!---->   
-      <p> 11. What is the primary language spoken in your home? </p>
-                  <div class="control-group">
-     <label class="control-label" for="ImmigratedFrom" style="float:left">Language:</label>
-     <div class="controls">
-      <input type="text" id="ImmigratedFrom" placeholder="Language">
-    </div>
-    </div>
-
-   <!----> 
-    <!----> 
-    <br>
-    <br>
-    <button type="submit" class="btn">Submit</button>
-  </fieldset>
-</form>
- 
-    
-    </div><!--row span 12 -->
-
-
-</div><!-- Container -->
-
-
-    <div id="footer">
-      <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
-      </div>
-    </div>
-    
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-   <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-</body>
-</html>
-
 {% endblock %}

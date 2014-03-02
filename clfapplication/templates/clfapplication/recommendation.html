@@ -1,89 +1,137 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container"><!-- Container -->
+<!-- Begin page content -->
+<div class="container">
+      
+<h1>References</h1>
 
-
-    
-    <h1>RECOMMENDATION FOR SCHOLARSHIP APPLICANT: <p style="color: #488469">{{student.firstname}} {% if student.firstname2 %} {{student.firstname2}}{% endif %} {{student.lastname}}{% if student.lastname2 %}{{student.lastname2}}{% endif %}</h1>
-    
-    <p></p>
-    
-    <p> Thank you for assisting us in reconizing and rewarding students of excellence. </p>
-    
-    
-  <form class="form-horizontal">
+<p>RECOMMENDATION FOR SCHOLARSHIP APPLICANT: <p style="color: #488469">{{student.firstname}} {% if student.firstname2 %} {{student.firstname2}}{% endif %} {{student.lastname}}{% if student.lastname2 %}{{student.lastname2}}{% endif %}</p>	
+      
+   <p> Thank you for assisting us in reconizing and rewarding students of excellence. </p>
+   
+   
+<hr />
+ 
+ <form>
   <fieldset>
-    <legend>Please complete the following questions and the letter of recommendation at the end of this form.</legend>
+  
     
+    <div class="row">
+     <div class="span2"><label class="control-label pull-left" for="MailingZip" >Your Name</label></div>
+     <div class="span4"><input type="text" id="Reference1Name" class="input-xlarge" placeholder=""></div>
+     </div>
+    
+      <div class="row">
+     <div class="span2"><label class="control-label pull-left" for="MailingZip" >Your Title</label></div>
+     <div class="span4"><input type="text" id="Reference1Name" class="input-xlarge" placeholder=""></div>
+     </div>  
+  
+      <div class="row">
+     <div class="span2"><label class="control-label pull-left" for="MailingZip" >Organization</label></div>
+     <div class="span4"><input type="text" id="Organization" class="input-xlarge" placeholder=""></div>
+     </div>  
+ 
+     
+ <br /> 
     
 
-    
-        
-      <div class="control-group">
-     <label class="control-label" for="inputLastName" style="float:left">Your name:</label>
-     <div class="controls">
-      <input type="text" id="WhyNoFinancialAid" placeholder="First Last">
+    <div class="row">
+     <div class="span2"><label class="control-label pull-left" for="inputLastName" >Address Line 1</label></div>
+     <div class="span10">
+      <div class="controls"><input type="text" class="input-xlarge" id="inputEmail" placeholder=""></div>
     </div>
     </div>
     
-          <div class="control-group">
-     <label class="control-label" for="inputLastName" style="float:left">Title:</label>
-     <div class="controls">
-      <input type="text" id="WhyNoFinancialAid" placeholder="Title">
-    </div>
-    </div>
-    
-              <div class="control-group">
-     <label class="control-label" for="inputLastName" style="float:left">Organization:</label>
-     <div class="controls">
-      <input type="text" id="WhyNoFinancialAid" placeholder="Organization">
-    </div>
+
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="inputLastName" >Address Line 2</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" class="input-xlarge" id="inputEmail" placeholder="">
+      </div>
     </div>
     
-                  <div class="control-group">
-     <label class="control-label" for="inputLastName" style="float:left">Address:</label>
-     <div class="controls">
-      <input type="text" id="WhyNoFinancialAid" placeholder="Address">
     </div>
+
+    
+
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingCity" >City</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingCity" placeholder="">
+      </div>
     </div>
-        
-                          <div class="control-group">
-     <label class="control-label" for="inputLastName" style="float:left">Cite/State/Zip:</label>
-     <div class="controls">
-      <input type="text" id="WhyNoFinancialAid" placeholder="Address">
-    </div>
+
     </div>
     
-                              <div class="control-group">
-     <label class="control-label" for="inputLastName" style="float:left">Phone:</label>
-     <div class="controls">
-      <input type="text" id="WhyNoFinancialAid" placeholder="Address">
-    </div>
+ 
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingCity" >State</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingCity" placeholder="">
+      </div>
     </div>
     
-                                  <div class="control-group">
-     <label class="control-label" for="inputLastName" style="float:left">Email:</label>
-     <div class="controls">
-      <input type="text" id="WhyNoFinancialAid" placeholder="Address">
     </div>
+    
+    
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Zip</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingZip" placeholder="">
+      </div>
     </div>
-        
-<!---->        
     
-        <p> Length of time you have known the applicant: </p>
-       
+    </div>
+   
+     <br />
     
-    <select class="form-control" name="AnnualIncome">
+    
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Email</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="Email" placeholder="">
+      </div>
+    </div>
+ 
+    </div>
+   
+    
+      
+    
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Phone</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="Phone" placeholder="">
+      </div>
+    </div>
+ 
+    </div>
+    <br />
+ <p> Length of time you have known the applicant </p>
+    
+    
+   <select class="form-control" name="AnnualIncome">
   <option>less than 1 year</option>
   <option>1-2 years</option>
   <option>3 or more years</option>
   </select>
-    
-    <br>
-    <br>
+  <br /><br />
+ 
  <!---->  
-            <p> Capacity in which you have known the applicant: </p>
+            <p> Capacity in which you have known the applicant</p>
        
     
     <select class="form-control" name="AnnualIncome">
@@ -94,30 +142,32 @@
         <option>Other (please specify below)</option>
   </select>
   <br>
-       <div class="control-group">
-     <label class="control-label" for="inputLastName" style="float:left">Other:</label>
-     <div class="controls">
-      <input type="text" id="WhyNoFinancialAid" placeholder="How you know the applicant:">
+  
+  <div class="row">
+     <div class="span1">
+     	<label class="control-label pull-left" for="MailingZip" >Other</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="Other" placeholder="">
+      </div>
     </div>
+ 
     </div>
-
   
  
    <!----> 
     <!----> 
     <br>
     <br>
-    <button type="submit" class="btn">Submit</button>
+  <p class="pull-right">
+    <button class="btn btn-large" type="button">Cancel</button>
+    <button class="btn btn-large btn-primary" type="button">Save and Continue</button>
+    </p>
   </fieldset>
 </form>
     
     
     
     </div><!--row span 12 -->
-
-
-	
-
-</div><!-- Container -->
-
+ 
 {% endblock %}

@@ -41,10 +41,11 @@ def eval_login(request):
  	return render(request, 'eval_login.html')
 
 
-@login_required
+#@login_required
 def index(request):
 	recs = []
-	if current_user.role ==2:
+	return render(request, 'index.html')
+'''	if current_user.role ==2:
 		return redirect('/rec_index')
 	if current_user.role ==3:
 		return redirect('/eval_index')
@@ -53,10 +54,9 @@ def index(request):
 	if current_user.application_complete ==1:
 		recs.append(User.query.filter_by(email = current_user.rec1email).first())
 		recs.append(User.query.filter_by(email = current_user.rec2email).first())
-		recs.append(User.query.filter_by(email = current_user.rec3email).first())
-	return render(request, 'index.html', recs = recs)
+		recs.append(User.query.filter_by(email = current_user.rec3email).first())'''
 
-@login_required
+
 def createprofile(request):
 	user = None
 	form = ProfileForm(obj=user)
@@ -76,22 +76,21 @@ def createprofile(request):
 	return render(request, 'profile.html')
 
 
-@login_required
 def profile(request):
-	if current_user.is_authenticated():
-		user = current_user
-	else:
-		return redirect('/login')
+	return render(request, 'profile.html')
+#	if current_user.is_authenticated():
+#		user = current_user
+#	else:
+#		return redirect('/login')
 #	form = ProfileForm(obj=current_user)
 #	if not form.password or form.password == '':
 #		del form.password
 #	if form.validate_on_submit():
 #		form.populate_obj(current_user)
-	current_user.save()
-	return render(request, 'profile.html')
+#	current_user.save()
 
 
-@login_required
+
 def background(request):
 	form = BackgroundForm(obj=current_user)
 	if form.validate_on_submit():
@@ -101,17 +100,16 @@ def background(request):
 	return render(request, 'background.html')
 	
 	
-@login_required
 def demographic(request):
-	form = DemographicForm(obj=current_user)
-	if form.validate_on_submit():
-		form.populate_obj(current_user)
-		db.session.add(current_user)
-		db.session.commit()
 	return render(request,'demographic.html')
+#	form = DemographicForm(obj=current_user)
+#	if form.validate_on_submit():
+#		form.populate_obj(current_user)
+#		db.session.add(current_user)
+#		db.session.commit()
 
 
-@login_required
+
 def essayquestions(request):
 	form = EssayForm(obj=current_user)
 	if form.validate_on_submit():
@@ -122,18 +120,17 @@ def essayquestions(request):
 	return render(request, 'essayquestions.html')
 
 
-@login_required
 def documents(request):
+    return render_template('documents.html')
 #    form = TechskillsForm(obj=current_user)
  #   if form.validate_on_submit():
   #      form.populate_obj(current_user)
  #       db.session.add(current_user)
  #       db.session.commit()
  #       return redirect('/')
-    return render_template('documents.html')
 
 
-@login_required
+
 def recommenders(request):
     form = RecommendationsForm(obj=current_user)
     if form.validate_on_submit():
@@ -143,7 +140,6 @@ def recommenders(request):
         return redirect('/')
 	return render(request, 'rec_login.html', {'form':form})
 
-@login_required
 def finalsubmission(request):
 	return render(request, 'finalsubmission.html')
 
@@ -152,7 +148,6 @@ def help(request):
 	return render(request, 'help.html', {'form':form})
 
 
-@login_required
 def staffview(request):
     if current_user.role ==1:
         return redirect('/index')
@@ -193,7 +188,6 @@ def staffview(request):
 		return render_template("displayfinalists.html", finishedapplicants = finishedapplicants, recommendations = recommendations, recommenders = recommenders, finalistsRound1 = trythismatrix, displaymatrix = displaymatrix)
 		
 
-@login_required
 def received(request):
 	if current_user.role ==2:
 		return redirect('/rec_index')
@@ -246,7 +240,6 @@ def generate_recommender_password(firstname, lastname):
     return password
 
 
-@login_required
 def forgot(request):
     form = ForgotPasswordForm(request.form)
     if request.method == "POST" and form.validate():
@@ -256,11 +249,9 @@ def forgot(request):
         return redirect('/forgot_confirmation')
     return render_template("forgot.html", form=form)
 
-@login_required
 def forgot_confirmation(request):
     return render(request, "forgot_confirmation.html")
 
-@login_required
 def reset_password(request):
     form = ResetPasswordForm(request.form)
     if request.method == "POST" and form.validate():
@@ -284,7 +275,6 @@ def reset_password(request):
     return render(request, "reset_password.html", {'form':form, 'token':token})
 
 
-@login_required
 def rec_index(request):
 	if current_user.role ==1:
 		return redirect('/index')
