@@ -11,7 +11,7 @@ from clfapplication.models import User, Evaluation, Recommendation
 
 #Login page
 def login(request):
-        username =request.POST['username']
+        username =request.POST['email']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
@@ -117,7 +117,6 @@ def essayquestions(request):
 		return redirect('/')
 
 
-
 def documents(request):
     return render_template('documents.html')
 #    form = TechskillsForm(obj=user)
@@ -125,7 +124,6 @@ def documents(request):
   #      form.populate_obj(user)
 #		 user.save()
  #       return redirect('/')
-
 
 
 def recommenders(request):
