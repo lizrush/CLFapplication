@@ -29,6 +29,23 @@ class User(db.Model):
     permanentstate = db.Column(db.String(45))
     permanentzipcode = db.Column(db.String(10))
 
+    #  school information
+    ged = db. Column(db.Integer)
+    highschoolname = db.Column(db.String(45))
+    highschoolcity = db.Column(db.String(45))
+    highschoolstate = db.Column(db.String(45))
+    highschoolyear = db.Column(db.String(10))
+    currentcollegename = db.Column(db.String(45))
+    currentcollegecity = db.Column(db.String(45))
+    currentcollegestate = db.Column(db.String(45))
+    currentcollegetype = db.Column(db.Integer)
+    communitycollegelevel = db.Column(db.Integer)
+    traditionalcollegelevel = db.Column(db.Integer)
+    gradlevel = db.Column(db.Integer)
+    techproflevel = db.Column(db.Integer)
+    major = db.Column(db.String(45))
+    gpa = db.Column(db.String(45))
+
     rec1firstname = db.Column(db.String(45))
     rec1lastname = db.Column(db.String(45))
     rec1email = db.Column(db.String(45))
