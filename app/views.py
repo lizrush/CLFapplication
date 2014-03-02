@@ -2,9 +2,7 @@ from flask import render_template, redirect, flash, request, session
 from flask.ext.login import login_user, logout_user, login_required, current_user
 from app import app, login_manager, db, mail
 from models import User, Recommendation, Evaluation
-from forms import LoginForm, ProfileForm, RecLoginForm, ShortanswerForm, RecommendationsForm, TechskillsForm, \
-                  RecommenderForm, ChangeRecommenderContact, CreateProfileForm, \
-                  ResetPasswordForm, ForgotPasswordForm, EvalLoginForm, EvaluatorForm
+from forms import LoginForm, ProfileForm, SchoolForm, RecLoginForm, EssayForm, ScholarshipForm, RecommendationsForm, ConfidentialDemographics, RecommenderForm, ChangeRecommenderContact, ResetPasswordForm, ForgotPasswordForm, EvalLoginForm, EvaluatorForm
 from emails import new_application_submitted, notify_applicant, notify_recommenders, remind_recommender, send_password_reset
 from itsdangerous import Signer, BadSignature
 
@@ -83,27 +81,27 @@ def index():
 
 @app.route('/createprofile', methods = ['GET', 'POST'])
 def createprofile():
-    if current_user.is_authenticated():
-        user = current_user
-    else:
-        user = None
-    form = CreateProfileForm(obj=user)
-    if not form.password or form.password == '':
-        del form.password    
-    if form.validate_on_submit():
-        if user:
-            flash('Successfully updated your profile.')
-        else:
-            user = User()
-            user.role = 1
-            flash('Congratulations, you just created an account!')
-        form.populate_obj(user)
-        db.session.add(user)
-        db.session.commit()
-        if not current_user.is_authenticated():
-            login_user(user)
-        return redirect('/')
-    return render_template('createprofile.html', form=form)
+	if current_user.is_authenticated():
+		user = current_user
+	else:
+		user = None
+	form = ProfileForm(obj=user)
+	if not form.password or form.password == '':
+		del form.password    
+	if form.validate_on_submit():
+		if user:
+			flash('Successfully updated your profile.')
+		else:
+			user = User()
+			user.role = 1
+			flash('Congratulations, you just created an account!')
+		form.populate_obj(user)
+		db.session.add(user)
+		db.session.commit()
+		if not current_user.is_authenticated():
+			login_user(user)
+		return redirect('/')
+	return render_template('demographic.html', form=form)
 
 
 @app.route('/profile', methods = ['GET', 'POST'])
@@ -124,7 +122,7 @@ def profile():
 
 @app.route('/essayquestions', methods = ['GET', 'POST'])
 def essayquestions():
-	form = ShortanswerForm(obj=current_user)
+	form = EssayForm(obj=current_user)
 	if form.validate_on_submit():
 		form.populate_obj(current_user)
 		db.session.add(current_user)
@@ -135,13 +133,13 @@ def essayquestions():
 
 @app.route('/documents', methods = ['GET', 'POST'])
 def documents():    
-    form = TechskillsForm(obj=current_user)
-    if form.validate_on_submit():
-        form.populate_obj(current_user)
-        db.session.add(current_user)
-        db.session.commit()
-        return redirect('/')
-    return render_template('documents.html', form = form)
+#    form = TechskillsForm(obj=current_user)
+ #   if form.validate_on_submit():
+  #      form.populate_obj(current_user)
+ #       db.session.add(current_user)
+ #       db.session.commit()
+ #       return redirect('/')
+    return render_template('documents.html')
 
 
 @app.route('/recommendations', methods = ['GET', 'POST'])

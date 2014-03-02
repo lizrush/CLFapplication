@@ -1,44 +1,533 @@
 {% extends "base.html" %}
 {% block content %}
 
-	<div class="contentholder">
-		<div class="formheader"><br><br><br><h2>{% if current_user.is_authenticated() %}Update your profile.{% else %}Create a new profile.{% endif %}</h2>
+    
+    <legend>Basic Info</legend>
+    
+    <div class="control-group">
+    
+    <div class="row">
+     <div class="span2"><label class="control-label pull-left" for="FirstName" >First Name</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" class="input-xlarge" id="FirstName" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MiddleName" >Middle Name</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" class="input-xlarge" id="MiddleName" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="LastName" >Last Name</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" class="input-xlarge" id="LastName" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+        <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="AlternativeNames" >Alternative Names</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text"  class="input-xlarge" id="AlternativeNames" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="inputLastName" >Ethnicity</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="inputEmail" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+       <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="DOB" >Date of Birth</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="date" id="DOB" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+     <legend>Home Address</legend>
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="inputLastName" >Address Line 1</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" class="input-xlarge" id="inputEmail" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="inputLastName" >Address Line 2</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" class="input-xlarge" id="inputEmail" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+        <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingCity" >City</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingCity" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingCity" >State</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingCity" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Zip</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingZip" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+  	<legend>Mailing Address</legend>
+    
+    <label class="checkbox">
+  <input type="checkbox" value="checked" checked="checked">Use Home Address</label><br />
+  
+  
+     <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="inputLastName">Address Line 1</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input class="input-xlarge" id="disabledInput" type="text" placeholder="suck in the address here" disabled>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="inputLastName" >Address Line 2</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input class="input-xlarge" type="text" id="inputEmail" placeholder="" disabled>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+        <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingCity" >City</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingCity" placeholder="" disabled>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingCity" >State</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingCity" placeholder="" disabled>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Zip</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingZip" placeholder="" disabled>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+   	<legend>Contact Info</legend>
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Email</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="Email" placeholder="" >
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Work Phone</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="WorkPhone" placeholder="" >
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Home Phone</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="HomePhone" placeholder="" >
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+     <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Other</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="OtherPhone" placeholder="" >
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+   <legend>High School Education</legend>
+    
+   <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Name</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="HighSchoolName" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+
+    
+     <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >City</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="HighSchoolCity" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+   
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >State</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="HighSchoolState" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    <label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+  I have my high school diploma
+</label>
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   I have my high school GED
+</label>
+    
+     <br />
+     <legend>College Education</legend>
+     
+     <label class="checkbox">
+     <input type="checkbox" value="checked">I did not attend college</label><br />
+     
+     
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Current College Name</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="CurrentCollegeName" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+     <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Current College City</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="CurrentCollegeCity" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Current College State</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="CurrentCollegeState" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+  
+
+<div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Type of college attended</label></div>
+     <div class="span10">
+      <div class="controls">
+     <select>
+  		<option disabled="disabled" selected="selected" class="disabled" >Select...</option>
+    	<option data-toggle="tab">Community College</option>
+  		<option>Four-Year University</option>
+  		<option>Graduation School</option>
+  		<option>Professional School</option>
+	</select>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+
+
+<div id="myTabContent" class="tab-content">
+
+XXXXX - Community College
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+  Freshman
+</label>
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Sophomore
+</label>
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   3rd year or more
+</label>
+
+</div>
+
+
+XXXXX - Four-year university
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+  Freshman
+</label>
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Sophomore
+</label>
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Junior
+</label>
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Senior
+</label>
+
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Graduating Senior
+</label>
  
-		{%if form.errors %}
-		<br><p style="color:red">Looks like there were some mistakes on your form:<br>
-        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
-            {% for error in field_errors %}
-                <br><span style="margin-left:15px">- {{ error }}
-            {% endfor %}
-        {% endfor %}
-		</p>
-		{% endif %}	
-		</div>
+ 
+ XXXXX - Professional School
+ 
+ <div class="control-group">
+ <label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+  Coursework
+</label>
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Internship
+</label>
 
-		<form action="" method="post" name="profile" class="profile">
-			{{form.hidden_tag()}}
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Thesis or Dissertation
+</label>
+</div>
 
-				<div class="textfield_container">
-					<section class="col1">
-						<p><label for="firstname">First name</label>{{form.firstname}}</p>
-						<p><label for="lastname">Last name</label>{{form.lastname}}</p>
-						<p><label for="email">Email</label>{{form.email}}</p>
-						<p><label for="password">Password</label>{{form.password}}</p>
-						<p><label for="retypepassword">Retype password</label>{{form.retypepassword}}</p>
-					</section>
-					
-					<section class="col2">
-						<p><label for="phone">Phone</label>{{form.phone}}</p>
-						<p><label for="address">Address</label>{{form.address}}</p>
-						<p><label for="city">City</label>{{form.city}}</p>
-						<p><label for="state">State</label>{{form.state}}</p>
-						<p><label for="zipcode">Zip</label>{{form.zipcode}}</p>
-					</section>
-				</div>
+<br />
+     <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Major Field of Study</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="HighSchoolCity" class="input-xxlarge" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    <legend>Chicana/Latina Scholarship Details</legend>
+     
+     <div class="control-group">
+     <label class="checkbox">
+     <input type="checkbox" value="checked">I have recieved the Chicana/Latina Foundation Scholarship in the past</label>
+    </div>
+         <div class="control-group">
 
-				<label for="appsource">This is school info</label><p>{{form.appsource(maxlength=230)}}</p>
-				<button type="submit" class="advance"><span id="finished">FINISHED?</span>Click here to save your changes.</button>
-		</form>
-	</div>
-										
+     	<label class="control-label" for="LearnedFrom" >How did you learn about the Chicana/Latina Foundation Scholarship?</label>
+
+      <textarea rows="5"></textarea>
+      
+    </div>
+      
+      
+      
+   
+     
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </div>
+    
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
 {% endblock %}

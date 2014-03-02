@@ -1,69 +1,77 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div class="contentholder">
-	<div class="formheader">
-	<br><br><br><h2>Your recommenders</h2>
-	</div>
 
-	<p>We'd like to hear from three people who know you ...</p>
+  <legend>References</legend>
+        
+        <p>APPLICANTS PLEASE NOTE: AT LEAST ONE LETTER MUST BE FROM AN INSTRUCTOR. Additional letter may be from an instructor, counselor, community leader, or other appropriate person. Letters from relatives are NOT valid. Please be sure to contact your references before submitting their contact information. If your reference prefers to fill out the recommendation on a paper form instead of electronically, please download the form [recoForm] and ask them to return to CLF before [refDeadline]</p>	
+        
 
-	{%if form.errors %}
-		<br>
-		<p style="color:red">Looks like something's missing from your form:<br>
-        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
-            {% for error in field_errors %}
-                <br><span style="margin-left:15px">- We'd like to know {{ error }}!</span>
-            {% endfor %}
-        {% endfor %}
-		</p>
-	{% endif %}
+<br  />
 
 
-	<form action="" method="post" name="recommendations">
-		{{form.hidden_tag()}}
-		<div class="recommenderbox">
-			<span class="formheader"><h3>Recommendation 1</h3></span>
-			<div class="col1">
-				<p><label>First name</label>{{ form.rec1firstname }}</p>
-				<p><label>Last name</label>{{ form.rec1lastname }}</p>
-				<p><label>Email</label>{{ form.rec1email }}</p>
-				<p><label>Phone</labe>{{ form.rec1phone }}</p>
-			</div>		
-			<div class="recommender_shortanswer">
-				<label>How do you know this person?</label><p>{{ form.rec1how }}</p>
-			</div>
-		</div>
+	<div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Reference #1: Name</label></div>
+     <div class="span4">
+      <div class="controls">
+      <input type="text" id="Reference1Name" class="input-xlarge" placeholder="">
+      </div>
+    </div>
+    
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Reference #1: Email</label></div>
+    
+    <div class="span4">
+      <div class="controls">
+      <input type="text" id="Reference1Email" class="input-xlarge" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
 
+	<div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Reference #2: Name</label></div>
+     <div class="span4">
+      <div class="controls">
+      <input type="text" id="Reference2Name" class="input-xlarge" placeholder="">
+      </div>
+    </div>
+    
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Reference #2: Email</label></div>
+    
+    <div class="span4">
+      <div class="controls">
+      <input type="text" id="Reference2Email" class="input-xlarge" placeholder="Reference #2: Email">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    
+   
+     
 
-		<div class="recommenderbox">
-			<span class="formheader"><h3>Recommendation 2</h3></span>
-			<div class="col1">
-				<p><label>First name</label>{{ form.rec2firstname }}</p>
-				<p><label>Last name</label>{{ form.rec2lastname }}</p>
-				<p><label>Email</label>{{ form.rec2email }}</p>
-				<p><label>Phone</labe>{{ form.rec2phone }}</p>
-			</div>		
-			<div class="recommender_shortanswer">
-				<label>How do you know this person?</label><p>{{ form.rec2how }}</p>
-			</div>
-		</div>
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </div>
+    
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
+</body>
+</html>
 
-		<div class="recommenderbox">
-			<span class="formheader"><h3>Recommendation 3</h3></span>
-			<div class="col1">
-				<p><label>First name</label>{{ form.rec3firstname }}</p>
-				<p><label>Last name</label>{{ form.rec3lastname }}</p>
-				<p><label>Email</label>{{ form.rec3email }}</p>
-				<p><label>Phone</labe>{{ form.rec3phone }}</p>
-			</div>		
-			<div class="recommender_shortanswer">
-				<label>How do you know this person?</label><p>{{ form.rec3how }}</p>
-			</div>
-		</div>
-
-		<button type="submit" class="advance"><span id="finished">FINISHED?</span>Click here to see if anything's missing.</button>
-	</form>
-</div>
 {% endblock %}

@@ -1,27 +1,33 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div class="contentholder" id="techform">
 
-	<div class="formheader">
-		<br><br><br><h2>Give us your documents.</h2>
-		
-<br><br><br>
-	<p>Here's where you send us your resume, letter, transcript, whatever.</p><br><br><br>
-	
-		{%if form.errors %}
-			<p style="color:red"> Looks like you didn't answer something in the first section.</p>
-			
-			{% for field_name, field_errors in form.errors|dictsort if field_errors %}
-	            {% for error in field_errors %}
-	                <br><span style="margin-left:15px">- {{ error }}
-	            {% endfor %}
-	        {% endfor %}
-		{% endif %}
-	</div>
-		
-		<button type="submit" class="advance"><span id="finished">FINISHED?</span>Click here to save your answers.</button>
-	
-	</form>
-</div>
+
+        
+    <legend>Supporting documents</legend>
+    
+    <h5>Transcript</h5>
+    
+    <h5>CV</h5>
+    
+    
+    
+   
+     
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </div>
+    
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
 {% endblock %}
