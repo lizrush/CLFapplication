@@ -1,518 +1,311 @@
 {% extends "base.html" %}
 {% block content %}
 
-    
-    <legend>Basic Info</legend>
-    
-    <div class="control-group">
-    
-    <div class="row">
-     <div class="span2"><label class="control-label pull-left" for="FirstName" >First Name</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" class="input-xlarge" id="FirstName" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MiddleName" >Middle Name</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" class="input-xlarge" id="MiddleName" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="LastName" >Last Name</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" class="input-xlarge" id="LastName" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-        <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="AlternativeNames" >Alternative Names</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text"  class="input-xlarge" id="AlternativeNames" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="inputLastName" >Ethnicity</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="inputEmail" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-       <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="DOB" >Date of Birth</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="date" id="DOB" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-     <legend>Home Address</legend>
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="inputLastName" >Address Line 1</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" class="input-xlarge" id="inputEmail" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="inputLastName" >Address Line 2</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" class="input-xlarge" id="inputEmail" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-        <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingCity" >City</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="MailingCity" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingCity" >State</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="MailingCity" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Zip</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="MailingZip" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-  	<legend>Mailing Address</legend>
-    
-    <label class="checkbox">
-  <input type="checkbox" value="checked" checked="checked">Use Home Address</label><br />
-  
-  
-     <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="inputLastName">Address Line 1</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input class="input-xlarge" id="disabledInput" type="text" placeholder="suck in the address here" disabled>
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="inputLastName" >Address Line 2</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input class="input-xlarge" type="text" id="inputEmail" placeholder="" disabled>
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-        <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingCity" >City</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="MailingCity" placeholder="" disabled>
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingCity" >State</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="MailingCity" placeholder="" disabled>
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Zip</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="MailingZip" placeholder="" disabled>
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-   	<legend>Contact Info</legend>
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Email</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="Email" placeholder="" >
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Work Phone</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="WorkPhone" placeholder="" >
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Home Phone</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="HomePhone" placeholder="" >
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-     <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Other</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="OtherPhone" placeholder="" >
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-   <legend>High School Education</legend>
-    
-   <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Name</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="HighSchoolName" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
+        
 
     
-     <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >City</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="HighSchoolCity" placeholder="">
+    <h1>CONFIDENTIAL DEMOGRAPHIC INFORMATION</h1>
+    
+    <p></p>
+    
+    <p> The Chicana Latina Foundation collects demographic information for the purposes of developing profiles of our recipients. Aggregate data is often required by funders and is very important for evaluating our programs. This completed form is not disclosed to readers and interviewers and will in no way affect your eligibility for the scholarship. Thank you for assisting us. </p>
+    
+    
+  <form class="form-horizontal">
+  <fieldset>
+    <legend>Please complete and include this confidential form with your application.</legend>
+    
+    
+    <p> 1a. Did you apply for financial aid? </p>
+    
+    
+      <div class="radio">
+      <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+       Yes
+      </label>
       </div>
+      <div class="radio">
+     <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    No
+     </label>
+     </div>
+    
+      <div class="control-group">
+     <label class="control-label" for="inputLastName" style="float:left">If no, please explain:</label>
+     <div class="controls">
+      <input type="text" id="WhyNoFinancialAid" placeholder="Please explain">
+    </div>
+    </div>
+        
+        
+<!---->        
+    
+        <p> 1b. Do you qualify for any other financial awards? </p>
+    
+    
+      <div class="radio">
+      <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+       Yes
+      </label>
+      </div>
+      <div class="radio">
+     <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    No
+     </label>
+     </div>
+    
+      <div class="control-group">
+     <label class="control-label" for="inputLastName" style="float:left">If yes, please list:</label>
+     <div class="controls">
+      <input type="text" id="OtherAwardsList" placeholder="Please list">
+    </div>
     </div>
     
-    </div>
-    </div>
+<!---->        
     
+        <p> 1c. Would you classify yourself as economically disadvantaged? </p>
+    
+    
+      <div class="radio">
+      <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+       Yes
+      </label>
+      </div>
+      <div class="radio">
+     <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    No
+     </label>
+     </div>
+
+   <br>
+ <!---->      
+ 
+ <p> 2. What is your annual household income? If you are a dependent, use parents income. If you are not dependent, use your independent household’s income. </p>
+    
+    
+    <select class="form-control" name="AnnualIncome">
+  <option>Below &#36;15,000</option>
+  <option>&#36;15,001-$25,000</option>
+  <option>&#36;25,000-&#36;35,000</option>
+  <option>&#36;35,000-&#36;55,000</option>
+  <option>&#36;55,000-&#36;75,000</option>
+  <option>&#36;75,000-&#36;95,000</option>
+  <option>&#36;95,000-&#36;125,000</option>
+  <option>&#36;125,000-&#36;160,000</option>
+  <option>&#62;$160,000</option> 
+  </select>
+    
+    <br>
+    <br>
+ <!---->  
+      <p> 3.  Are you Head of Household? </p>
+          <div class="radio">
+      <label>
+      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
+       Yes
+      </label>
+      </div>
+      <div class="radio">
+     <label>
+    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
+    No
+     </label>
+     </div>   
+     
+     <br>
+ <!----> 
+  <p> 4.  How many dependents are in your family including yourself? </p>
+     <select class="form-control" name="NumDependents">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+  <option>6</option>
+  <option>7</option>
+  <option>8</option>
+  <option>9</option> 
+  <option>10 or more</option> 
+  </select>
+    
+    <br>
+    <br>
+ 
+ 
+  <!----> 
+  
+  <p>5a. Are you a parent? </p>
+      <div class="radio">
+      <label>
+      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
+       Yes
+      </label>
+      </div>
+      <div class="radio">
+     <label>
+    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
+    No
+     </label>
+     </div>   
+     
+           <div class="control-group">
+     <label class="control-label" for="NumChildren" style="float:left">If yes, number of children:</label>
+     <div class="controls">
+      <input type="text" id="NumChildren" placeholder="Number of children">
+    </div>
+    </div>
+
+  <p>5b. Are you a single parent? </p>
+      <div class="radio">
+      <label>
+      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
+       Yes
+      </label>
+      </div>
+      <div class="radio">
+     <label>
+    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
+    No
+     </label>
+     </div>  
+
+   <br>
+   <!----> 
+    <p>6. Are you an immigrant to this country? </p> 
+         <div class="radio">
+      <label>
+      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
+       Yes
+      </label>
+      </div>
+      <div class="radio">
+     <label>
+    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
+    No
+     </label>
+     </div>   
+     
+           <div class="control-group">
+     <label class="control-label" for="ImmigratedFrom" style="float:left">If yes, from:</label>
+     <div class="controls">
+      <input type="text" id="ImmigratedFrom" placeholder="Immigrated from">
+    </div>
+    </div>
+               <div class="control-group">
+     <label class="control-label" for="ImmigrationYear" style="float:left">Year immigrated:</label>
+     <div class="controls">
+      <input type="text" id="ImmigrationYear" placeholder="Year immigrated">
+    </div>
+    </div>
    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >State</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="HighSchoolState" placeholder="">
+    <!----> 
+    
+    <p> 7. Is your Mother an immigrant to this country? </p>
+             <div class="radio">
+      <label>
+      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
+       Yes
+      </label>
       </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    
-    <label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-  I have my high school diploma
-</label>
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-   I have my high school GED
-</label>
-    
-     <br />
-     <legend>College Education</legend>
+      <div class="radio">
+     <label>
+    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
+    No
+     </label>
+     </div>   
      
-     <label class="checkbox">
-     <input type="checkbox" value="checked">I did not attend college</label><br />
+           <div class="control-group">
+     <label class="control-label" for="ImmigratedFrom" style="float:left">If yes, from:</label>
+     <div class="controls">
+      <input type="text" id="ImmigratedFrom" placeholder="Immigrated from">
+    </div>
+    </div>
+    <br>
+    
+       <!----> 
+           <p> 8. Is your Father an immigrant to this country? </p>
+             <div class="radio">
+      <label>
+      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
+       Yes
+      </label>
+      </div>
+      <div class="radio">
+     <label>
+    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
+    No
+     </label>
+     </div>   
      
-     
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Current College Name</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="CurrentCollegeName" placeholder="">
+           <div class="control-group">
+     <label class="control-label" for="ImmigratedFrom" style="float:left">If yes, from:</label>
+     <div class="controls">
+      <input type="text" id="ImmigratedFrom" placeholder="Immigrated from">
+    </div>
+    </div>
+    <br>
+    
+           <!----> 
+           <p> 9. Are you an AB540 student? </p>
+             <div class="radio">
+      <label>
+      <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios1" value="option1" checked>
+       Yes
+      </label>
       </div>
+      <div class="radio">
+     <label>
+    <input type="radio" name="HeadOfHouseholdYesNo" id="optionsRadios2" value="option2">
+    No
+     </label>
+     </div>   
+    <br>
+       <!----> 
+       
+       <p> 10. Highest grade level of education completed by: </p>
+                  <div class="control-group">
+     <label class="control-label" for="ImmigratedFrom" style="float:left">Your mother:</label>
+     <div class="controls">
+      <input type="text" id="ImmigratedFrom" placeholder="Mother's highest education">
     </div>
+    </div>
+               <div class="control-group">
+     <label class="control-label" for="ImmigrationYear" style="float:left">Your father:</label>
+     <div class="controls">
+      <input type="text" id="ImmigrationYear" placeholder="Father's highest education">
+    </div>
+    </div>
+    <br>
     
-    </div>
-    </div>
-    
-    
-     <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Current College City</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="CurrentCollegeCity" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-    
-    <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Current College State</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="CurrentCollegeState" placeholder="">
-      </div>
-    </div>
-    
-    </div>
-    </div>
-  
-
-<div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Type of college attended</label></div>
-     <div class="span10">
-      <div class="controls">
-     <select>
-  		<option disabled="disabled" selected="selected" class="disabled" >Select...</option>
-    	<option data-toggle="tab">Community College</option>
-  		<option>Four-Year University</option>
-  		<option>Graduation School</option>
-  		<option>Professional School</option>
-	</select>
-      </div>
-    </div>
-    
+    <!---->   
+      <p> 11. What is the primary language spoken in your home? </p>
+                  <div class="control-group">
+     <label class="control-label" for="ImmigratedFrom" style="float:left">Language:</label>
+     <div class="controls">
+      <input type="text" id="ImmigratedFrom" placeholder="Language">
     </div>
     </div>
 
-
-<div id="myTabContent" class="tab-content">
-
-XXXXX - Community College
-
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-  Freshman
-</label>
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-   Sophomore
-</label>
-
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-   3rd year or more
-</label>
-
-</div>
-
-
-XXXXX - Four-year university
-
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-  Freshman
-</label>
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-   Sophomore
-</label>
-
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-   Junior
-</label>
-
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-   Senior
-</label>
-
-
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-   Graduating Senior
-</label>
+   <!----> 
+    <!----> 
+    <br>
+    <br>
+    <button type="submit" class="btn">Submit</button>
+  </fieldset>
+</form>
  
- 
- XXXXX - Professional School
- 
- <div class="control-group">
- <label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-  Coursework
-</label>
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-   Internship
-</label>
-
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-   Thesis or Dissertation
-</label>
-</div>
-
-<br />
-     <div class="control-group">
-    <div class="row">
-     <div class="span2">
-     	<label class="control-label pull-left" for="MailingZip" >Major Field of Study</label></div>
-     <div class="span10">
-      <div class="controls">
-      <input type="text" id="HighSchoolCity" class="input-xxlarge" placeholder="">
-      </div>
-    </div>
     
-    </div>
-    </div>
-    
-    
-    <legend>Chicana/Latina Scholarship Details</legend>
-     
-     <div class="control-group">
-     <label class="checkbox">
-     <input type="checkbox" value="checked">I have recieved the Chicana/Latina Foundation Scholarship in the past</label>
-    </div>
-         <div class="control-group">
+    </div><!--row span 12 -->
 
-     	<label class="control-label" for="LearnedFrom" >How did you learn about the Chicana/Latina Foundation Scholarship?</label>
 
-      <textarea rows="5"></textarea>
-      
-    </div>
-      
-      
-      
-   
-     
+</div><!-- Container -->
+
 
     <div id="footer">
       <div class="container">

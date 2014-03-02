@@ -2,7 +2,7 @@ from flask import render_template, redirect, flash, request, session
 from flask.ext.login import login_user, logout_user, login_required, current_user
 from app import app, login_manager, db, mail
 from models import User, Recommendation, Evaluation
-from forms import LoginForm, ProfileForm, SchoolForm, RecLoginForm, EssayForm, ScholarshipForm, RecommendationsForm, ConfidentialDemographics, RecommenderForm, ChangeRecommenderContact, ResetPasswordForm, ForgotPasswordForm, EvalLoginForm, EvaluatorForm
+from forms import LoginForm, ProfileForm, BackgroundForm, DemographicForm, RecLoginForm, EssayForm, ScholarshipForm, RecommendationsForm, RecommenderForm, ChangeRecommenderContact, ResetPasswordForm, ForgotPasswordForm, EvalLoginForm, EvaluatorForm
 from emails import new_application_submitted, notify_applicant, notify_recommenders, remind_recommender, send_password_reset
 from itsdangerous import Signer, BadSignature
 
@@ -81,10 +81,7 @@ def index():
 
 @app.route('/createprofile', methods = ['GET', 'POST'])
 def createprofile():
-	if current_user.is_authenticated():
-		user = current_user
-	else:
-		user = None
+	user = None
 	form = ProfileForm(obj=user)
 	if not form.password or form.password == '':
 		del form.password    
@@ -98,10 +95,9 @@ def createprofile():
 		form.populate_obj(user)
 		db.session.add(user)
 		db.session.commit()
-		if not current_user.is_authenticated():
-			login_user(user)
+		login_user(user)
 		return redirect('/')
-	return render_template('demographic.html', form=form)
+	return render_template('profile.html', form=form)
 
 
 @app.route('/profile', methods = ['GET', 'POST'])
@@ -109,16 +105,33 @@ def profile():
 	if current_user.is_authenticated():
 		user = current_user
 	else:
-		user = None
-	form = ProfileForm(obj=user)
+		return redirect('/login')
+	form = ProfileForm(obj=current_user)
 	if not form.password or form.password == '':
 		del form.password
 	if form.validate_on_submit():
-		form.populate_obj(user)
-		db.session.add(user)
+		form.populate_obj(current_user)
+		db.session.add(current_user)
+		db.session.commit()
+	return render_template('profile.html', form=form)
+
+@app.route('/background', methods = ['GET', 'POST'])
+def background():
+	form = BackgroundForm(obj=current_user)
+	if form.validate_on_submit():
+		form.populate_obj(current_user)
+		db.session.add(current_user)
+		db.session.commit()
+	return render_template('background.html', form=form)
+	
+@app.route('/demographic', methods = ['GET', 'POST'])
+def demographic():
+	form = DemographicForm(obj=current_user)
+	if form.validate_on_submit():
+		form.populate_obj(current_user)
+		db.session.add(current_user)
 		db.session.commit()
 	return render_template('demographic.html', form=form)
-    
 
 @app.route('/essayquestions', methods = ['GET', 'POST'])
 def essayquestions():
@@ -142,15 +155,15 @@ def documents():
     return render_template('documents.html')
 
 
-@app.route('/recommendations', methods = ['GET', 'POST'])
-def recommendations():
+@app.route('/recommenders', methods = ['GET', 'POST'])
+def recommenders():
     form = RecommendationsForm(obj=current_user)
     if form.validate_on_submit():
         form.populate_obj(current_user)
         db.session.add(current_user)
         db.session.commit()
         return redirect('/')
-    return render_template('recommendations.html',
+    return render_template('recommenders.html',
         form=form)
 
 @app.route('/finalsubmission')

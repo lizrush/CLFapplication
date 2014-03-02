@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <form class="form-horizontal">
+  <fieldset>        
+   <legend>High School Education</legend>
+    
+   <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Name</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="HighSchoolName" placeholder="">
+      </div>
+    </div>
+    </div>
+    </div>
+    
+
+    
+     <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >City</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="HighSchoolCity" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+   
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >State</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="HighSchoolState" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    <label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+  I have my high school diploma
+</label>
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   I have my high school GED
+</label>
+    
+     <br />
+ 
+     <legend>Education</legend>
+     
+     <label class="checkbox">
+     <input type="checkbox" value="checked">I did not attend college</label><br />
+     
+     
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Current College Name</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="CurrentCollegeName" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+     <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Current College City</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="CurrentCollegeCity" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Current College State</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="CurrentCollegeState" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+  
+
+<div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Type of college attended</label></div>
+     <div class="span10">
+      <div class="controls">
+     <select>
+  		<option disabled="disabled" selected="selected" class="disabled" >Select...</option>
+    	<option data-toggle="tab">Community College</option>
+  		<option>Four-Year University</option>
+  		<option>Graduation School</option>
+  		<option>Professional School</option>
+	</select>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+
+
+<div id="myTabContent" class="tab-content">
+
+XXXXX - Community College
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+  Freshman
+</label>
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Sophomore
+</label>
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   3rd year or more
+</label>
+
+</div>
+
+
+XXXXX - Four-year university
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+  Freshman
+</label>
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Sophomore
+</label>
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Junior
+</label>
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Senior
+</label>
+
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Graduating Senior
+</label>
+ 
+ 
+ XXXXX - Professional School
+ 
+ <div class="control-group">
+ <label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+  Coursework
+</label>
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Internship
+</label>
+
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+   Thesis or Dissertation
+</label>
+</div>
+
+<br />
+     <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Major Field of Study</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="HighSchoolCity" class="input-xxlarge" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+   <!----> 
+    <!----> 
+    <br>
+    <br>
+    <button type="submit" class="btn">Submit</button>
+  </fieldset>
+</form>
+ 
+    
+    </div><!--row span 12 -->
+
+
+</div><!-- Container -->
+
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </div>
+    
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+{% endblock %}

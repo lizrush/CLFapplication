@@ -1,0 +1,336 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <form class="form-horizontal">
+  <fieldset>  
+    <legend>Basic Info</legend>
+    
+    <div class="control-group">
+    
+    <div class="row">
+     <div class="span2"><label class="control-label pull-left" for="FirstName" >First Name</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" class="input-xlarge" id="FirstName" placeholder="">
+      </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MiddleName" >Middle Name</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" class="input-xlarge" id="MiddleName" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="LastName" >Last Name</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" class="input-xlarge" id="LastName" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+        <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="AlternativeNames" >Alternative Names</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text"  class="input-xlarge" id="AlternativeNames" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="inputLastName" >Ethnicity</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="inputEmail" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+       <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="DOB" >Date of Birth</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="date" id="DOB" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+     <legend>Home Address</legend>
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="inputLastName" >Address Line 1</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" class="input-xlarge" id="inputEmail" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="inputLastName" >Address Line 2</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" class="input-xlarge" id="inputEmail" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+        <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingCity" >City</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingCity" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingCity" >State</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingCity" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Zip</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingZip" placeholder="">
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+  	<legend>Mailing Address</legend>
+    
+    <label class="checkbox">
+  <input type="checkbox" value="checked" checked="checked">Use Home Address</label><br />
+  
+  
+     <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="inputLastName">Address Line 1</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input class="input-xlarge" id="disabledInput" type="text" placeholder="suck in the address here" disabled>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="inputLastName" >Address Line 2</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input class="input-xlarge" type="text" id="inputEmail" placeholder="" disabled>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+        <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingCity" >City</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingCity" placeholder="" disabled>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingCity" >State</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingCity" placeholder="" disabled>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Zip</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="MailingZip" placeholder="" disabled>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+   	<legend>Contact Info</legend>
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Email</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="Email" placeholder="" >
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Work Phone</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="WorkPhone" placeholder="" >
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Home Phone</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="HomePhone" placeholder="" >
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+     <div class="control-group">
+    <div class="row">
+     <div class="span2">
+     	<label class="control-label pull-left" for="MailingZip" >Other</label></div>
+     <div class="span10">
+      <div class="controls">
+      <input type="text" id="OtherPhone" placeholder="" >
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+ 
+    
+    <legend>Chicana/Latina Scholarship Details</legend>
+     
+     <div class="control-group">
+     <label class="checkbox">
+     <input type="checkbox" value="checked">I have recieved the Chicana/Latina Foundation Scholarship in the past</label>
+    </div>
+         <div class="control-group">
+
+     	<label class="control-label" for="LearnedFrom" >How did you learn about the Chicana/Latina Foundation Scholarship?</label>
+
+      <textarea rows="5"></textarea>
+      
+    </div>
+      
+      
+        <!----> 
+    <!----> 
+    <br>
+    <br>
+    <button type="submit" class="btn">Submit</button>
+  </fieldset>
+</form>
+   
+     
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </div>
+    
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+{% endblock %}

@@ -64,7 +64,7 @@ class ProfileForm(Form):
 	def get_user(self):
 		return db.session.query(User).filter_by(email=self.email.data).first()
 
-class SchoolForm(Form):
+class BackgroundForm(Form):
 	ged = SelectField('ged', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
 	highschoolname = TextField('highschoolname', validators = [Required(message="We'd like to know what high school you attended.")])
 	highschoolcity = TextField('highschoolcity', validators = [Required(message="We'd like to know what city the high school you attended was in.")])
@@ -82,32 +82,7 @@ class SchoolForm(Form):
 	gpa = TextField('gpa')
 	studentid = TextField('studentid')
 
-
-class ScholarshipForm(Form):
-	awardcycle = TextField('awardcycle', validators = [Required(message="We'd like to know which award cycle you are applying for.")])
-	referral = TextField('referral')
-   	plannedcollegename =TextField('currentcollegename', validators = [Required(message="We'd like to know what college you plan to attend.")])
-   	plannedcollegecity = TextField('currentcollegecity', validators = [Required(message="We'd like to know what city the school you plan to attend is in.")])
-   	plannedcollegestate = TextField('currentcollegestate', validators = [Required(message="We'd like to know what state the school you plan to attend is in.")])
-   	plannedcollegetype = SelectField('currentcollegetype', choices=[('1', 'Community College'),('2', 'Four-year College'),('3', 'Graduate School'), ('4', 'Professional/Technical')])
-	plannedcommunitycollegelevel = SelectField('communitycollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', '3rd year or more')])
-	plannedtraditionalcollegelevel = SelectField('traditionalcollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', 'Junior'),('4','Senior'),('5','Graduating Senior')])
-	plannedmajor = TextField('plannedmajor', validators = [Required(message="We'd like to know what you plan to study.")])
-	pastrecipient = SelectField('pastrecipient', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
-	receivingyear = TextField('receivingyear')
-
-
-class RecommendationsForm(Form):
-	ref1firstname = TextField('ref1firstname', validators = [Required(message="your first recommender's first name")])
-	ref1lastname = TextField('ref1lastname', validators = [Required(message="your first recommender's first name")])
-	ref1email = TextField('ref1email', validators = [Required(message="your first recommender's email address"), Email("Hmm, your first recommender's email address doesn't look like an email address.")])
-	ref2firstname = TextField('ref2firstname', validators = [Required(message="your second recommender's first name")])
-	ref2lastname = TextField('ref2lastname', validators = [Required(message="your second recommender's first name")])
-	ref2email = TextField('ref2email', validators = [Required(message="your second recommender's email address"), Email("Hmm, your second recommender's email address doesn't look like an email address.")])
-
-
-
-class ConfidentialDemographics(Form):
+class DemographicForm(Form):
 	financialaid = SelectField('financialaid', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
 	financialaidreason = TextField('financialaidreason')
 	financialaward  = SelectField('financialaward', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
@@ -132,6 +107,29 @@ class ConfidentialDemographics(Form):
 	ab540 = SelectField('ab540', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
 	firstgencollege = SelectField('firstgencollege', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
 	primaryhomelanguage = TextField('primaryhomelanguage')
+
+
+class ScholarshipForm(Form):
+	awardcycle = TextField('awardcycle', validators = [Required(message="We'd like to know which award cycle you are applying for.")])
+	referral = TextField('referral')
+   	plannedcollegename =TextField('currentcollegename', validators = [Required(message="We'd like to know what college you plan to attend.")])
+   	plannedcollegecity = TextField('currentcollegecity', validators = [Required(message="We'd like to know what city the school you plan to attend is in.")])
+   	plannedcollegestate = TextField('currentcollegestate', validators = [Required(message="We'd like to know what state the school you plan to attend is in.")])
+   	plannedcollegetype = SelectField('currentcollegetype', choices=[('1', 'Community College'),('2', 'Four-year College'),('3', 'Graduate School'), ('4', 'Professional/Technical')])
+	plannedcommunitycollegelevel = SelectField('communitycollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', '3rd year or more')])
+	plannedtraditionalcollegelevel = SelectField('traditionalcollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', 'Junior'),('4','Senior'),('5','Graduating Senior')])
+	plannedmajor = TextField('plannedmajor', validators = [Required(message="We'd like to know what you plan to study.")])
+	pastrecipient = SelectField('pastrecipient', choices=[('1', 'No'),('2', 'Yes')], validators = [Required()])
+	receivingyear = TextField('receivingyear')
+
+
+class RecommendationsForm(Form):
+	ref1firstname = TextField('ref1firstname', validators = [Required(message="your first recommender's first name")])
+	ref1lastname = TextField('ref1lastname', validators = [Required(message="your first recommender's first name")])
+	ref1email = TextField('ref1email', validators = [Required(message="your first recommender's email address"), Email("Hmm, your first recommender's email address doesn't look like an email address.")])
+	ref2firstname = TextField('ref2firstname', validators = [Required(message="your second recommender's first name")])
+	ref2lastname = TextField('ref2lastname', validators = [Required(message="your second recommender's first name")])
+	ref2email = TextField('ref2email', validators = [Required(message="your second recommender's email address"), Email("Hmm, your second recommender's email address doesn't look like an email address.")])
 
 
 class EssayForm(Form):
