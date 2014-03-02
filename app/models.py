@@ -4,25 +4,18 @@ import datetime
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    # role 1,2,3,4 maps to students, recommender, evaluator, staff
     role = db.Column(db.Integer)
     email = db.Column(db.String(45), unique=True)
     password = db.Column(db.String(45))
     firstname = db.Column(db.String(45))
-    # firstname2 optional
     firstname2 = db.Column(db.String(45))
-    # middlename optional
-    middlename = db.Column(db.String())
     lastname = db.Column(db.String(45))
-    # lastname2 optional
-    lastname2= db.Column(db.String(45))
-    phone = db.Column(db.String(45))
-    # phonetype 1,2, 3 maps to cell, home, work
     phonetype = db.Column(db.Integer)
     address = db.Column(db.String(90))
     city = db.Column(db.String(45))
     state = db.Column(db.String(45))
     zipcode = db.Column(db.String(10))
+
     # permanent address
     permanentaddress =db.Column(db.String(90))
     permanentcity = db.Column(db.String(45))
@@ -45,6 +38,20 @@ class User(db.Model):
     techproflevel = db.Column(db.Integer)
     major = db.Column(db.String(45))
     gpa = db.Column(db.String(45))
+    studentid = db.Column(db.String(45))
+
+    # future school info
+    plannedcollegename = db.Column(db.String(45))
+    plannedcollegecity = db.Column(db.String(45))
+    plannedcollegestate = db.Column(db.String(45))
+    plannedcollegetype = db.Column(db.Integer)
+    plannedcommunitycollegelevel = db.Column(db.Integer)
+    plannedtraditionalcollegelevel = db.Column(db.Integer)
+    plannedgradlevel = db.Column(db.Integer)
+    plannedtechproflevel = db.Column(db.Integer)
+    plannedmajor = db.Column(db.String(45))
+
+
 
     rec1firstname = db.Column(db.String(45))
     rec1lastname = db.Column(db.String(45))

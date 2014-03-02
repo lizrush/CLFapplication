@@ -58,6 +58,15 @@ class CreateProfileForm(Form):
   	techproflevel = SelectField('techproflevel', choices=[('1', 'Coursework/Thesis/Internship'),('2', 'Dissertation'),('3', 'Other'))
     	major = TextField('major')
     	gpa = TextField('gpa')
+    	studentid = TextField('studentid')
+
+    	plannedcollegename =TextField('currentcollegename'), validators = [Required(message="We'd like to know what college you plan to attend.")])
+    	plannedcollegecity = TextField('currentcollegecity'), validators = [Required(message="We'd like to know what city the school you plan to attend is in.")])
+    	plannedcollegestate = TextField('currentcollegestate'), validators = [Required(message="We'd like to know what state the school you plan to attend is in.")])
+    	plannedcollegetype = SelectField('currentcollegetype', choices=[('1', 'Community College'),('2', 'Four-year College') ('3', 'Graduate School'), ('4', 'Professional/Technical')])
+    	plannedcommunitycollegelevel = SelectField('communitycollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', '3rd year or more')])
+    	plannedtraditionalcollegelevel = SelectField('traditionalcollegelevel', choices=[('1', 'Freshman'),('2', 'Sophomore'),('3', 'Junior'),('4','Senior'),('5','Graduating Senior')])
+    	plannedmajor = TextField('plannedmajor'), validators = [Required(message="We'd like to know what you plan to study.")])
 
 	def validate_password(self, field):
 		user = self.get_user()
