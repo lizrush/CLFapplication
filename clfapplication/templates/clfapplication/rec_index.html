@@ -12,10 +12,10 @@
 	<p>Click on an applicant to get started. Please note that applicants will not be able to see your responses.</p>
 		<div id="namebuttonholder">
 			{% for s in students %}
-				<a href="{{ url_for('rec_form', student_id=s.id) }}"><button style="width: 200px; height=100px; margin-left: 150px; background-color: #B7CCBB">{{s.firstname}} {% if s.firstname2 %} {{s.firstname2}}{% endif %} {{s.lastname}}{% if s.lastname2 %}{{s.lastname2}}{% endif %}</button></a>
+				<a href="{% url 'recommend' s.id %}"><button style="width: 200px; height=100px; margin-left: 150px; background-color: #B7CCBB">{{s.firstname}} {% if s.firstname2 %} {{s.firstname2}}{% endif %} {{s.lastname}}{% if s.lastname2 %}{{s.lastname2}}{% endif %}</button></a>
 			{% endfor %}
 		</div>
-</div><a href="{{ url_for('rec_finalsubmission') }}"><button class="btn">Submit</button></div></a></div>
+</div><a href="{{=% url 'rec_index' %}"><button class="btn">Submit</button></div></a></div>
 	</div>
 
 
