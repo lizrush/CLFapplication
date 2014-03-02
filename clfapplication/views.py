@@ -45,16 +45,16 @@ def eval_login(request):
 def index(request):
 	recs = []
 	return render(request, 'index.html')
-'''	if current_user.role ==2:
+'''	if user.role ==2:
 		return redirect('/rec_index')
-	if current_user.role ==3:
+	if user.role ==3:
 		return redirect('/eval_index')
-	if current_user.role ==4:
+	if user.role ==4:
 		return redirect('/staffview')
-	if current_user.application_complete ==1:
-		recs.append(User.query.filter_by(email = current_user.rec1email).first())
-		recs.append(User.query.filter_by(email = current_user.rec2email).first())
-		recs.append(User.query.filter_by(email = current_user.rec3email).first())'''
+	if user.application_complete ==1:
+		recs.append(User.objects.filter_by(email = user.rec1email).first())
+		recs.append(User.objects.filter_by(email = user.rec2email).first())
+		recs.append(User.objects.filter_by(email = user.rec3email).first())'''
 
 
 def createprofile(request):
@@ -78,67 +78,64 @@ def createprofile(request):
 
 def profile(request):
 	return render(request, 'profile.html')
-#	if current_user.is_authenticated():
-#		user = current_user
+#	if user.is_authenticated():
+#		user = user
 #	else:
 #		return redirect('/login')
-#	form = ProfileForm(obj=current_user)
+#	form = ProfileForm(obj=user)
 #	if not form.password or form.password == '':
 #		del form.password
 #	if form.validate_on_submit():
-#		form.populate_obj(current_user)
-#	current_user.save()
+#		form.populate_obj(user)
+#	user.save()
 
 
 
 def background(request):
-	form = BackgroundForm(obj=current_user)
+	form = BackgroundForm(obj=user)
 	if form.validate_on_submit():
-		form.populate_obj(current_user)
-		db.session.add(current_user)
-		db.session.commit()
+		form.populate_obj(user)
+		user.save()
 	return render(request, 'background.html')
 	
 	
 def demographic(request):
 	return render(request,'demographic.html')
-#	form = DemographicForm(obj=current_user)
+#	form = DemographicForm(obj=user)
 #	if form.validate_on_submit():
-#		form.populate_obj(current_user)
-#		db.session.add(current_user)
-#		db.session.commit()
+#		form.populate_obj(user)
+#		user.save()
 
 
 
 def essayquestions(request):
-	form = EssayForm(obj=current_user)
-	if form.validate_on_submit():
-		form.populate_obj(current_user)
-		db.session.add(current_user)
-		db.session.commit()
-		return redirect('/')
 	return render(request, 'essayquestions.html')
+	form = EssayForm(obj=user)
+	if form.validate_on_submit():
+		form.populate_obj(user)
+		user.save()
+		return redirect('/')
+
 
 
 def documents(request):
     return render_template('documents.html')
-#    form = TechskillsForm(obj=current_user)
+#    form = TechskillsForm(obj=user)
  #   if form.validate_on_submit():
-  #      form.populate_obj(current_user)
- #       db.session.add(current_user)
- #       db.session.commit()
+  #      form.populate_obj(user)
+#		 user.save()
  #       return redirect('/')
 
 
 
 def recommenders(request):
-    form = RecommendationsForm(obj=current_user)
-    if form.validate_on_submit():
-        form.populate_obj(current_user)
-        db.session.add(current_user)
-        db.session.commit()
-        return redirect('/')
-	return render(request, 'rec_login.html', {'form':form})
+#	form = RecommendationsForm(obj=user)
+	return render(request, 'rec_login.html')
+#    if form.validate_on_submit():
+#        form.populate_obj(user)
+#		user.save()
+#        return redirect('/')
+
 
 def finalsubmission(request):
 	return render(request, 'finalsubmission.html')
@@ -149,20 +146,20 @@ def help(request):
 
 
 def staffview(request):
-    if current_user.role ==1:
+    if user.role ==1:
         return redirect('/index')
-    if current_user.role ==2:
+    if user.role ==2:
         return redirect('/rec_index')
-    if current_user.role ==3:
+    if user.role ==3:
         return redirect('/eval_index')
-	finishedapplicants = User.query.filter_by(application_complete =1).all()
+	finishedapplicants = User.objects.filter_by(application_complete =1).all()
 	sortedapplicants = []
-	recommenders = User.query.all()
+	recommenders = User.objects.all()
 	finalistsRound1 = []
 	displaymatrix = []
 	trythismatrix = []
 	for a in finishedapplicants:
-		evals = Evaluation.query.filter_by(student_id = a.id).all()
+		evals = Evaluation.objects.filter_by(student_id = a.id).all()
 		yeses = 0
 		complete = 0
 		totalscores =[]
@@ -182,52 +179,49 @@ def staffview(request):
 			displaymatrix.append([a.id, a.firstname, a.lastname, a.city, a.state, averagescore, yeses])
 		displaymatrix= sorted(displaymatrix, key=lambda applicant: applicant[5], reverse = True)
 		for d in displaymatrix:
-			entry = User.query.get(d[0])
+			entry = User.objects.get(d[0])
 			trythismatrix.append(entry)
-		recommendations = Recommendation.query.all()
+		recommendations = Recommendation.objects.all()
 		return render_template("displayfinalists.html", finishedapplicants = finishedapplicants, recommendations = recommendations, recommenders = recommenders, finalistsRound1 = trythismatrix, displaymatrix = displaymatrix)
 		
 
 def received(request):
-	if current_user.role ==2:
+	if user.role ==2:
 		return redirect('/rec_index')
-	if current_user.application_complete ==1:
+	if user.application_complete ==1:
 		return redirect('/index')
-	current_user.application_complete =1
-	db.session.add(current_user)
-	db.session.commit()
-	make_new_recommenders(current_user)
-	make_blank_recommendations(current_user)
-	completed_app_count = len(User.query.filter_by(application_complete =1).all())
-	new_application_submitted(current_user, completed_app_count)
-	notify_applicant(current_user)
-	notify_recommenders(current_user)
+	user.application_complete =1
+	user.save()
+	make_new_recommenders(user)
+	make_blank_recommendations(user)
+	completed_app_count = len(User.objects.filter_by(application_complete =1).all())
+	new_application_submitted(user, completed_app_count)
+	notify_applicant(user)
+	notify_recommenders(user)
 	return render(request, 'received.html')
 
 
 def make_new_recommenders(user):
-	recommender1 = User.query.filter_by(email = user.rec1email, role = 2).first()
-	recommender2 = User.query.filter_by(email = user.rec2email, role = 2).first()
-	recommender3 = User.query.filter_by(email = user.rec3email, role = 2).first()
+	recommender1 = User.objects.filter_by(email = user.rec1email, role = 2).first()
+	recommender2 = User.objects.filter_by(email = user.rec2email, role = 2).first()
+	recommender3 = User.objects.filter_by(email = user.rec3email, role = 2).first()
 	if not recommender1:
 		recommender1 = User(firstname = user.rec1firstname, lastname = user.rec1lastname, email = user.rec1email, phone = user.rec1phone, password = generate_recommender_password(user.rec1firstname, user.rec1lastname), role =2, all_recs_complete =0)
-		db.session.add(recommender1)
+		recommender1.save()
 	if not recommender2:
 		recommender2 = User(firstname = user.rec2firstname, lastname = user.rec2lastname, email = user.rec2email, phone = user.rec2phone, password = generate_recommender_password(user.rec2firstname, user.rec2lastname), role = 2, all_recs_complete =0)
-		db.session.add(recommender2)
+		recommender2.save()
 	if not recommender3:
 		recommender3 = User(firstname = user.rec3firstname, lastname = user.rec3lastname, email = user.rec3email, phone = user.rec3phone, password = generate_recommender_password(user.rec3firstname, user.rec3lastname), role = 2, all_recs_complete =0)
-		db.session.add(recommender3)
-		db.session.commit()
+		recommender1.save()
 
 def make_blank_recommendations(user):
-    firstrec = Recommendation(student_id = user.id, recommender_id = User.query.filter_by(email = user.rec1email, role =2).first().id)
-    secondrec = Recommendation(student_id = user.id, recommender_id = User.query.filter_by(email = user.rec2email, role = 2).first().id)
-    thirdrec = Recommendation(student_id = user.id, recommender_id = User.query.filter_by(email = user.rec3email, role = 2).first().id)
-    db.session.add(firstrec)
-    db.session.add(secondrec)
-    db.session.add(thirdrec)
-    db.session.commit()
+	firstrec = Recommendation(student_id = user.id, recommender_id = User.objects.filter_by(email = user.rec1email, role =2).first().id)
+	secondrec = Recommendation(student_id = user.id, recommender_id = User.objects.filter_by(email = user.rec2email, role = 2).first().id)
+	thirdrec = Recommendation(student_id = user.id, recommender_id = User.objects.filter_by(email = user.rec3email, role = 2).first().id)
+	firstrec.save()
+	secondrec.save()
+	thirdrec.save()	
 
 def generate_recommender_password(firstname, lastname):
     import random    
@@ -261,7 +255,7 @@ def reset_password(request):
             email = s.unsign(token)
         except BadSignature:
             return render_template("reset_invalid_token.html")
-        user = User.query.filter_by(email=email).first()
+        user = User.objects.filter_by(email=email).first()
         if user:
             user.set_password(form.password.data)
             print user.password
@@ -276,15 +270,15 @@ def reset_password(request):
 
 
 def rec_index(request):
-	if current_user.role ==1:
+	if user.role ==1:
 		return redirect('/index')
-	if current_user.role ==4:
+	if user.role ==4:
 		return redirect('/staffview')
 	students = []
 	recs =[]    
-	student1 = User.query.filter_by(ref1email = current_user.email).first()
-#	student2 = (User.query.filter_by(rec2email = current_user.email, application_complete =1).all())
-#	student3 = (User.query.filter_by(rec3email = current_user.email, application_complete =1).all())
+	student1 = User.objects.filter_by(ref1email = user.email).first()
+#	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
+#	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
 	students.append(student1)
 #	if student2:
 #		for s2 in student2:
@@ -293,7 +287,7 @@ def rec_index(request):
 #		for s3 in student3:
 #			students.append(s3)
 #	for s in students:
-#		recommendation = Recommendation.query.filter_by(student_id = s.id, recommender_id = current_user.id).first()
+#		recommendation = Recommendation.objects.filter_by(student_id = s.id, recommender_id = user.id).first()
 #		if recommendation and recommendation.is_recommendation_complete():
 #			recommendation.recommendation_complete =1
 #		recs.append(recommendation)
@@ -304,15 +298,15 @@ def rec_index(request):
 
 @login_required
 def eval_index(request):
-	if current_user.role ==1:
+	if user.role ==1:
 		return redirect('/index')
-	if current_user.role ==4:
+	if user.role ==4:
 		return redirect('/staffview')
 	students = []
 	recs =[]    
-	student1 = User.query.filter_by(ref1email = current_user.email).first()
-#	student2 = (User.query.filter_by(rec2email = current_user.email, application_complete =1).all())
-#	student3 = (User.query.filter_by(rec3email = current_user.email, application_complete =1).all())
+	student1 = User.objects.filter_by(ref1email = user.email).first()
+#	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
+#	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
 	students.append(student1)
 #	if student2:
 #		for s2 in student2:
@@ -321,7 +315,7 @@ def eval_index(request):
 #		for s3 in student3:
 #			students.append(s3)
 #	for s in students:
-#		recommendation = Recommendation.query.filter_by(student_id = s.id, recommender_id = current_user.id).first()
+#		recommendation = Recommendation.objects.filter_by(student_id = s.id, recommender_id = user.id).first()
 #		if recommendation and recommendation.is_recommendation_complete():
 #			recommendation.recommendation_complete =1
 #		recs.append(recommendation)
@@ -334,39 +328,36 @@ def eval_index(request):
 
 @login_required
 def recommend(request, student_id):#pass in the student this is for
-    if current_user.role ==1:
-        return redirect('/index')
-    student = User.query.get(student_id) #look up the recommendation that is for this student and this recommender
-    recommendation = Recommendation.query.filter_by(student_id=student.id, recommender_id=current_user.id).first() #get the recommendation that matches this student and this recommender
-    form = RecommenderForm(obj=recommendation) #pull up the form for this recommendation
-    if form.validate_on_submit():
-        form.populate_obj(recommendation)
-        db.session.add(recommendation)
-        db.session.commit()
-        return redirect('/rec_index')
-    return render(request, 'recommendation.html', form=form, student=student, recommendation=recommendation)#Tell it to pull up a form for this particular recommendation and its corresponding student
+	if user.role ==1:
+		return redirect('/index')
+	student = User.objects.get(student_id) #look up the recommendation that is for this student and this recommender
+	recommendation = Recommendation.objects.filter_by(student_id=student.id, recommender_id=user.id).first() #get the recommendation that matches this student and this recommender
+	form = RecommenderForm(obj=recommendation) #pull up the form for this recommendation
+	if form.validate_on_submit():
+		form.populate_obj(recommendation)
+		recommendation.save()
+		return redirect('/rec_index')
 
 
 @login_required
 def rec_finalsubmission(request):
-    if current_user.role ==1:
-        return redirect('/index')
-    current_user.are_recs_complete()
-    db.session.add(current_user)
-    db.session.commit()
-    return render(request, "rec_finalsubmission.html")
+	if user.role ==1:
+		return redirect('/index')
+	user.are_recs_complete()
+	user.save()
+	return render(request, "rec_finalsubmission.html")
 
 
 @login_required
 def rec_help(request):
-    if current_user.role ==1:
+    if user.role ==1:
         return redirect('/index')
     return render(request, "rec_help.html")
 
 
 @login_required
 def rec_forgot(request):
-    if current_user.role ==1:
+    if user.role ==1:
         return redirect('/index')
     return render_template("rec_forgot.html")
 
@@ -379,72 +370,70 @@ def rec_logout(request):
 
 @login_required
 def rec_received(request):
-    if current_user.role ==1:
+    if user.role ==1:
         return redirect('/index')
     return render(request, "rec_received.html")
 
 
 @login_required
 def evaluate_index(request):
-    if current_user.role ==1:
+    if user.role ==1:
         return redirect('/index')
-    if current_user.role ==2:
+    if user.role ==2:
         return redirect('/rec_index')
-    if current_user.role ==4:
+    if user.role ==4:
         assignedapplicants =[]
-        evals = Evaluation.query.filter_by(evaluator_id = current_user.id).all()
+        evals = Evaluation.objects.filter_by(evaluator_id = user.id).all()
         for e in evals:
-            a = User.query.filter_by(id = e.student_id).first()
+            a = User.objects.filter_by(id = e.student_id).first()
             assignedapplicants.append(a)
-        return render(request, "evaluate_index.html", assignedapplicants = assignedapplicants, evals=evals, user = current_user)
+        return render(request, "evaluate_index.html", assignedapplicants = assignedapplicants, evals=evals, user = user)
 
 
 @login_required
 def evaluate(request, student_id):
-    if current_user.role ==1:
+    if user.role ==1:
         return redirect('/index')
-    if current_user.role ==2:
+    if user.role ==2:
         return redirect('/rec_index')
-    if current_user.role ==4:
-        student = User.query.filter_by(role = 1, id = student_id).first()
-        evaluation = Evaluation.query.filter_by(student_id = student.id, evaluator_id = current_user.id).first()
-        recommender1 = User.query.filter_by(email = student.rec1email).first()
-        recommender2 = User.query.filter_by(email = student.rec2email).first()
-        recommender3 = User.query.filter_by(email = student.rec3email).first()
+    if user.role ==4:
+        student = User.objects.filter_by(role = 1, id = student_id).first()
+        evaluation = Evaluation.objects.filter_by(student_id = student.id, evaluator_id = user.id).first()
+        recommender1 = User.objects.filter_by(email = student.rec1email).first()
+        recommender2 = User.objects.filter_by(email = student.rec2email).first()
+        recommender3 = User.objects.filter_by(email = student.rec3email).first()
 	if recommender1:
-	        rec1 = Recommendation.query.filter_by(student_id = student.id, recommender_id = recommender1.id).first()
+	        rec1 = Recommendation.objects.filter_by(student_id = student.id, recommender_id = recommender1.id).first()
 	else:
 		rec1 = None
 	if recommender2:
-	        rec2 = Recommendation.query.filter_by(student_id = student.id, recommender_id = recommender2.id).first()
+	        rec2 = Recommendation.objects.filter_by(student_id = student.id, recommender_id = recommender2.id).first()
 	else:
 		rec2 = None
         if recommender3:
-		rec3 = Recommendation.query.filter_by(student_id = student.id, recommender_id = recommender3.id).first()            
+		rec3 = Recommendation.objects.filter_by(student_id = student.id, recommender_id = recommender3.id).first()            
 	else:
 		rec3 = None
         form = EvaluatorForm(obj = evaluation)
         if form.validate_on_submit():
-                form.populate_obj(evaluation)
-                db.session.add(evaluation)
-                db.session.commit()
-                return redirect('/evaluate_index')
+			form.populate_obj(evaluation)
+			evaluation.save()
+			return redirect('/evaluate_index')
         return render(request, "evaluate.html", f = student, form = form, evaluation =evaluation, rec1 = rec1, rec2=rec2, rec3=rec3)
 
 
 @login_required
 def eval_finalsubmission(request):
-    evals_complete = current_user.are_evals_complete()
-    db.session.add(current_user)
-    db.session.commit()
-    if current_user.role ==1:
-        return redirect('/index')
-    if current_user.role ==2:
-        return redirect('/rec_index')
-    if evals_complete == True:
-        #return redirect('/evaluate_index')
-        return render_template("eval_received.html")
-    return render(request, "eval_finalsubmission.html")
+	evals_complete = user.are_evals_complete()
+	user.save()
+	if user.role ==1:
+		return redirect('/index')
+	if user.role ==2:
+		return redirect('/rec_index')
+	if evals_complete == True:
+		#return redirect('/evaluate_index')
+		return render_template("eval_received.html")
+	return render(request, "eval_finalsubmission.html")
 
 
 @login_required
@@ -465,67 +454,62 @@ def eval_logout(request):
 
 @login_required
 def eval_received(request):
-    if current_user.role ==1:
+    if user.role ==1:
         return redirect('/index')
-    if current_user.role ==2:
+    if user.role ==2:
         return redirect('/rec_index')
-    if current_user.are_evals_complete() ==False:
+    if user.are_evals_complete() ==False:
         return redirect('/eval_finalsubmission')
-    if current_user.are_evals_complete() ==True:
+    if user.are_evals_complete() ==True:
         return redirect('/eval_index')
     return render(request, "eval_received.html")
 
 
 @login_required
 def myrecommender(request, recommender_id):
-    if current_user.role ==2:
+    if user.role ==2:
         return redirect('/rec_index')
-    if current_user.role ==0:
+    if user.role ==0:
         return redirect('/staffview')
     #get the recommender sent from the click on index and put it into the form
-    recommender = User.query.filter_by(id = recommender_id).first()
+    recommender = User.objects.filter_by(id = recommender_id).first()
     form = ChangeRecommenderContact(obj=recommender)
-    if recommender.email == current_user.rec1email:
+    if recommender.email == user.rec1email:
         whichRec = 1
-    if recommender.email == current_user.rec2email:
+    if recommender.email == user.rec2email:
         whichRec = 2
-    if recommender.email == current_user.rec3email:
+    if recommender.email == user.rec3email:
         whichRec = 3
-    if form.validate_on_submit():
-        form.populate_obj(recommender)
-        #commits new recommender info to the database - and this is working
-        db.session.add(recommender)
-        db.session.commit()
-        
-        #reload the recommender and put its email into the appropriate place for the current_user
-        newrec = User.query.get(recommender.id)
-        if whichRec==1:
-            current_user.rec1email = newrec.email
-        if whichRec==2:
-            current_user.rec2email = newrec.email
-        if whichRec==3:
-            current_user.rec3email = newrec.email
-        db.session.add(current_user)            
-        db.session.commit()
-        #send email to the recommender
-        remind_recommender(current_user, recommender)
+	if form.validate_on_submit():
+		form.populate_obj(recommender)
+		recommender.save()
+		newrec = User.objects.get(recommender.id)
+		if whichRec==1:
+			user.rec1email = newrec.email
+		if whichRec==2:
+			user.rec2email = newrec.email
+		if whichRec==3:
+			user.rec3email = newrec.email
+		user.save()
+		#send email to the recommender
+		remind_recommender(user, recommender)
 
-        return redirect('/index')
-    return render(request, "myrecommender.html", recommender = recommender, form = form)
+		return redirect('/index')
+	return render(request, "myrecommender.html", recommender = recommender, form = form)
 
 
 @login_required
 def view_recommendations(request, student_id):
-	recs = Recommendation.query.filter_by(student_id = student_id).all()
+	recs = Recommendation.objects.filter_by(student_id = student_id).all()
 	return render(request, "view_recommendations.html", recs = recs)
 	
 @login_required
 def view_evaluations(request, student_id):
-	applicant = User.query.get(student_id)
-	evals = Evaluation.query.filter_by(student_id = student_id).all()
+	applicant = User.objects.get(student_id)
+	evals = Evaluation.objects.filter_by(student_id = student_id).all()
 	evaluators=[]
 	for e in evals:
-		evaluator = User.query.filter_by(id = e.evaluator_id).first()
+		evaluator = User.objects.filter_by(id = e.evaluator_id).first()
 		evaluators.append(evaluator)			
 	complete = 0
 	totalscores =[]
