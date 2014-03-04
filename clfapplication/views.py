@@ -24,7 +24,7 @@ def logout(request):
 	logout(request)
 
 
-@login_required
+
 def index(request):
 	recs = []
 	return render(request, 'index.html')
@@ -53,7 +53,7 @@ def createprofile(request):
 		form = ProfileForm()
 	return render(request, 'profile.html', {'form':form})
 
-@login_required
+
 def profile(request):
 	if request.method == 'POST':
 		form = ProfileForm(request.POST)
@@ -67,7 +67,7 @@ def profile(request):
 	return render(request, 'profile.html', {'form':form})
 
 
-@login_required
+
 def background(request):
 	if request.method == 'POST':
 		form = BackgroundForm(request.POST)
@@ -79,7 +79,7 @@ def background(request):
 	return render(request, 'background.html', {'form':form})
 
 
-@login_required
+
 def demographic(request):
 	if request.method == 'POST':
 		form = DemographicForm(request.POST)
@@ -91,7 +91,7 @@ def demographic(request):
 	return render(request,'demographic.html', {'form':form})
 
 
-@login_required
+
 def essayquestions(request):
 	if request.method == 'POST':
 		form = EssayForm(request.POST)
@@ -103,7 +103,7 @@ def essayquestions(request):
 	return render(request, 'essayquestions.html', {'form':form})
 
 
-@login_required
+
 def documents(request):
 	if request.method == 'POST':
 		form = DocumentsForm(request.POST)
@@ -116,7 +116,7 @@ def documents(request):
 
 
 
-@login_required
+
 def recommenders(request):
 	if request.method == 'POST':
 		form = RecommendationsForm(request.POST)
@@ -129,7 +129,7 @@ def recommenders(request):
 
 
 
-@login_required
+
 def finalsubmission(request):
 	return render(request, 'finalsubmission.html')
 
@@ -137,11 +137,11 @@ def finalsubmission(request):
 def help(request):
 	return render(request, 'help.html', {'form':form})
 
-@login_required
+
 def staffview(request):
 		return render_template("reports.html")
 
-@login_required
+
 def received(request):
 	make_new_recommenders(user)
 	make_blank_recommendations(user)
@@ -188,7 +188,7 @@ def generate_recommender_password(firstname, lastname):
     password = password.replace(" ","")
     return password
 
-@login_required
+
 def forgot(request):
     form = ForgotPasswordForm(request.form)
     if request.method == "POST" and form.validate():
@@ -198,11 +198,11 @@ def forgot(request):
         return redirect('/forgot_confirmation')
     return render_template("forgot.html", form=form)
 
-@login_required
+
 def forgot_confirmation(request):
     return render(request, "forgot_confirmation.html")
 
-@login_required
+
 def reset_password(request):
     form = ResetPasswordForm(request.form)
     if request.method == "POST" and form.validate():
@@ -225,7 +225,7 @@ def reset_password(request):
         return render_template("reset_invalid_token.html")
     return render(request, "reset_password.html", {'form':form, 'token':token})
 
-@login_required
+
 def rec_index(request):
 	students = User.objects.all() # placeholder
 	return render(request, 'rec_index.html', {'students':students})
@@ -233,12 +233,12 @@ def rec_index(request):
 def guidelines(request):
 	return render(request, 'guidelines.html')
 
-@login_required
+
 def eval_index(request):
 	students = User.objects.all() # placeholder
 	return render(request, 'eval_index.html', {'students':students})
 
-@login_required
+
 def recommend(request, student_id):#pass in the student this is for
 	student = User.objects.get(id = student_id) #look up the recommendation that is for 
 	if request.method == 'POST':
@@ -251,18 +251,18 @@ def recommend(request, student_id):#pass in the student this is for
 	return render(request, 'recommendation.html', {'student': student, 'form':form})
 
 
-@login_required
+
 def rec_finalsubmission(request):
 # Do stuff here
 	return render(request, "rec_finalsubmission.html")
 
 
-@login_required
+
 def rec_received(request):
     return render(request, "rec_received.html")
 
 
-@login_required
+
 def evaluate(request, student_id):#pass in the student this is for
 	student = User.objects.get(id = student_id)
 	if request.method == 'POST':
@@ -275,7 +275,7 @@ def evaluate(request, student_id):#pass in the student this is for
 	return render(request, 'evaluate.html', {'student': student, 'form':form})
 
 
-@login_required
+
 def eval_finalsubmission(request):
 	if user.evals_complete == True:
 		return HttpResponseRedirect('/eval_index')
@@ -283,7 +283,7 @@ def eval_finalsubmission(request):
 	return render(request, "eval_finalsubmission.html")
 
 
-@login_required
+
 def eval_received(request):
     if user.are_evals_complete() ==False:
         return redirect('/eval_finalsubmission')
@@ -292,7 +292,7 @@ def eval_received(request):
     return render(request, "eval_received.html")
 
 
-@login_required
+
 def myrecommender(request, recommender_id):
     if user.role ==2:
         return redirect('/rec_index')
@@ -325,12 +325,12 @@ def myrecommender(request, recommender_id):
 	return render(request, "myrecommender.html", recommender = recommender, form = form)
 
 
-@login_required
+
 def view_recommendations(request, student_id):
 	recs = Recommendation.objects.filter_by(student_id = student_id).all()
 	return render(request, "view_recommendations.html", recs = recs)
 
-@login_required
+
 def view_evaluations(request, student_id):
 	applicant = User.objects.get(student_id)
 	evals = Evaluation.objects.filter_by(student_id = student_id).all()
