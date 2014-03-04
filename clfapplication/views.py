@@ -18,10 +18,8 @@ def login(request):
                 if user.is_active:
                         login(request, user)
 
-#Logout page
 def logout(request):
-        logout(request)
-
+	logout(request)
 
 def rec_login(request):
 #    form = RecLoginForm()
@@ -41,7 +39,7 @@ def eval_login(request):
  	return render(request, 'eval_login.html')
 
 
-#@login_required
+@login_required
 def index(request):
 	recs = []
 	return render(request, 'index.html')
@@ -75,7 +73,7 @@ def createprofile(request):
 		return redirect('/')
 	return render(request, 'profile.html')
 
-
+@login_required
 def profile(request):
 	return render(request, 'profile.html')
 #	if user.is_authenticated():
@@ -90,7 +88,7 @@ def profile(request):
 #	user.save()
 
 
-
+@login_required
 def background(request):
 	return render(request, 'background.html')
 
@@ -99,7 +97,7 @@ def background(request):
 #		form.populate_obj(user)
 #		user.save()
 
-
+@login_required
 def demographic(request):
 	return render(request,'demographic.html')
 #	form = DemographicForm(obj=user)
@@ -107,7 +105,7 @@ def demographic(request):
 #		form.populate_obj(user)
 #		user.save()
 
-
+@login_required
 def essayquestions(request):
 	return render(request, 'essayquestions.html')
 	form = EssayForm(obj=user)
@@ -116,7 +114,7 @@ def essayquestions(request):
 		user.save()
 		return redirect('/')
 
-
+@login_required
 def documents(request):
     return render(request, 'documents.html')
 #    form = TechskillsForm(obj=user)
@@ -126,6 +124,7 @@ def documents(request):
  #       return redirect('/')
 
 
+@login_required
 def recommenders(request):
 #	form = RecommendationsForm(obj=user)
 	return render(request, 'recommenders.html')
@@ -134,7 +133,7 @@ def recommenders(request):
 #		user.save()
 #        return redirect('/')
 
-
+@login_required
 def finalsubmission(request):
 	return render(request, 'finalsubmission.html')
 
@@ -142,7 +141,7 @@ def finalsubmission(request):
 def help(request):
 	return render(request, 'help.html', {'form':form})
 
-
+@login_required
 def staffview(request):
 	finishedapplicants = User.objects.filter_by(application_complete =1).all()
 	sortedapplicants = []
@@ -176,7 +175,7 @@ def staffview(request):
 		recommendations = Recommendation.objects.all()
 		return render_template("displayfinalists.html", finishedapplicants = finishedapplicants, recommendations = recommendations, recommenders = recommenders, finalistsRound1 = trythismatrix, displaymatrix = displaymatrix)
 
-
+@login_required
 def received(request):
 	if user.role ==2:
 		return redirect('/rec_index')
@@ -191,7 +190,6 @@ def received(request):
 	notify_applicant(user)
 	notify_recommenders(user)
 	return render(request, 'received.html')
-
 
 def make_new_recommenders(user):
 	recommender1 = User.objects.filter_by(email = user.rec1email, role = 2).first()
@@ -225,7 +223,7 @@ def generate_recommender_password(firstname, lastname):
     password = password.replace(" ","")
     return password
 
-
+@login_required
 def forgot(request):
     form = ForgotPasswordForm(request.form)
     if request.method == "POST" and form.validate():
@@ -235,9 +233,11 @@ def forgot(request):
         return redirect('/forgot_confirmation')
     return render_template("forgot.html", form=form)
 
+@login_required
 def forgot_confirmation(request):
     return render(request, "forgot_confirmation.html")
 
+@login_required
 def reset_password(request):
     form = ResetPasswordForm(request.form)
     if request.method == "POST" and form.validate():
@@ -260,7 +260,7 @@ def reset_password(request):
         return render_template("reset_invalid_token.html")
     return render(request, "reset_password.html", {'form':form, 'token':token})
 
-
+@login_required
 def rec_index(request):
 	students = User.objects.all()
 #	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
@@ -281,7 +281,7 @@ def rec_index(request):
 def guidelines(request):
 	return render(request, 'guidelines.html')
 
-
+@login_required
 def eval_index(request):
 	students = User.objects.all()
 #	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
@@ -299,7 +299,7 @@ def eval_index(request):
 #		recs.append(recommendation)
 	return render(request, 'eval_index.html', {'students':students})
 
-
+@login_required
 def recommend(request, student_id):#pass in the student this is for
 	student = User.objects.get(id = student_id) #look up the recommendation that is for this student and this recommender
 #	form = RecommenderForm(obj=recommendation) #pull up the form for this recommendation
@@ -359,8 +359,7 @@ def evaluate_index(request):
             assignedapplicants.append(a)
         return render(request, "evaluate_index.html", assignedapplicants = assignedapplicants, evals=evals, user = user)
 
-
-
+@login_required
 def evaluate(request, student_id):#pass in the student this is for
 	student = User.objects.get(id = student_id) #look up the recommendation that is for this student and this recommender
 #	form = RecommenderForm(obj=recommendation) #pull up the form for this recommendation
@@ -368,7 +367,6 @@ def evaluate(request, student_id):#pass in the student this is for
 #		form.populate_obj(recommendation)
 #		recommendation.save()
 	return render(request, 'evaluate.html', {'student': student})
-
 
 
 @login_required

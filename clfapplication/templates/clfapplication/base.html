@@ -29,9 +29,9 @@
 
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Chicana / Latina Foundation</a>
+    <span class="brand">Chicana / Latina Foundation</span>
     <ul class="nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li><a href="{% url 'index' %}">Home</a></li>
       <li><a href="{% url 'guidelines' %}">Guidelines</a></li>
       <li><a href="{% url 'profile' %}">Profile</a></li>
       <li><a href="{% url 'background' %}">Background</a></li>
@@ -42,7 +42,7 @@
        </ul>
 
      <ul class="nav pull-right">
-    <li><a href="#" >Signout</a></li>
+    <li><a href="{% url 'django.contrib.auth.views.logout' %}" >Signout</a></li>
    </li>
   </div>
 </div>
