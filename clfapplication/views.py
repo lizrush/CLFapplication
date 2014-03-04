@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse
 from clfapplication.models import User, Evaluation, Recommendation
+from clfapplication.forms import ProfileForm, BackgroundForm, DemographicForm, ScholarshipForm, DocumentsForm, EssayForm, RecommendationsForm, RecommenderForm, EvaluatorForm, ChangeRecommenderContact, ForgotPasswordForm, ResetPasswordForm
+
 
 #Login page
 def login(request):
@@ -20,23 +22,6 @@ def login(request):
 
 def logout(request):
 	logout(request)
-
-def rec_login(request):
-#    form = RecLoginForm()
-#    if form.validate_on_submit():
-#        recommender = form.get_recommender()
-#        login_user(recommender)
-#        return redirect('/rec_index')
-	return render(request, 'rec_login.html')
-
-
-def eval_login(request):
-#    form = EvalLoginForm()
-#    if form.validate_on_submit():
-#        evaluator = form.get_evaluator()
-#        login_user(evaluator)
-#        return redirect('/evaluate_index')
- 	return render(request, 'eval_login.html')
 
 
 @login_required
@@ -57,81 +42,92 @@ def index(request):
 
 def createprofile(request):
 	user = None
-	form = ProfileForm(obj=user)
-	if not form.password or form.password == '':
-		del form.password
-	if form.validate_on_submit():
-		if user:
-			flash('Successfully updated your profile.')
-		else:
-			user = User()
-			user.role = 1
-			flash('Congratulations, you just created an account!')
-		form.populate_obj(user)
-		user.save()
-		login(request, user)
-		return redirect('/')
-	return render(request, 'profile.html')
+	if request.method == 'POST':
+		form = ProfileForm(request.POST)
+		if not form.password or form.password == '':
+			del form.password
+		if form.is_valid():
+			login(request, user)
+			return HttpResponseRedirect('index')
+	else:
+		form = ProfileForm()
+	return render(request, 'profile.html', {'form':form})
 
 @login_required
 def profile(request):
-	return render(request, 'profile.html')
-#	if user.is_authenticated():
-#		user = user
-#	else:
-#		return redirect('/login')
-#	form = ProfileForm(obj=user)
-#	if not form.password or form.password == '':
-#		del form.password
-#	if form.validate_on_submit():
-#		form.populate_obj(user)
-#	user.save()
+	if request.method == 'POST':
+		form = ProfileForm(request.POST)
+		if not form.password or form.password == '':
+			del form.password
+		if form.is_valid():
+			login(request, user)
+			return HttpResponseRedirect('index')
+	else:
+		form = ProfileForm()
+	return render(request, 'profile.html', {'form':form})
 
 
 @login_required
 def background(request):
-	return render(request, 'background.html')
+	if request.method == 'POST':
+		form = BackgroundForm(request.POST)
+		if form.is_valid():
+			login(request, user)
+			return HttpResponseRedirect('index')
+	else:
+		form = BackgroundForm()
+	return render(request, 'background.html', {'form':form})
 
-	form = BackgroundForm(obj=user)
-#	if form.validate_on_submit():
-#		form.populate_obj(user)
-#		user.save()
 
 @login_required
 def demographic(request):
-	return render(request,'demographic.html')
-#	form = DemographicForm(obj=user)
-#	if form.validate_on_submit():
-#		form.populate_obj(user)
-#		user.save()
+	if request.method == 'POST':
+		form = DemographicForm(request.POST)
+		if form.is_valid():
+			login(request, user)
+			return HttpResponseRedirect('index')
+	else:
+		form = DemographicForm()
+	return render(request,'demographic.html', {'form':form})
+
 
 @login_required
 def essayquestions(request):
-	return render(request, 'essayquestions.html')
-	form = EssayForm(obj=user)
-	if form.validate_on_submit():
-		form.populate_obj(user)
-		user.save()
-		return redirect('/')
+	if request.method == 'POST':
+		form = EssayForm(request.POST)
+		if form.is_valid():
+			login(request, user)
+			return HttpResponseRedirect('index')
+	else:	
+		form = EssayForm()
+	return render(request, 'essayquestions.html', {'form':form})
+
 
 @login_required
 def documents(request):
-    return render(request, 'documents.html')
-#    form = TechskillsForm(obj=user)
- #   if form.validate_on_submit():
-  #      form.populate_obj(user)
-#		 user.save()
- #       return redirect('/')
+	if request.method == 'POST':
+		form = DocumentsForm(request.POST)
+		if form.is_valid():
+			login(request, user)
+			return HttpResponseRedirect('index')
+	else:
+		form = DocumentsForm()
+	return render(request, 'documents.html', {'form':form})
+
 
 
 @login_required
 def recommenders(request):
-#	form = RecommendationsForm(obj=user)
-	return render(request, 'recommenders.html')
-#    if form.validate_on_submit():
-#        form.populate_obj(user)
-#		user.save()
-#        return redirect('/')
+	if request.method == 'POST':
+		form = RecommendationsForm(request.POST)
+		if form.is_valid():
+			login(request, user)
+			return HttpResponseRedirect('index')
+	else:
+		form = RecommendationsForm()
+	return render(request, 'recommenders.html', {'form':form})
+
+
 
 @login_required
 def finalsubmission(request):
@@ -143,46 +139,10 @@ def help(request):
 
 @login_required
 def staffview(request):
-	finishedapplicants = User.objects.filter_by(application_complete =1).all()
-	sortedapplicants = []
-	recommenders = User.objects.all()
-	finalistsRound1 = []
-	displaymatrix = []
-	trythismatrix = []
-	for a in finishedapplicants:
-		evals = Evaluation.objects.filter_by(student_id = a.id).all()
-		yeses = 0
-		complete = 0
-		totalscores =[]
-		averagescore = 0
-		for e in evals:
-			if e.mission and e.critical and e.community and e.inspire:
-				complete +=1
-				totalscores.append((int(e.critical)+int(e.mission)+int(e.community)+int(e.inspire)))
-			if e.yesno =='Yes':
-				yeses +=1
-			if len(totalscores) >0:
-				averagescore = float(float((sum(totalscores))) /len(totalscores))
-			else:
-				averagescore = 0
-		averagescore = int(averagescore * 100) / 100.0
-		if complete <3:
-			displaymatrix.append([a.id, a.firstname, a.lastname, a.city, a.state, averagescore, yeses])
-		displaymatrix= sorted(displaymatrix, key=lambda applicant: applicant[5], reverse = True)
-		for d in displaymatrix:
-			entry = User.objects.get(d[0])
-			trythismatrix.append(entry)
-		recommendations = Recommendation.objects.all()
-		return render_template("displayfinalists.html", finishedapplicants = finishedapplicants, recommendations = recommendations, recommenders = recommenders, finalistsRound1 = trythismatrix, displaymatrix = displaymatrix)
+		return render_template("reports.html")
 
 @login_required
 def received(request):
-	if user.role ==2:
-		return redirect('/rec_index')
-	if user.application_complete ==1:
-		return redirect('/index')
-	user.application_complete =1
-	user.save()
 	make_new_recommenders(user)
 	make_blank_recommendations(user)
 	completed_app_count = len(User.objects.filter_by(application_complete =1).all())
@@ -190,6 +150,11 @@ def received(request):
 	notify_applicant(user)
 	notify_recommenders(user)
 	return render(request, 'received.html')
+'''	if user.role ==2:
+		return redirect('/rec_index')
+	if user.application_complete ==1:
+		return redirect('/index')'''
+
 
 def make_new_recommenders(user):
 	recommender1 = User.objects.filter_by(email = user.rec1email, role = 2).first()
@@ -262,20 +227,7 @@ def reset_password(request):
 
 @login_required
 def rec_index(request):
-	students = User.objects.all()
-#	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
-#	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
-#	if student2:
-#		for s2 in student2:
-#			students.append(s2)
-#	if student3:
-#		for s3 in student3:
-#			students.append(s3)
-#	for s in students:
-#		recommendation = Recommendation.objects.filter_by(student_id = s.id, recommender_id = user.id).first()
-#		if recommendation and recommendation.is_recommendation_complete():
-#			recommendation.recommendation_complete =1
-#		recs.append(recommendation)
+	students = User.objects.all() # placeholder
 	return render(request, 'rec_index.html', {'students':students})
 
 def guidelines(request):
@@ -283,128 +235,56 @@ def guidelines(request):
 
 @login_required
 def eval_index(request):
-	students = User.objects.all()
-#	student2 = (User.objects.filter_by(rec2email = user.email, application_complete =1).all())
-#	student3 = (User.objects.filter_by(rec3email = user.email, application_complete =1).all())
-#	if student2:
-#		for s2 in student2:
-#			students.append(s2)
-#	if student3:
-#		for s3 in student3:
-#			students.append(s3)
-#	for s in students:
-#		recommendation = Recommendation.objects.filter_by(student_id = s.id, recommender_id = user.id).first()
-#		if recommendation and recommendation.is_recommendation_complete():
-#			recommendation.recommendation_complete =1
-#		recs.append(recommendation)
+	students = User.objects.all() # placeholder
 	return render(request, 'eval_index.html', {'students':students})
 
 @login_required
 def recommend(request, student_id):#pass in the student this is for
-	student = User.objects.get(id = student_id) #look up the recommendation that is for this student and this recommender
-#	form = RecommenderForm(obj=recommendation) #pull up the form for this recommendation
-#	if form.validate_on_submit():
-#		form.populate_obj(recommendation)
-#		recommendation.save()
-	return render(request, 'recommendation.html', {'student': student})
+	student = User.objects.get(id = student_id) #look up the recommendation that is for 
+	if request.method == 'POST':
+		form = RecommenderForm(request.POST)
+		if form.is_valid():
+			login(request, user)
+			return HttpResponseRedirect('index')
+	else:
+		form = RecommenderForm()
+	return render(request, 'recommendation.html', {'student': student, 'form':form})
 
 
 @login_required
 def rec_finalsubmission(request):
-	if user.role ==1:
-		return redirect('/index')
-	user.are_recs_complete()
-	user.save()
+# Do stuff here
 	return render(request, "rec_finalsubmission.html")
 
 
 @login_required
-def rec_help(request):
-    if user.role ==1:
-        return redirect('/index')
-    return render(request, "rec_help.html")
-
-
-@login_required
-def rec_forgot(request):
-    if user.role ==1:
-        return redirect('/index')
-    return render_template("rec_forgot.html")
-
-
-@login_required
-def rec_logout(request):
-    logout_user()
-    return redirect("http://www.codeforprogress.org")
-
-
-@login_required
 def rec_received(request):
-    if user.role ==1:
-        return redirect('/index')
     return render(request, "rec_received.html")
 
 
 @login_required
-def evaluate_index(request):
-    if user.role ==1:
-        return redirect('/index')
-    if user.role ==2:
-        return redirect('/rec_index')
-    if user.role ==4:
-        assignedapplicants =[]
-        evals = Evaluation.objects.filter_by(evaluator_id = user.id).all()
-        for e in evals:
-            a = User.objects.filter_by(id = e.student_id).first()
-            assignedapplicants.append(a)
-        return render(request, "evaluate_index.html", assignedapplicants = assignedapplicants, evals=evals, user = user)
-
-@login_required
 def evaluate(request, student_id):#pass in the student this is for
-	student = User.objects.get(id = student_id) #look up the recommendation that is for this student and this recommender
-#	form = RecommenderForm(obj=recommendation) #pull up the form for this recommendation
-#	if form.validate_on_submit():
-#		form.populate_obj(recommendation)
-#		recommendation.save()
-	return render(request, 'evaluate.html', {'student': student})
+	student = User.objects.get(id = student_id)
+	if request.method == 'POST':
+		form = EvaluatorForm(request.POST)
+		if form.is_valid():
+			login(request, user)
+			return HttpResponseRedirect('eval_index')
+	else:
+		form = EvaluatorForm(request.POST)
+	return render(request, 'evaluate.html', {'student': student, 'form':form})
 
 
 @login_required
 def eval_finalsubmission(request):
-	evals_complete = user.are_evals_complete()
-	user.save()
-	if user.role ==1:
-		return redirect('/index')
-	if user.role ==2:
-		return redirect('/rec_index')
-	if evals_complete == True:
-		#return redirect('/evaluate_index')
+	if user.evals_complete == True:
+		return HttpResponseRedirect('/eval_index')
 		return render_template("eval_received.html")
 	return render(request, "eval_finalsubmission.html")
 
 
 @login_required
-def eval_help(request):
-    return render(request, "eval_help.html")
-
-
-@login_required
-def eval_forgot(request):
-    return render(request, "eval_forgot.html")
-
-
-@login_required
-def eval_logout(request):
-    logout_user()
-    return redirect("/eval_login")
-
-
-@login_required
 def eval_received(request):
-    if user.role ==1:
-        return redirect('/index')
-    if user.role ==2:
-        return redirect('/rec_index')
     if user.are_evals_complete() ==False:
         return redirect('/eval_finalsubmission')
     if user.are_evals_complete() ==True:

@@ -2,21 +2,17 @@
 {% block content %}
 
 
-         <form class="form-horizontal">
-  <fieldset>
     <legend>Supporting documents</legend>
 
     <h5>Transcript</h5>
 
     <h5>CV</h5>
 
-
-   <!---->
-    <!---->
-    <br>
-    <br>
+<form action="/contact/" method="post">{% csrf_token %}
+<br>
+{{ form.as_p }}
+<br>
     <button type="submit" class="btn btn-success">Submit</button>
-  </fieldset>
 </form>
 
 
