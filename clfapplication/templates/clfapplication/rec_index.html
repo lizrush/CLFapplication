@@ -1,10 +1,11 @@
-{% extends "base.html" %}
+{% extends "rec_base.html" %}
 {% block content %}
 
 
 <div class="container"><!-- Container -->
 <h2>Your applicants</h2>
 
+	<h3>Hi, {{user.first_name}}{% if user.applicant.first_name2 %}{{user.staff.first_name2}}{% endif %}!</h3>
 	<p>The applicant(s) below chose you as a recommender and gave us your <b>{{ current_user.email }}</b> email address.</p>
 	
 	<p>The button for each applicant will be gray until you finish that recommendation - when the button turns green, you're done! You can change what you've written in a section, even if it's marked green, until you submit your final set of complete applications.</p>

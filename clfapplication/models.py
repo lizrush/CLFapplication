@@ -1,14 +1,42 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class User(models.Model):
+# Django has a built-in User model that works well with the out-of-the-box authentication functions, so we are using it/them.
+# That model is created via User.objects.create(username, email, password), and can then also hold first_name and last_name.
+
+#Instead of redefining the entire User class to acommodate our variables and then writing security funtions for it (and on and on), we are "extending" the user model with Staff, Evaluator, Recommender, and Applicant models that reference their User base model via a OneToOneField.
+
+#To reference via the extended class, do something like: 
+	#olga = User.objects.get(first_name ="Olga")
+	#olgastitle = olga.staff.title
+
+class Staff(models.Model):
+    user = models.OneToOneField(User)
     role = models.IntegerField()
+    first_name2 = models.CharField(max_length=45)
+    last_name2 = models.CharField(max_length=45)
+    title = models.CharField(max_length=45)
+
+class Evaluator(models.Model):
+    user = models.OneToOneField(User)
+    role = models.IntegerField()
+    firstname2 = models.CharField(max_length=45)
+    lastname2 = models.CharField(max_length=45)
+
+
+class Recommender(models.Model):
+    user = models.OneToOneField(User)
+    role = models.IntegerField()
+    firstname2 = models.CharField(max_length=45)
+    lastname2 = models.CharField(max_length=45)
     title = models.CharField(max_length=45)
     organization = models.CharField(max_length=45)
-    email = models.CharField(max_length=45, unique=True)
-    password = models.CharField(max_length=45)
-    firstname = models.CharField(max_length=45)
+
+
+class Applicant(models.Model):
+    user = models.OneToOneField(User)
+    role = models.IntegerField()
     firstname2 = models.CharField(max_length=45)
-    lastname = models.CharField(max_length=45)
     lastname2 = models.CharField(max_length=45)
     phonetype = models.IntegerField(default = 0)
     address = models.CharField(max_length=90)
@@ -92,8 +120,6 @@ class User(models.Model):
     ref2lastname = models.CharField(max_length=45)
     ref2email = models.CharField(max_length=45)
     timestamp = models.IntegerField(default = 0)
-    application_complete = models.IntegerField(default = 0)
-    all_recs_complete = models.IntegerField(default = 0)
 
     def __repr__(self):
         return '<User %r>' % (self.email)
@@ -115,8 +141,8 @@ class User(models.Model):
 
 
 class Recommendation(models.Model):
-	student_id = models.ForeignKey(User)
-	recommender_id = models.IntegerField()
+	student_id = models.ForeignKey(Applicant)
+	recommender_id = models.ForeignKey(User)
 	KnownApplicant = models.TextField()
 	Capacity = models.TextField()
 	OtherCapacity = models.TextField()
@@ -149,8 +175,8 @@ class Recommendation(models.Model):
 
 
 class Evaluation(models.Model):
-	student_id = models.ForeignKey(User)
-	evaluator_id = models.IntegerField()
+	student_id = models.ForeignKey(Applicant)
+	evaluator_id = models.ForeignKey(User)
 	rating = models.IntegerField()
 	notes = models.TextField()
 

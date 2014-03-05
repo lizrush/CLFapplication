@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse
-from clfapplication.models import User, Evaluation, Recommendation
+from clfapplication.models import Applicant, Evaluator, Recommender, Staff, Evaluation, Recommendation
 from clfapplication.forms import ProfileForm, BackgroundForm, DemographicForm, ScholarshipForm, DocumentsForm, EssayForm, RecommendationsForm, RecommenderForm, EvaluatorForm, ChangeRecommenderContact, ForgotPasswordForm, ResetPasswordForm
 
 
@@ -20,25 +20,43 @@ def login(request):
                 if user.is_active:
                         login(request, user)
 
-def logout(request):
+def logout_view(request):
 	logout(request)
-
-
+	return render(request, 'logged_out.html')
 
 def index(request):
-	recs = []
+	try:
+		if request.user.recommender:
+			return HttpResponseRedirect('../rec_index')
+	except:
+		pass
+	try:
+		if request.user.evaluator:
+			return HttpResponseRedirect('../eval_index')
+	except:
+		pass
+	try:
+		if request.user.staff:
+			return HttpResponseRedirect('../staff_index')
+	except:
+		pass
 	return render(request, 'index.html')
-'''	if user.role ==2:
-		return redirect('/rec_index')
-	if user.role ==3:
-		return redirect('/eval_index')
-	if user.role ==4:
-		return redirect('/staffview')
-	if user.application_complete ==1:
-		recs.append(User.objects.filter_by(email = user.rec1email).first())
-		recs.append(User.objects.filter_by(email = user.rec2email).first())
-		recs.append(User.objects.filter_by(email = user.rec3email).first())'''
 
+
+def eval_index(request):
+	return render(request, 'eval_index.html')
+
+
+def rec_index(request):
+	return render(request, 'rec_index.html')
+
+
+def staff_index(request):
+	return render(request, "staff_index.html")
+
+
+def guidelines(request):
+	return render(request, 'guidelines.html')
 
 def createprofile(request):
 	user = None
@@ -127,20 +145,12 @@ def recommenders(request):
 		form = RecommendationsForm()
 	return render(request, 'recommenders.html', {'form':form})
 
-
-
-
 def finalsubmission(request):
 	return render(request, 'finalsubmission.html')
 
 
 def help(request):
 	return render(request, 'help.html', {'form':form})
-
-
-def staffview(request):
-		return render_template("reports.html")
-
 
 def received(request):
 	make_new_recommenders(user)
@@ -150,10 +160,6 @@ def received(request):
 	notify_applicant(user)
 	notify_recommenders(user)
 	return render(request, 'received.html')
-'''	if user.role ==2:
-		return redirect('/rec_index')
-	if user.application_complete ==1:
-		return redirect('/index')'''
 
 
 def make_new_recommenders(user):
@@ -196,7 +202,7 @@ def forgot(request):
         token = s.sign(request.form['email'])
         send_password_reset(form.get_user(), token)
         return redirect('/forgot_confirmation')
-    return render_template("forgot.html", form=form)
+    return render(request,"forgot.html", {'form':form})
 
 
 def forgot_confirmation(request):
@@ -211,7 +217,7 @@ def reset_password(request):
         try:
             email = s.unsign(token)
         except BadSignature:
-            return render_template("reset_invalid_token.html")
+            return render(request, "reset_invalid_token.html")
         user = User.objects.filter_by(email=email).first()
         if user:
             user.set_password(form.password.data)
@@ -219,24 +225,19 @@ def reset_password(request):
             login_user(user)
             return redirect("/")
         else:
-            return render_template("reset_invalid_token.html")
+            return render(request, "reset_invalid_token.html")
     token = request.args.get('token', None)
     if not token:
-        return render_template("reset_invalid_token.html")
+        return render(request, "reset_invalid_token.html")
     return render(request, "reset_password.html", {'form':form, 'token':token})
 
 
-def rec_index(request):
-	students = User.objects.all() # placeholder
-	return render(request, 'rec_index.html', {'students':students})
-
-def guidelines(request):
-	return render(request, 'guidelines.html')
 
 
-def eval_index(request):
-	students = User.objects.all() # placeholder
-	return render(request, 'eval_index.html', {'students':students})
+
+
+
+
 
 
 def recommend(request, student_id):#pass in the student this is for
@@ -279,7 +280,7 @@ def evaluate(request, student_id):#pass in the student this is for
 def eval_finalsubmission(request):
 	if user.evals_complete == True:
 		return HttpResponseRedirect('/eval_index')
-		return render_template("eval_received.html")
+		return render(request, "eval_received.html")
 	return render(request, "eval_finalsubmission.html")
 
 

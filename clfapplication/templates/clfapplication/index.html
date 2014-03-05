@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
+
+<h3>Hi, {{user.first_name}}{% if user.applicant.first_name2 %}{{user.staff.first_name2}}{% endif %}!</h3>
 <p>Let’s get started! The application is made up of four different sections. Once completed, each tab will turn green letting you know it’s a go! All sections MUST be completed in order to submit application. Good luck!</p>
+
+
 <br>
 <p><b><a href="{% url 'profile' %}" class="btn btn-success">Edit your profile</a> <a href="{% url 'background' %}" class="btn btn-success">Background</a> <a href="{% url 'essayquestions' %}" class="btn btn-primary">Essays</a> <a href="{% url 'documents' %}" class="btn btn-primary">Documents</a> <a href="{% url 'recommend' %}" class="btn btn-primary">Recommendations</b></a></p>
 
