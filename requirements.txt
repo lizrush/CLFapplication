@@ -3,7 +3,6 @@ Mako==0.7.3
 MarkupSafe==0.15
 PAM
 Pillow==2.0.0
-apt-xapian-index==0.45
 argparse==1.2.1
 bzr==2.6.0dev3
 chardet==2.0.1
@@ -43,14 +42,11 @@ python-debian==0.1.21-nmu2ubuntu1
 pyxdg==0.25
 reportlab==2.6
 requests==1.1.0
-rhythmbox-ubuntuone==4.2.0
 sessioninstaller==0.0.0
 simplejson==2.6.2
 six==1.2.0
-software-center-aptd-plugins==0.0.0
 ssh-import-id==3.14
 system-service==0.1.6
-ubuntuone-storage-protocol==4.2.0
 unity-lens-photos==0.9
 urllib3==1.5
 virtualenv==1.10.1
