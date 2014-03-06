@@ -10,7 +10,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import sys
+import psycopg2
+import urlparse
 from urlparse import urlparse
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -58,8 +59,8 @@ WSGI_APPLICATION = 'chicanalatina.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-if environ.has_key('DATABASE_URL'):
-    url = urlparse(environ['DATABASE_URL'])
+if os.environ.has_key('DATABASE_URL'):
+    url = urlparse(os.environ['DATABASE_URL'])
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': url.path[1:],
