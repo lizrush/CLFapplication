@@ -15,7 +15,6 @@ import urlparse
 from urlparse import urlparse
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -55,12 +54,13 @@ ROOT_URLCONF = 'chicanalatina.urls'
 
 WSGI_APPLICATION = 'chicanalatina.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
