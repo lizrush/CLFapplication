@@ -1,12 +1,8 @@
 Django==1.6.1
 Mako==0.7.3
 MarkupSafe==0.15
-MySQL-python==1.2.4b4
 PAM
 Pillow==2.0.0
-Twisted-Core
-Twisted-Names
-Twisted-Web
 adium-theme-ubuntu==0.3.3
 apt-xapian-index==0.45
 argparse==1.2.1
@@ -38,7 +34,6 @@ pyOpenSSL==0.13
 pycrypto==2.6
 pycups==1.9.62
 pycurl==7.19.0
-pygame==1.9.1release
 pygobject==3.8.0
 pygpgme==0.3
 pyinotify==0.9.3
